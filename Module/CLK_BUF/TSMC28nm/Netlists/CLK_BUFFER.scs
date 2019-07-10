@@ -1,17 +1,8 @@
-// Generated for: spectre
-// Generated on: Jun 30 21:42:48 2019
-// Design library name: POSH
-// Design cell name: CML_INPUT_BUFFER_v1
-// Design view name: schematic
 simulator lang=spectre
 global 0
 parameters D2S_NMOS_WIDTH D2S_NMOS_FINGER CML_BUFFER_WIDTH \
     CML_BUFFER_FINGER D2S_PMOS_WIDTH D2S_PMOS_FINGER
-include "/home/TSMC_28HPC_PLUS/iPDK_CRN28HPC+_v1.0_2p2a_20170531_all/iPDK_CRN28HPC+_v1.0_2p2a_20170531/tsmcN28/../models/spectre/toplevel.scs" section=top_tt
 
-// Library name: POSH
-// Cell name: CML_INPUT_BUFFER_v1
-// View name: schematic
 R8 (VDD CML_OUT_P VSS ) res lr=5u wr=2u multi=(5) m=1
 
 R1 (VDD CML_OUT_N VSS ) res lr=5u wr=2u multi=(5) m=1

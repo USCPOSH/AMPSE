@@ -1,20 +1,10 @@
-// Generated for: spectre
-// Generated on: Jun 18 15:34:01 2019
-// Design library name: POSH
-// Design cell name: tb_CML_INPUT_BUFFER_v1
-// Design view name: schematic
 simulator lang=spectre
 global 0
 parameters fclk=1.6G D2S_NMOS_WIDTH=560n D2S_NMOS_FINGER=5 \
     CML_BUFFER_WIDTH=1160n CML_BUFFER_FINGER=26 D2S_PMOS_WIDTH=600n \
     D2S_PMOS_FINGER=5 CLK_SW=1 VCM=0.5 c_pad=1p c_pcb=2p ind=1n \
     I_CML_REF=400u VDD=1
-include "/shares/tfwu_techfile_mcphe404cns3/TSMC28HPCP/models/spectre/toplevel.scs" section=top_ss
-include "/shares/tfwu_techfile_mcphe404cns3/TSMC28HPCP/IP/tcbn28hpcplusbwp12t30p140ulvt/TSMCHOME/digital/Back_End/spice/tcbn28hpcplusbwp12t30p140ulvt_170a/tcbn28hpcplusbwp12t30p140ulvt_170a.spi"
 
-// Library name: POSH
-// Cell name: CML_INPUT_BUFFER_v1
-// View name: schematic
 subckt CML_INPUT_BUFFER_v1 CLKN CLKP CML_BIAS CML_IN_N CML_IN_P CML_OUT_N \
         CML_OUT_P I_CML_REF OUT VCM VDD VSS
 R8 (VDD CML_OUT_P VSS ) res lr=5u wr=2u multi=(5) m=1
@@ -82,11 +72,6 @@ R3 (net156 CLKN VSS ) res lr=2u wr=2u multi=(6) m=1
         w=D2S_PMOS_WIDTH*D2S_PMOS_FINGER multi=1 nf=D2S_PMOS_FINGER \
 
 ends CML_INPUT_BUFFER_v1
-// End of subcircuit definition.
-
-// Library name: POSH
-// Cell name: tb_CML_INPUT_BUFFER_v1
-// View name: schematic
 V5 (CLK_N_SOURCE 0) vsource type=sine ampl=CLK_SW sinephase=180 freq=fclk
 V3 (CLK_P_SOURCE 0) vsource type=sine ampl=CLK_SW sinephase=0 freq=fclk
 V2 (VCM 0) vsource dc=VCM type=dc

@@ -1,0 +1,44 @@
+simulator lang = spectre 
+global 0 
+parameters 
+	Cu W_SW  
+subckt RR_INVX1 A VDD VSS Y 
+	M0 ( Y A VDD VDD ) pmos l=60n w=260.0n nf=1  
+	M1 ( Y A VSS VSS ) nmos l=60n w=195.00n nf=1  
+ends RR_INVX1 
+subckt RR_NAND2_HVT A1 A2 VDD VSS ZN 
+	M10 ( ZN A2 net017 VSS ) nmos l=60n w=195.00n nf=1  
+	M8 ( net017 A1 VSS VSS ) nmos l=60n w=195.00n nf=1  
+	M5 ( ZN A2 VDD VDD ) pmos l=60n w=260.0n nf=1  
+	M4 ( ZN A1 VDD VDD ) pmos l=60n w=260.0n nf=1  
+ends RR_NAND2_HVT 
+subckt RR_BIT_CELL MEM MEM_B VDD VSS 
+	M128 ( MEM_B MEM VSS VSS ) nmos l=60n w=195.00n nf=1  
+	M123 ( MEM MEM_B VSS VSS ) nmos l=60n w=195.00n nf=1  
+	M125 ( MEM MEM_B VDD VDD ) pmos l=60n w=260.0n nf=1  
+	M130 ( MEM_B MEM VDD VDD ) pmos l=60n w=260.0n nf=1  
+ends RR_BIT_CELL 
+subckt RR_TR_GATE_V3_AMPSE C CB IN OUT VDD VSS 
+	M1 ( IN CB OUT VDD ) pmos l=60n w=260.0n multi=1 nf=1 sigma=1  
+	M2 ( IN C OUT VSS ) nmos l=60n w=195.00n multi=1 nf=1 sigma=1  
+ends RR_TR_GATE_V3_AMPSE 
+	C1 ( SL_B net011 ) capacitor c=Cu  
+	C0 ( SL net010 ) capacitor c=Cu  
+	inv1 ( IN_B VDD VSS IN_BUF ) RR_INVX1  
+	nand ( IN COMPUTE VDD VSS IN_B ) RR_NAND2_HVT  
+	M0 ( net011 IN_B VSS VSS ) nmos l=60n w=W_SW*8 multi=1 nf=8 sigma=1  
+	sw3 ( net010 IN_B VSS VSS ) nmos l=60n w=W_SW*8 multi=1 nf=8 sigma=1  
+	I1 ( MEM MEM_B VDD VSS ) RR_BIT_CELL  
+	I78 ( IN_BUF IN_B MEM_B net011 VDD VSS ) RR_TR_GATE_V3_AMPSE  
+	I77 ( IN_BUF IN_B MEM net010 VDD VSS ) RR_TR_GATE_V3_AMPSE  
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 maxnotes=5 maxwarns=5 \
+    digits=5 cols=80 pivrel=1e-3 sensfile="../psf/sens.output" \
+    checklimitdest=psf 
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts  where=rawfile
+saveOptions options save=allpub
