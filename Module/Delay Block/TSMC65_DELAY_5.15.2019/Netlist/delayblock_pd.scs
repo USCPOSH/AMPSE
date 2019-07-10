@@ -1,0 +1,107 @@
+simulator lang = spectre 
+global 0 
+parameters wn=300n CL=10f fingers_cs=1 fingers_inv=1 fingers_load=1 Fs=500M V_cap_control=1 VCTRL=500m VDD=1 wp=2*wn 
+include "/home/subhajit/workarea_TSMC_65/tsmcN65_9M_mc_v2.scs" section = MC_SS 
+subckt INVD2LVT I ZN VDD VSS 
+	MU1_0\-M_u2 ( ZN I VSS VSS ) nmos l=60n w=390.0n nf=1  
+	MU1_1\-M_u2 ( ZN I VSS VSS ) nmos l=60n w=390.0n nf=1  
+	MU1_0\-M_u3 ( ZN I VDD VDD ) pmos l=60n w=520.0n nf=1  
+	MU1_1\-M_u3 ( ZN I VDD VDD ) pmos l=60n w=520.0n nf=1  
+ends INVD2LVT 
+subckt Delay_Unit_Parameterized CN CP EN\<1\> EN\<2\> EN\<3\> EN\<4\> EX\<1\> EX\<2\> EX\<3\> EX\<4\> IN OUT VDD VSS 
+	M22 ( OUT net366 VSS VSS ) nmos l=60n w=wn*fingers_inv multi=8 nf=fingers_inv sigma=1  
+	M12 ( EN\<3\> VSS VSS VSS ) nmos l=60n w=wn*fingers_load multi=1 nf=fingers_load sigma=1  
+	M17 ( EN\<3\> net366 EN\<3\> VSS ) nmos l=60n w=wn*fingers_load multi=4 nf=fingers_load sigma=1  
+	M13 ( EN\<2\> VSS EN\<3\> VSS ) nmos l=60n w=wn*fingers_load multi=1 nf=fingers_load sigma=1  
+	M23 ( EN\<2\> net366 EN\<2\> VSS ) nmos l=60n w=wn*fingers_load multi=2 nf=fingers_load sigma=1  
+	M14 ( EN\<1\> VSS EN\<2\> VSS ) nmos l=60n w=wn*fingers_load multi=1 nf=fingers_load sigma=1  
+	M24 ( EN\<1\> net366 EN\<1\> VSS ) nmos l=60n w=wn*fingers_load multi=1 nf=fingers_load sigma=1  
+	M15 ( net369 VSS EN\<1\> VSS ) nmos l=60n w=wn*fingers_load multi=1 nf=fingers_load sigma=1  
+	M16 ( net366 IN net369 VSS ) nmos l=100n w=wn*fingers_inv multi=12 nf=fingers_inv sigma=1  
+	M38 ( VSS VSS VSS VSS ) nmos l=100n w=wn*fingers_cs multi=6 nf=fingers_cs sigma=1  
+	M10 ( OUT net366 VDD VDD ) pmos l=60n w=wp*fingers_inv multi=16 nf=fingers_inv sigma=1  
+	M6 ( EX\<3\> VDD VDD VDD ) pmos l=60n w=wp*fingers_load multi=1 nf=fingers_load sigma=1  
+	M11 ( EX\<3\> net366 EX\<3\> VDD ) pmos l=60n w=wp*fingers_load multi=4 nf=fingers_load sigma=1  
+	M5 ( EX\<2\> VDD EX\<3\> VDD ) pmos l=60n w=wp*fingers_load multi=1 nf=fingers_load sigma=1  
+	M8 ( EX\<2\> net366 EX\<2\> VDD ) pmos l=60n w=wp*fingers_load multi=2 nf=fingers_load sigma=1  
+	M4 ( EX\<1\> VDD EX\<2\> VDD ) pmos l=60n w=wp*fingers_load multi=1 nf=fingers_load sigma=1  
+	M9 ( EX\<1\> net366 EX\<1\> VDD ) pmos l=60n w=wp*fingers_load multi=1 nf=fingers_load sigma=1  
+	M3 ( net368 VDD EX\<1\> VDD ) pmos l=60n w=wp*fingers_load multi=1 nf=fingers_load sigma=1  
+	M7 ( net366 IN net368 VDD ) pmos l=100n w=wp*fingers_inv multi=12 nf=fingers_inv sigma=1  
+	M29 ( net364 VDD VDD VDD ) pmos l=100n w=wp*fingers_cs multi=1 nf=fingers_cs sigma=1  
+	M34 ( net364 EN\<4\> VDD VDD ) pmos l=200n w=wp*fingers_cs multi=2 nf=fingers_cs sigma=1  
+	M33 ( net368 CP net364 VDD ) pmos l=100n w=wp*fingers_cs multi=1 nf=fingers_cs sigma=1  
+	M25 ( net368 VDD VDD VDD ) pmos l=100n w=wp*fingers_cs multi=1 nf=fingers_cs sigma=1  
+	M32 ( net368 CP VDD VDD ) pmos l=100n w=wp*fingers_cs multi=16 nf=fingers_cs sigma=1  
+	M27 ( VDD VDD VDD VDD ) pmos l=100n w=wp*fingers_cs multi=6 nf=fingers_cs sigma=1  
+	M39 ( net367 VSS VSS VSS ) nmos l=100n w=wn*fingers_cs multi=1 nf=fingers_cs sigma=1  
+	M37 ( net367 EX\<4\> VSS VSS ) nmos l=200n w=wn*fingers_cs multi=2 nf=fingers_cs sigma=1  
+	M36 ( net369 CN net367 VSS ) nmos l=100n w=wn*fingers_cs multi=1 nf=fingers_cs sigma=1  
+	M42 ( net369 VSS VSS VSS ) nmos l=100n w=wn*fingers_cs multi=1 nf=fingers_cs sigma=1  
+	M35 ( net369 CN VSS VSS ) nmos l=100n w=wn*fingers_cs multi=16 nf=fingers_cs sigma=1  
+ends Delay_Unit_Parameterized 
+subckt delay_block_cell CK ENB1\<1\> ENB1\<2\> ENB1\<3\> ENB1\<4\> VCTRL VDD VDD1 VI VSS 
+	I10 ( EN1\<1\> EX1\<1\> VDD VSS ) INVD2LVT  
+	I9 ( ENB1\<1\> EN1\<1\> VDD VSS ) INVD2LVT  
+	I12 ( EN1\<2\> EX1\<2\> VDD VSS ) INVD2LVT  
+	I11 ( ENB1\<2\> EN1\<2\> VDD VSS ) INVD2LVT  
+	I14 ( EN1\<3\> EX1\<3\> VDD VSS ) INVD2LVT  
+	I13 ( ENB1\<3\> EN1\<3\> VDD VSS ) INVD2LVT  
+	I74 ( EN1\<4\> EX1\<4\> VDD VSS ) INVD2LVT  
+	I7 ( ENB1\<4\> EN1\<4\> VDD VSS ) INVD2LVT  
+	C0 ( CK 0 ) capacitor c=CL  
+	I19 ( CN CP EN1\<1\> EN1\<2\> EN1\<3\> EN1\<4\> EX1\<1\> EX1\<2\> EX1\<3\> EX1\<4\> VI CK VDD1 VSS ) Delay_Unit_Parameterized  
+	M26 ( CP CN VSS VSS ) nmos l=100n w=800n multi=4 nf=1 sigma=1  
+	R0 ( VCTRL CN ) resistor r=0  
+	M0 ( CP CP VDD VDD ) pmos l=100n w=800n multi=8 nf=1 sigma=1  
+ends delay_block_cell 
+subckt BUFFD8LVT I Z VDD VSS 
+	M_u7_5\-M_u2 ( Z net67 VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u7_1\-M_u2 ( Z net67 VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u7_0\-M_u2 ( Z net67 VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u2_1\-M_u2 ( net67 I VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u7_6\-M_u2 ( Z net67 VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u7_3\-M_u2 ( Z net67 VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u2_2\-M_u2 ( net67 I VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u2_0\-M_u2 ( net67 I VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u7_2\-M_u2 ( Z net67 VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u7_7\-M_u2 ( Z net67 VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u7_4\-M_u2 ( Z net67 VSS VSS ) nmos l=60n w=390.0n nf=1  
+	M_u7_0\-M_u3 ( Z net67 VDD VDD ) pmos l=60n w=520.0n nf=1  
+	M_u7_4\-M_u3 ( Z net67 VDD VDD ) pmos l=60n w=520.0n nf=1  
+	M_u7_3\-M_u3 ( Z net67 VDD VDD ) pmos l=60n w=520.0n nf=1  
+	M_u2_1\-M_u3 ( net67 I VDD VDD ) pmos l=60n w=520.0n nf=1  
+	M_u7_5\-M_u3 ( Z net67 VDD VDD ) pmos l=60n w=520.0n nf=1  
+	M_u7_1\-M_u3 ( Z net67 VDD VDD ) pmos l=60n w=520.0n nf=1  
+	M_u2_0\-M_u3 ( net67 I VDD VDD ) pmos l=60n w=520.0n nf=1  
+	M_u2_2\-M_u3 ( net67 I VDD VDD ) pmos l=60n w=520.0n nf=1  
+	M_u7_6\-M_u3 ( Z net67 VDD VDD ) pmos l=60n w=520.0n nf=1  
+	M_u7_2\-M_u3 ( Z net67 VDD VDD ) pmos l=60n w=520.0n nf=1  
+	M_u7_7\-M_u3 ( Z net67 VDD VDD ) pmos l=60n w=520.0n nf=1  
+ends BUFFD8LVT 
+	I22 ( CK ENB1\<1\> ENB1\<2\> ENB1\<3\> ENB1\<4\> VCTRL VDD VDD1 VI VSS ) delay_block_cell  
+	V3 ( net2 0 ) vsource type=pulse val0=0 val1=VDD period=1/Fs delay=-250p rise=10p fall=10p width=0.5/Fs  
+	V8 ( VDD1 0 ) vsource dc=VDD type=dc  
+	V7 ( ENB1\<4\> 0 ) vsource dc=V_cap_control type=dc  
+	V6 ( ENB1\<3\> 0 ) vsource dc=V_cap_control type=dc  
+	V5 ( ENB1\<2\> 0 ) vsource dc=V_cap_control type=dc  
+	V4 ( ENB1\<1\> 0 ) vsource dc=V_cap_control type=dc  
+	V2 ( VSS 0 ) vsource dc=0 type=dc  
+	V0 ( VCTRL 0 ) vsource dc=VCTRL type=dc  
+	V1 ( VDD 0 ) vsource dc=VDD type=dc  
+	I6 ( net2 VI VDD VSS ) BUFFD8LVT  
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf colonasdelimiter=none 
+tran tran stop=10n errpreset=moderate write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save V8:p 
+saveOptions options save=allpub

@@ -1,0 +1,99 @@
+// Generated for: spectre
+// Generated on: May  7 22:00:20 2019
+// Design library name: 536b
+// Design cell name: TB_SH
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters ack=250m ask=0 CL=50f Cp=3.609f Fs=250M PWR=1.1 RNN=3 RPP=3 \
+    SN=64 SP=64 Vpp=350m VDC=PWR/2 Fin=31/64*Fs
+include "/home/subhajit/workarea_PTM_45/Techfile_45nm.scs"
+
+// Library name: 536b
+// Cell name: Cap_Bank
+// View name: schematic
+subckt Cap_Bank OUT VCTRL\<10\> VCTRL\<2\> VCTRL\<3\> VCTRL\<4\> \
+        VCTRL\<5\> VCTRL\<6\> VCTRL\<7\> VCTRL\<8\> VCTRL\<9\> VDD VREFN \
+        VREFP VSS
+    M18 (net072 VCTRL\<9\> VREFP VDD) pmos w=330n l=45n m=RPP
+    M14 (net073 VCTRL\<8\> VREFP VDD) pmos w=330n l=45n m=RPP
+    M13 (net074 VCTRL\<7\> VREFP VDD) pmos w=330n l=45n m=RPP
+    M10 (net076 VCTRL\<5\> VREFP VDD) pmos w=330n l=45n m=RPP
+    M9 (net075 VCTRL\<6\> VREFP VDD) pmos w=330n l=45n m=RPP
+    M20 (net071 VCTRL\<10\> VREFP VDD) pmos w=330n l=45n m=RPP
+    M6 (net077 VCTRL\<4\> VREFP VDD) pmos w=330n l=45n m=RPP
+    M5 (net078 VCTRL\<3\> VREFP VDD) pmos w=330n l=45n m=RPP
+    M3 (net079 VCTRL\<2\> VREFP VDD) pmos w=330n l=45n m=RPP
+    M19 (net072 VCTRL\<9\> VREFN VSS) nmos w=330n l=45n m=RNN
+    M15 (net073 VCTRL\<8\> VREFN VSS) nmos w=330n l=45n m=RNN
+    M12 (net074 VCTRL\<7\> VREFN VSS) nmos w=330n l=45n m=RNN
+    M11 (net076 VCTRL\<5\> VREFN VSS) nmos w=330n l=45n m=RNN
+    M8 (net075 VCTRL\<6\> VREFN VSS) nmos w=330n l=45n m=RNN
+    M21 (net071 VCTRL\<10\> VREFN VSS) nmos w=330n l=45n m=RNN
+    M7 (net077 VCTRL\<4\> VREFN VSS) nmos w=330n l=45n m=RNN
+    M4 (net078 VCTRL\<3\> VREFN VSS) nmos w=330n l=45n m=RNN
+    M2 (net079 VCTRL\<2\> VREFN VSS) nmos w=330n l=45n m=RNN
+    C9 (OUT net072) capacitor c=Cp
+    C7 (OUT net073) capacitor c=2*Cp
+    C6 (OUT net074) capacitor c=4*Cp
+    C5 (OUT net076) capacitor c=16*Cp
+    C4 (OUT net075) capacitor c=8*Cp
+    C10 (OUT net071) capacitor c=Cp
+    C3 (OUT net077) capacitor c=32*Cp
+    C2 (OUT net078) capacitor c=64*Cp
+    C1 (OUT net079) capacitor c=128*Cp
+ends Cap_Bank
+// End of subcircuit definition.
+
+// Library name: 536b
+// Cell name: S&H_DAC
+// View name: schematic
+subckt _sub0 INPUT OUTPUT VCTRL\<0\> VCTRL\<1\> VCTRL\<2\> VCTRL\<3\> \
+        VCTRL\<4\> VCTRL\<5\> VCTRL\<6\> VCTRL\<7\> VCTRL\<8\> VCTRLN \
+        VCTRLP VDD VREFN VREFP VSS
+    M0 (OUTPUT VCTRLN INPUT VSS) nmos w=330n l=45n m=SN
+    M1 (INPUT VCTRLP OUTPUT VDD) pmos w=330n l=45n m=SP
+    I2 (OUTPUT VCTRL\<8\> VCTRL\<0\> VCTRL\<1\> VCTRL\<2\> VCTRL\<3\> \
+        VCTRL\<4\> VCTRL\<5\> VCTRL\<6\> VCTRL\<7\> VDD VREFN VREFP VSS) \
+        Cap_Bank
+ends _sub0
+// End of subcircuit definition.
+
+// Library name: 536b
+// Cell name: TB_SH
+// View name: schematic
+V3 (VREFN 0) vsource dc=0 type=dc
+V2 (VREFP 0) vsource dc=PWR type=dc
+V1 (VSS 0) vsource dc=0 type=dc
+V0 (VDD 0) vsource dc=PWR type=dc
+V6 (VCTRLP 0) vsource type=pulse val0=PWR val1=0 period=1/Fs delay=ask/Fs \
+        rise=10p fall=10p width=ack/Fs
+V5 (VCTRLN 0) vsource type=pulse val0=0 val1=PWR period=1/Fs delay=0 \
+        rise=10p fall=10p width=ack/Fs
+V7 (net015 0) vsource dc=VDC mag=0 phase=0 type=sine delay=0 sinedc=VDC \
+        ampl=-Vpp/2 sinephase=0 freq=Fin
+V4 (net03 0) vsource dc=VDC mag=0 phase=0 type=sine delay=0 sinedc=VDC \
+        ampl=Vpp/2 sinephase=0 freq=Fin
+C1 (OUTPUTN 0) capacitor c=CL
+C0 (OUTPUTP 0) capacitor c=CL
+R2 (INPUTN net015) resistor r=50
+R0 (INPUTP net03) resistor r=50
+I10 (INPUTN OUTPUTN VDD VDD VDD VDD VDD VDD VDD VDD VDD VCTRLN VCTRLP VDD \
+        VREFN VREFP VSS) _sub0
+I0 (INPUTP OUTPUTP VDD VDD VDD VDD VDD VDD VDD VDD VDD VCTRLN VCTRLP VDD \
+        VREFN VREFP VSS) _sub0
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf colonasdelimiter=none 
+tran tran stop=1u errpreset=conservative write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save V0:p 
+saveOptions options save=allpub

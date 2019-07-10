@@ -1,0 +1,101 @@
+// Generated for: spectre
+// Generated on: May 11 17:15:22 2019
+// Design library name: GF65_sim
+// Design cell name: TB_comp
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters VIN=1m S=8 CL=64 VDD=1.2 Fs=1G
+include "/home/techfile/IBM65nm/IBM_PDK/cmos10lpe/V1.6.0.0RF/Spectre/models/design.scs"
+
+// Library name: GF65_sim
+// Cell name: INV_X8
+// View name: schematic
+subckt INV_X8 Y VDD VNW VPW VSS A
+    I2 (Y A VSS VPW) nmos l=60n w=240.0n m=8 nf=1
+    I3 (Y A VDD VNW) pmos l=60n w=480.0n m=8 nf=1
+ends INV_X8
+// End of subcircuit definition.
+
+// Library name: GF65_sim
+// Cell name: INV_X2
+// View name: schematic
+subckt INV_X2 Y VDD VNW VPW VSS A
+    I2 (Y A VSS VPW) nmos l=60n w=240.0n m=2 nf=1
+    I3 (Y A VDD VNW) pmos l=60n w=480.0n m=2 nf=1 
+ends INV_X2
+// End of subcircuit definition.
+
+// Library name: GF65_sim
+// Cell name: RDYgen
+// View name: schematic
+subckt RDYgen IN IP RDY RS VDD VSS
+    I100 (RDY VDD VDD VSS VSS net45) INV_X8
+    I102 (net46 VDD VDD VSS VSS RS) INV_X2
+    M0 (net45 net46 VDD VDD) pmos l=60n w=480.0n m=4 nf=1 
+    M1 (net45 IN VSS VSS) nmos l=60n w=240.0n m=8 nf=1
+    M2 (net45 IP VSS VSS) nmos l=60n w=240.0n m=8 nf=1
+ends RDYgen
+// End of subcircuit definition.
+
+// Library name: GF65_sim
+// Cell name: COMP_DynamicLAT
+// View name: schematic
+subckt COMP_DynamicLAT DN DP IN IP VDD VSS
+    I95 (DN VDD VDD VSS VSS net113) INV_X8
+    I94 (DP VDD VDD VSS VSS net17) INV_X8
+    M2 (net17 IP VDD VDD) pmos l=60n w=S*480.0n m=4 nf=1
+    M3 (net113 IN VDD VDD) pmos l=60n w=S*480.0n m=4 nf=1
+    M5 (net113 net17 VDD VDD) pmos l=60n w=S*480.0n m=8 nf=1
+    M4 (net17 net113 VDD VDD) pmos l=60n w=S*480.0n m=8 nf=1
+    M6 (net17 IP net112 VSS) nmos l=60n w=S*240.0n m=8 nf=1
+    M7 (net113 IN net111 VSS) nmos l=60n w=S*240.0n m=8 nf=1
+    M0 (net112 net113 VSS VSS) nmos l=60n w=S*240.0n m=8 nf=1
+    M1 (net111 net17 VSS VSS) nmos l=60n w=S*240.0n m=8 nf=1
+ends COMP_DynamicLAT
+// End of subcircuit definition.
+
+// Library name: GF65_sim
+// Cell name: COMP_DynamicAMP
+// View name: schematic
+subckt COMP_DynamicAMP AN AP CK ON OP RS VDD VSS
+    I65 (ON RS VSS VSS) nmos l=60n w=S*240.0n m=4 nf=1
+    T4 (OP RS VSS VSS) nmos l=60n w=S*240.0n m=4 nf=1 
+    I62 (OP AP OP VDD) pmos l=60n w=S*480.0n m=1 nf=1
+    T0 (ON AN ON VDD) pmos l=60n w=S*480.0n m=1 nf=1
+    T3 (net016 CK VDD VDD) pmos l=60n w=S*480.0n m=4 nf=1
+    T2 (ON AP net016 VDD) pmos l=60n w=S*480.0n m=2 nf=1
+    I63 (VDD ON VDD VDD) pmos l=60n w=CL*480.0n m=1 nf=1
+    T5 (VDD OP VDD VDD) pmos l=60n w=CL*480.0n m=1 nf=1
+    T1 (OP AN net016 VDD) pmos l=60n w=S*480.0n m=2 nf=1 
+ends COMP_DynamicAMP
+// End of subcircuit definition.
+
+// Library name: GF65_sim
+// Cell name: TB_comp
+// View name: schematic
+I126 (CompN1 CompP1 RDY LAT VDD VSS) RDYgen
+I124 (DN DP CompN1 CompP1 VDD VSS) COMP_DynamicLAT
+V0 (LAT 0) vsource type=pulse val0=0 val1=VDD period=1/Fs delay=0 rise=10p \
+        fall=10p width=0.55/Fs
+I18 (INN INP LAT CompN1 CompP1 LAT VDD VSS) COMP_DynamicAMP
+V5 (VDD 0) vsource dc=VDD type=dc
+V4 (VSS 0) vsource dc=0 type=dc
+V3 (INN 0) vsource dc=VDD/2-VIN/2 type=dc
+V2 (INP 0) vsource dc=VDD/2+VIN/2 type=dc
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=100n errpreset=conservative noisefmax=20G noisefmin=1k \
+    noiseseed=1 noisescale=1 noiseupdate=fmax write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save V5:p 
+saveOptions options save=allpub

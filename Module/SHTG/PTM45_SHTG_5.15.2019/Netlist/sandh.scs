@@ -1,0 +1,48 @@
+include "/home/subhajit/workarea_PTM_45/Techfile_45nm.scs" 
+subckt Cap_Bank OUT VCTRL\<10\> VCTRL\<2\> VCTRL\<3\> VCTRL\<4\> VCTRL\<5\> VCTRL\<6\> VCTRL\<7\> VCTRL\<8\> VCTRL\<9\> VDD VREFN VREFP VSS 
+	M18 ( net072 VCTRL\<9\> VREFP VDD ) pmos w=330n l=45n m=RPP  
+	M14 ( net073 VCTRL\<8\> VREFP VDD ) pmos w=330n l=45n m=RPP  
+	M13 ( net074 VCTRL\<7\> VREFP VDD ) pmos w=330n l=45n m=RPP  
+	M10 ( net076 VCTRL\<5\> VREFP VDD ) pmos w=330n l=45n m=RPP  
+	M9 ( net075 VCTRL\<6\> VREFP VDD ) pmos w=330n l=45n m=RPP  
+	M20 ( net071 VCTRL\<10\> VREFP VDD ) pmos w=330n l=45n m=RPP  
+	M6 ( net077 VCTRL\<4\> VREFP VDD ) pmos w=330n l=45n m=RPP  
+	M5 ( net078 VCTRL\<3\> VREFP VDD ) pmos w=330n l=45n m=RPP  
+	M3 ( net079 VCTRL\<2\> VREFP VDD ) pmos w=330n l=45n m=RPP  
+	M19 ( net072 VCTRL\<9\> VREFN VSS ) nmos w=330n l=45n m=RNN  
+	M15 ( net073 VCTRL\<8\> VREFN VSS ) nmos w=330n l=45n m=RNN  
+	M12 ( net074 VCTRL\<7\> VREFN VSS ) nmos w=330n l=45n m=RNN  
+	M11 ( net076 VCTRL\<5\> VREFN VSS ) nmos w=330n l=45n m=RNN  
+	M8 ( net075 VCTRL\<6\> VREFN VSS ) nmos w=330n l=45n m=RNN  
+	M21 ( net071 VCTRL\<10\> VREFN VSS ) nmos w=330n l=45n m=RNN  
+	M7 ( net077 VCTRL\<4\> VREFN VSS ) nmos w=330n l=45n m=RNN  
+	M4 ( net078 VCTRL\<3\> VREFN VSS ) nmos w=330n l=45n m=RNN  
+	M2 ( net079 VCTRL\<2\> VREFN VSS ) nmos w=330n l=45n m=RNN  
+	C9 ( OUT net072 ) capacitor c=Cp  
+	C7 ( OUT net073 ) capacitor c=2*Cp  
+	C6 ( OUT net074 ) capacitor c=4*Cp  
+	C5 ( OUT net076 ) capacitor c=16*Cp  
+	C4 ( OUT net075 ) capacitor c=8*Cp  
+	C10 ( OUT net071 ) capacitor c=Cp  
+	C3 ( OUT net077 ) capacitor c=32*Cp  
+	C2 ( OUT net078 ) capacitor c=64*Cp  
+	C1 ( OUT net079 ) capacitor c=128*Cp  
+ends Cap_Bank 
+	I16 ( net011 VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VREFN VREFP VSS ) Cap_Bank  
+	I12 ( net017 VDD VDD VDD VDD VDD VDD VDD VDD VDD VDD VREFN VREFP VSS ) Cap_Bank  
+	M3 ( INPUTN VCTRLP net011 VDD ) pmos w=900n l=45n m=SP  
+	M1 ( INPUTP VCTRLP net017 VDD ) pmos w=900n l=45n m=SP  
+	M4 ( net011 VCTRLN INPUTN VSS ) nmos w=900n l=45n m=SN  
+	M0 ( net017 VCTRLN INPUTP VSS ) nmos w=900n l=45n m=SN  
+	C2 ( net011 0 ) capacitor c=CL  
+	C0 ( net017 0 ) capacitor c=CL  
+	V9 ( net014 0 ) vsource dc=VDC mag=Vpp/2 phase=180 type=sine sinedc=VDC ampl=Vpp/2 sinephase=180 freq=Fin  
+	V7 ( net016 0 ) vsource dc=VDC mag=Vpp/2 type=sine sinedc=VDC ampl=Vpp/2 sinephase=0 freq=Fin  
+	R2 ( INPUTN net014 ) resistor r=50  
+	R1 ( INPUTP net016 ) resistor r=50  
+	V5 ( VCTRLN 0 ) vsource dc=PWR type=dc  
+	V6 ( VCTRLP 0 ) vsource dc=0 type=dc  
+	V3 ( VREFN 0 ) vsource dc=0 type=dc  
+	V2 ( VREFP 0 ) vsource dc=PWR type=dc  
+	V1 ( VSS 0 ) vsource dc=0 type=dc  
+	V0 ( VDD 0 ) vsource dc=PWR type=dc  
