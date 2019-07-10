@@ -1,0 +1,126 @@
+// Generated for: spectre
+// Generated on: Jun 18 15:34:01 2019
+// Design library name: POSH
+// Design cell name: tb_CML_INPUT_BUFFER_v1
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters fclk=1.6G D2S_NMOS_WIDTH=560n D2S_NMOS_FINGER=5 \
+    CML_BUFFER_WIDTH=1160n CML_BUFFER_FINGER=26 D2S_PMOS_WIDTH=600n \
+    D2S_PMOS_FINGER=5 CLK_SW=1 VCM=0.5 c_pad=1p c_pcb=2p ind=1n \
+    I_CML_REF=400u VDD=1
+include "/shares/tfwu_techfile_mcphe404cns3/TSMC28HPCP/models/spectre/toplevel.scs" section=top_ss
+include "/shares/tfwu_techfile_mcphe404cns3/TSMC28HPCP/IP/tcbn28hpcplusbwp12t30p140ulvt/TSMCHOME/digital/Back_End/spice/tcbn28hpcplusbwp12t30p140ulvt_170a/tcbn28hpcplusbwp12t30p140ulvt_170a.spi"
+
+// Library name: POSH
+// Cell name: CML_INPUT_BUFFER_v1
+// View name: schematic
+subckt CML_INPUT_BUFFER_v1 CLKN CLKP CML_BIAS CML_IN_N CML_IN_P CML_OUT_N \
+        CML_OUT_P I_CML_REF OUT VCM VDD VSS
+R8 (VDD CML_OUT_P VSS ) res lr=5u wr=2u multi=(5) m=1
+
+R1 (VDD CML_OUT_N VSS ) res lr=5u wr=2u multi=(5) m=1
+
+//Series configuration of R0
+R0_1__dmy0  (CML_IN_P R0_1__dmy0 VSS ) res lr=6u wr=1u multi=(1) m=1
+R0_2__dmy0  (R0_1__dmy0 R0_2__dmy0 VSS ) res lr=6u wr=1u multi=(1) \
+        m=1
+R0_3__dmy0  (R0_2__dmy0 R0_3__dmy0 VSS ) res lr=6u wr=1u multi=(1) \
+        m=1
+R0_4__dmy0  (R0_3__dmy0 R0_4__dmy0 VSS ) res lr=6u wr=1u multi=(1) \
+        m=1
+R0_5__dmy0  (R0_4__dmy0 VCM VSS ) res lr=6u wr=1u multi=(1) m=1
+//End of R0
+
+R2 (CLKP net156 VSS ) res lr=2u wr=2u multi=(6) m=1
+
+R4 (CLKP net156 VSS ) res lr=2u wr=2u multi=(6) m=1
+
+R5 (net156 CLKN VSS ) res lr=2u wr=2u multi=(6) m=1
+
+//Series configuration of R6
+R6_1__dmy0  (VCM R6_1__dmy0 VSS ) res lr=6u wr=1u multi=(1) m=1
+R6_2__dmy0  (R6_1__dmy0 R6_2__dmy0 VSS ) res lr=6u wr=1u multi=(1) \
+        m=1
+R6_3__dmy0  (R6_2__dmy0 R6_3__dmy0 VSS ) res lr=6u wr=1u multi=(1) \
+        m=1
+R6_4__dmy0  (R6_3__dmy0 R6_4__dmy0 VSS ) res lr=6u wr=1u multi=(1) \
+        m=1
+R6_5__dmy0  (R6_4__dmy0 CML_IN_N VSS ) res lr=6u wr=1u multi=(1) m=1
+//End of R6
+
+R3 (net156 CLKN VSS ) res lr=2u wr=2u multi=(6) m=1
+
+    C4 (CLKP CML_IN_P) cap nr=80 lr=20u w=50n s=50n stm=1 spm=7 \
+        multi=1
+    C0 (CLKN CML_IN_N) cap nr=80 lr=20u w=50n s=50n stm=1 spm=7 \
+        multi=1
+    M6 (net161 I_CML_REF VSS VSS) nmos l=120.0n w=20u multi=1 \
+        nf=10
+    M5 (I_CML_REF I_CML_REF VSS VSS) nmos l=120.0n w=20u multi=1 \
+        nf=10
+    M4 (VSS I_CML_REF VSS VSS) nmos l=120.0n w=92.0u multi=1 nf=46 \
+    M1 (V_CUR_MIR CML_OUT_P VSS VSS) nmos l=30n \
+        w=D2S_NMOS_WIDTH*D2S_NMOS_FINGER multi=1 nf=D2S_NMOS_FINGER \
+    M0 (OUT CML_OUT_N VSS VSS) nmos l=30n \
+        w=D2S_NMOS_WIDTH*D2S_NMOS_FINGER multi=1 nf=D2S_NMOS_FINGER \
+    M25 (CML_OUT_P CML_IN_P V_GND VSS) nmos l=30n \
+        w=CML_BUFFER_WIDTH*CML_BUFFER_FINGER multi=1 nf=CML_BUFFER_FINGER \
+    M12 (CML_OUT_N CML_IN_N V_GND VSS) nmos l=30n \
+        w=CML_BUFFER_WIDTH*CML_BUFFER_FINGER multi=1 nf=CML_BUFFER_FINGER \
+    M29 (V_GND CML_BIAS VSS VSS) nmos l=120.0n w=120.00000u \
+        multi=1 nf=60
+    M37 (CML_BIAS CML_BIAS VSS VSS) nmos l=120.0n w=20u multi=1 \
+    M3 (VSS CML_BIAS VSS VSS) nmos l=120.0n w=52.0u multi=1 nf=26 \
+    M9 (VDD net161 VDD VDD) pmos l=120.0n w=32.0u multi=1 nf=16 \
+    M8 (net161 net161 VDD VDD) pmos l=120.0n w=20u multi=1 nf=10 \
+    M7 (CML_BIAS net161 VDD VDD) pmos l=120.0n w=20u multi=1 nf=10 \
+    M2 (V_CUR_MIR V_CUR_MIR VDD VDD) pmos l=30n \
+        w=D2S_PMOS_WIDTH*D2S_PMOS_FINGER multi=1 nf=D2S_PMOS_FINGER \
+        spmb=1.11111e+15 spomb=0 spomb1=1.11111e+60
+    M27 (OUT V_CUR_MIR VDD VDD) pmos l=30n \
+        w=D2S_PMOS_WIDTH*D2S_PMOS_FINGER multi=1 nf=D2S_PMOS_FINGER \
+
+ends CML_INPUT_BUFFER_v1
+// End of subcircuit definition.
+
+// Library name: POSH
+// Cell name: tb_CML_INPUT_BUFFER_v1
+// View name: schematic
+V5 (CLK_N_SOURCE 0) vsource type=sine ampl=CLK_SW sinephase=180 freq=fclk
+V3 (CLK_P_SOURCE 0) vsource type=sine ampl=CLK_SW sinephase=0 freq=fclk
+V2 (VCM 0) vsource dc=VCM type=dc
+V1 (VDD 0) vsource dc=VDD type=dc
+V0 (VSS 0) vsource type=dc
+I6 (0 I_CML_REF) isource dc=I_CML_REF type=dc
+I0 (CLKN CLKP CML_BIAS CML_IN_N CML_IN_P CML_OUT_N CML_OUT_P I_CML_REF OUT \
+        VCM VDD VSS) CML_INPUT_BUFFER_v1
+C2 (CLKN 0) capacitor c=c_pad
+C1 (net07 0) capacitor c=c_pcb
+C0 (CLKP 0) capacitor c=c_pad
+C34 (net08 0) capacitor c=c_pcb
+R1 (net011 CLKN) resistor r=100.0m isnoisy=yes
+R0 (CLK_N_SOURCE net07) resistor r=50 isnoisy=yes
+R52 (net012 CLKP) resistor r=100.0m isnoisy=yes
+R51 (CLK_P_SOURCE net08) resistor r=50 isnoisy=yes
+L0 (net07 net011) inductor l=ind isnoisy=no
+L3 (net08 net012) inductor l=ind isnoisy=no
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=85.0 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=200n errpreset=moderate noisefmax=100G noisefmin=1M \
+    noiseseed=1 write="spectre.ic" writefinal="spectre.fc" annotate=status \
+    maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save VCM CLKP CLKN CML_IN_P CML_BIAS CML_IN_N CML_OUT_P CML_OUT_N OUT \
+    I_CML_REF CLK_N_SOURCE CLK_P_SOURCE V1:p 
+saveOptions options save=all currents=selected
