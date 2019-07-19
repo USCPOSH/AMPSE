@@ -5,6 +5,8 @@ Contributions are more than welcome! Please contact Qiaochu Zhang at <qiaochuz@u
 ## Current contributors:
 Qiaochu Zhang (USC)
 
+Mohsen Hassanpourghadi (USC)
+
 Subhajit Dutta Chowdhury (USC)
 
 Walter Unglaub (USC)
