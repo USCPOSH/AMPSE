@@ -5,8 +5,6 @@ Contributions are more than welcome! Please contact Qiaochu Zhang at <qiaochuz@u
 # Current contributors:
 
 Qiaochu Zhang
-
 Subhajit Dutta Chowdhury
-
 Walter Unglaub
 
