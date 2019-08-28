@@ -1,0 +1,60 @@
+// Generated for: spectre
+// Generated on: Apr 23 11:08:58 2019
+// Design library name: CAD_modules
+// Design cell name: test_amptelescopic65
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters cl=1p rl=1G vcmin=0.6 vcmn=0.6 vcmo=1.2 vttt=0.6 fn1=12 fn2=12 fnt=24 fp1=24 fp2=24 ln1=120n ln2=120n lnt=200n lp1=120n lp2=120n     vtn2=0.8 vtp2=0.2 wn1=600n wn2=600n wnt=600n wp1=600n wp2=600n
+
+include "/home/mohsen/workarea_TSMC_MS_65_9M/tsmcN65_mc_shares.scs" section=MC_TT
+
+include "/ATC_v1.scs"
+
+// Library name: CAD_modules
+// Cell name: test_amptelescopic65
+// View name: schematic
+V10 (TN2 0) vsource dc=vtn2 type=dc
+V9 (TP2 0) vsource dc=vtp2 type=dc
+V8 (net018 0) vsource dc=vcmin mag=1 phase=180 type=dc
+V7 (net023 0) vsource dc=vcmin mag=1 phase=0 type=dc
+V6 (cmn 0) vsource dc=vcmn type=dc
+V5 (cmo 0) vsource dc=vcmo type=dc
+V4 (T 0) vsource dc=vttt type=dc
+V3 (net028 0) vsource dc=vcmin mag=0 phase=0 type=dc
+V2 (net027 0) vsource dc=vcmin mag=1 phase=0 type=dc
+V1 (VSS 0) vsource dc=0 type=dc
+V0 (VDD 0) vsource dc=1 type=dc
+C1 (VSS op) capacitor c=cl
+C0 (VSS om) capacitor c=cl
+R3 (net018 nip) resistor r=1K
+R2 (net023 nin) resistor r=1K
+R1 (cmn op) resistor r=rl
+R0 (cmn om) resistor r=rl
+E3 (netout VSS op om) vcvs gain=1.0
+E2 (TP VSS net012 cmo) vcvs gain=10
+E1 (net012 net015 om VSS) vcvs gain=1.0
+E0 (net015 VSS op VSS) vcvs gain=1.0
+I9 (nin nip net019 net014 T TN2 TP TP2 VDD VSS) AMP_CASCODE65_v1
+I8 (net027 net028 om op T TN2 TP TP2 VDD VSS) AMP_CASCODE65_v1
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+ac ac start=1k stop=10T annotate=status 
+noise ( om op ) noise start=1k stop=1T iprobe=V2 annotate=status 
+saveOptions options save=allpub
+
+simulator lang=spice
+.MEAS AC AVDD MAX VDB(netout) From=1k To=1T
+.MEAS AC AVCM MAX VDB(net012) From=1k To=1T
+.MEAS AC GBW WHEN VDB(netout)=0
+.MEAS AC ZBWWW WHEN VDB(nin)=-3
+.MEAS NOISE outnoise INTEG 'ONOISE*ONOISE' FROM=1k To=1T
+.MEAS DC swing PARAM='vds(I8.M14)-vdsat(I8.M14)+vds(I8.M11)-vdsat(I8.M11)'
+.MEAS AC CIN1 par('1/(zbwww*6280)')
+.MEAS DC pwr PARAM='ids(I8.M7)'
+
+
+

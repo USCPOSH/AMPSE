@@ -1,0 +1,61 @@
+simulator lang = spectre 
+global 0 
+parameters lastt=20n wnnn=390n fnnn=12 wpppn=520n fppp=12 rres=1K VBIAS=1 VDD=1 
+include "/home/mohsen/workarea_TSMC_MS_65_9M/tsmcN65_mc_shares.scs" section = MC_TT 
+
+subckt INVD4LVT I ZN VDD VSS MU1_0\-M_u2 ( ZN I VSS VSS ) nch_lvt l=60n w=390.0n nf=1  
+MU1_3\-M_u2 ( ZN I VSS VSS ) nch_lvt l=60n w=390.0n nf=1  
+MU1_1\-M_u2 ( ZN I VSS VSS ) nch_lvt l=60n w=390.0n nf=1  
+MU1_2\-M_u2 ( ZN I VSS VSS ) nch_lvt l=60n w=390.0n nf=1  
+MU1_0\-M_u3 ( ZN I VDD VDD ) pch_lvt l=60n w=520.0n nf=1  
+MU1_1\-M_u3 ( ZN I VDD VDD ) pch_lvt l=60n w=520.0n nf=1  
+MU1_3\-M_u3 ( ZN I VDD VDD ) pch_lvt l=60n w=520.0n nf=1  
+MU1_2\-M_u3 ( ZN I VDD VDD ) pch_lvt l=60n w=520.0n nf=1  
+ends INVD4LVT 
+I0 ( VDD VSS on\<1\> on\<2\> on\<3\> on\<4\> on\<5\> op\<1\> op\<2\> op\<3\> op\<4\> op\<5\> vbias ) VCO_Dtype1_65  
+V1 ( VSS 0 ) vsource dc=0 type=dc  
+V0 ( VDD 0 ) vsource dc=VDD type=dc  
+I3\<1\> ( op\<1\> net4\<0\> VDD VSS ) INVD4LVT  
+I3\<2\> ( op\<2\> net4\<1\> VDD VSS ) INVD4LVT  
+I3\<3\> ( op\<3\> net4\<2\> VDD VSS ) INVD4LVT  
+I3\<4\> ( op\<4\> net4\<3\> VDD VSS ) INVD4LVT  
+I3\<5\> ( op\<5\> net4\<4\> VDD VSS ) INVD4LVT  
+I2\<1\> ( on\<1\> net5\<0\> VDD VSS ) INVD4LVT  
+I2\<2\> ( on\<2\> net5\<1\> VDD VSS ) INVD4LVT  
+I2\<3\> ( on\<3\> net5\<2\> VDD VSS ) INVD4LVT  
+I2\<4\> ( on\<4\> net5\<3\> VDD VSS ) INVD4LVT  
+I2\<5\> ( on\<5\> net5\<4\> VDD VSS ) INVD4LVT  
+V3 ( vbias 0 ) vsource type=pwl wave=[00lasttVBIAS]  
+C1\<1\> ( op\<1\> VSS ) capacitor c=2f  
+C1\<2\> ( op\<2\> VSS ) capacitor c=2f  
+C1\<3\> ( op\<3\> VSS ) capacitor c=2f  
+C1\<4\> ( op\<4\> VSS ) capacitor c=2f  
+C1\<5\> ( op\<5\> VSS ) capacitor c=2f  
+C0\<1\> ( on\<1\> VSS ) capacitor c=2f  
+C0\<2\> ( on\<2\> VSS ) capacitor c=2f  
+C0\<3\> ( on\<3\> VSS ) capacitor c=2f  
+C0\<4\> ( on\<4\> VSS ) capacitor c=2f  
+C0\<5\> ( on\<5\> VSS ) capacitor c=2f  
+M0 ( vo vo VSS VSS ) nch_lvt_mac l=60n w=wnnn*fnnn multi=1 nf=fnnn sigma=1  
+M6 ( vo vbias VDD VDD ) pch_lvt_mac l=60n w=wpppn*fppp multi=1 nf=fppp sigma=1  
+ic on\<1\>=0 
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=lastt errpreset=conservative write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+saveOptions options save=allpub
+simulator lang=spice
+
+.MEAS TRAN t1  TRIG V(on\<1\>,vo) VAL=0  RISE=2 TARG V(on\<1\>,vo) VAL=0  RISE=3
+.MEAS TRAN td1 WHEN V(on\<1\>,vo) VAL=0.15  FALL=LAST
+.MEAS TRAN t2  TRIG V(on\<1\>,vo) VAL=0  RISE=1 TD=td1 TARG V(on\<1\>,vo) VAL=0  RISE=2 TD=td1
+.MEAS TRAN lv FIND V(vbias) AT = td1
+.MEAS TRAN pwr  avg I(V1) from .001ns to td1
+
+
+
+
+
+

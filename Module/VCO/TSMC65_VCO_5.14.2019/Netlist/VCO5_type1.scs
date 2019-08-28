@@ -1,0 +1,32 @@
+simulator lang = spectre 
+subckt VCO_type1_65 VDD VSS o\<1\> o\<2\> o\<3\> o\<4\> o\<5\> vbias M4 ( o\<1\> o\<5\> VSS VSS ) nch_lvt_mac l=60n w=wnnn*fnnn multi=1 nf=fnnn sigma=1  
+M3 ( o\<5\> o\<4\> VSS VSS ) nch_lvt_mac l=60n w=wnnn*fnnn multi=1 nf=fnnn sigma=1  
+M2 ( o\<4\> o\<3\> VSS VSS ) nch_lvt_mac l=60n w=wnnn*fnnn multi=1 nf=fnnn sigma=1  
+M1 ( o\<3\> o\<2\> VSS VSS ) nch_lvt_mac l=60n w=wnnn*fnnn multi=1 nf=fnnn sigma=1  
+M0 ( o\<2\> o\<1\> VSS VSS ) nch_lvt_mac l=60n w=wnnn*fnnn multi=1 nf=fnnn sigma=1  
+M9 ( o\<1\> vbias VDD VDD ) pch_lvt_mac l=60n w=wpppn*fppp multi=1 nf=fppp sigma=1  
+M8 ( o\<4\> vbias VDD VDD ) pch_lvt_mac l=60n w=wpppn*fppp multi=1 nf=fppp sigma=1  
+M7 ( o\<5\> vbias VDD VDD ) pch_lvt_mac l=60n w=wpppn*fppp multi=1 nf=fppp sigma=1  
+M6 ( o\<2\> vbias VDD VDD ) pch_lvt_mac l=60n w=wpppn*fppp multi=1 nf=fppp sigma=1  
+M5 ( o\<3\> vbias VDD VDD ) pch_lvt_mac l=60n w=wpppn*fppp multi=1 nf=fppp sigma=1  
+ends VCO_type1_65 
+
+subckt VCO_Dtype1_65 VDD VSS on\<1\> on\<2\> on\<3\> on\<4\> on\<5\> op\<1\> op\<2\> op\<3\> op\<4\> op\<5\> vbias I1 ( VDD VSS op\<1\> op\<2\> op\<3\> op\<4\> op\<5\> vbias ) VCO_type1_65  
+I0 ( VDD VSS on\<1\> on\<2\> on\<3\> on\<4\> on\<5\> vbias ) VCO_type1_65  
+R1\<1\> ( on\<5\> op\<1\> ) resistor r=rres  
+R1\<2\> ( on\<1\> op\<2\> ) resistor r=rres  
+R1\<3\> ( on\<2\> op\<3\> ) resistor r=rres  
+R1\<4\> ( on\<3\> op\<4\> ) resistor r=rres  
+R1\<5\> ( on\<4\> op\<5\> ) resistor r=rres  
+R0\<1\> ( op\<5\> on\<1\> ) resistor r=rres  
+R0\<2\> ( op\<1\> on\<2\> ) resistor r=rres  
+R0\<3\> ( op\<2\> on\<3\> ) resistor r=rres  
+R0\<4\> ( op\<3\> on\<4\> ) resistor r=rres  
+R0\<5\> ( op\<4\> on\<5\> ) resistor r=rres  
+ends VCO_Dtype1_65 
+
+
+
+
+
+

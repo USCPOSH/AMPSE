@@ -1,0 +1,13 @@
+subckt AMP_FOLDCASCODE65_v1 IM IP OM OP T TN TN2 TP TP2 VDD VSS
+    M10 (net024 TP VDD VDD) pch_lvt l=lp2 w=wp2*fp2 m=1 nf=fp2 sigma=1
+    M9 (net023 TP VDD VDD) pch_lvt l=lp2 w=wp2*fp2 m=1 nf=fp2 sigma=1
+    M12 (OP TP2 net023 VDD) pch_lvt l=lp1 w=wp1*fp1 m=1 nf=fp1 sigma=1
+    M11 (OM TP2 net024 VDD) pch_lvt l=lp1 w=wp1*fp1 m=1 nf=fp1 sigma=1
+    M3 (net021 TN VSS VSS) nch_lvt l=ln1 w=wn1*fn1 m=1 nf=fn1 sigma=1
+    M0 (net024 IM net015 VSS) nch_lvt l=ln3 w=wn3*fn3 m=1 nf=fn3 sigma=1
+    M4 (net022 TN VSS VSS) nch_lvt l=ln1 w=wn1*fn1 m=1 nf=fn1 sigma=1
+    M6 (OP TN2 net022 VSS) nch_lvt l=ln2 w=wn2*fn2 m=1 nf=fn2 sigma=1
+    M1 (net023 IP net015 VSS) nch_lvt l=ln3 w=wn3*fn3 m=1 nf=fn3 sigma=1
+    M7 (net015 T VSS VSS) nch_lvt l=lnt w=wnt*fnt m=1 nf=fnt sigma=1
+    M5 (OM TN2 net021 VSS) nch_lvt l=ln2 w=wn2*fn2 m=1 nf=fn2 sigma=1
+ends AMP_FOLDCASCODE65_v1
