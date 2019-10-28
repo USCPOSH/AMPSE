@@ -1,0 +1,3 @@
+from Netlist_Database import ClassAB_spice
+myseqp2 = ClassAB_spice(14)
+myseqp2.put_on_csv(tedad=10000,outcsv ='/home/Pedram30may/Desktop/PYTHON_PHD/Blocks/amplifier/Datasets/classAB_14.csv', do_header = True)

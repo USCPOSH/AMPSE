@@ -1,0 +1,3 @@
+from Netlist_Database import ClassAB
+myseqp2 = ClassAB(14)
+myseqp2.put_on_csv(tedad=10,outcsv ='/home/Pedram30may/Desktop/PYTHON_PHD/Blocks/amplifier/Datasets/PY_CAB_14.csv', do_header = False)

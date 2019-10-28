@@ -1,0 +1,3 @@
+from Netlist_Database import Folded_Cascode
+myseqp2 = Folded_Cascode(45)
+myseqp2.put_on_csv(tedad=10,outcsv ='/home/Pedram30may/Desktop/PYTHON_PHD/Blocks/amplifier/Datasets/foldedcascode_cmfb_PTM45.csv', do_header = True)
