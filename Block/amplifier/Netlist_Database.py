@@ -3,10 +3,11 @@ import sys
 import numpy as np
 import pandas as pd
 import os
-from spectreIOlib import TestSpice, Netlists
-import time
 home_address  = os.getcwd()
 sys.path.insert(0, home_address+'/MLLibs/GlobalLibrary')
+from spectreIOlib import TestSpice, Netlists
+import time
+
  
 
 class Folded_Cascode_spice(Netlists):
