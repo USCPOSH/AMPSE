@@ -7,11 +7,10 @@
 #==================================================================
 
 import sys
-sys.path.insert(0,'/shares/MLLibs/GlobalLibrary')
-#sys.path.insert(0,'/home/mohsen/PYTHON_PHD/GlobalLibrary')
-
+#sys.path.insert(0,'/shares/MLLibs/GlobalLibrary')
 import os
 home_address  = os.getcwd()
+sys.path.insert(0, home_address+'/MLLibs/GlobalLibrary')
 from Netlist_Database import Folded_Cascode_spice, ClassAB_spice
 
 from tensorflow_circuit import TF_DEFAULT, make_var
@@ -31,8 +30,8 @@ from pickle import dump
 #*******************  Initialization  *****************************
 #==================================================================
 
-gain = 60                # Desired value in dB
-ugb = 5e8                 # Desired value in GHz
+gain = 90                # Desired value in dB
+ugb = 1e8                 # Desired value in GHz
 phase_margin = 1.047        # Desired value in phase margin
 cload = 1e-12               # capacitor after each stage
 epsilon = 1e-3              # Epsilon in GD
@@ -301,7 +300,7 @@ if __name__ == '__main__':
             #*****************  Tensorflow Gradient Descent  ******************
             #==================================================================
             tstart=time.time()
-            for i in range(50000):
+            for i in range(5000):
                 try:
                     _,value,smallspecs,last_const = sess.run([opt1,hardcost,tf_specs,tf_const])                
                 except:
@@ -317,7 +316,7 @@ if __name__ == '__main__':
                 else:
                     lastvalue=value
                 
-            for i in range(50000):
+            for i in range(5000):
                 try:
                     _,value,smallspecs,last_const = sess.run([opt2,hardcost,tf_specs,tf_const])                
                 except:

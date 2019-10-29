@@ -7,19 +7,26 @@
 
 # Importing the libraries
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import pandas as pd
 import math
+import os
 
 
 # Importing the dataset
-dataset = pd.read_csv('/home/Pedram30may/Desktop/amplifier/Datasets/foldedcascode_cmfb_PTM45.csv',header=None)
+
+cf = os.getcwd()
+cfs = cf.split('/')
+sss = '/'
+homefolder=sss.join(cfs[:-1])
+
+dataset = pd.read_csv(homefolder + '/Datasets/foldedcascode_cmfb_PTM45.csv',header=None)
 
 dataset =  dataset.dropna()
 
-X = np.array(dataset.iloc[1:, 0:18].values,dtype='float64')
-y = np.array(dataset.iloc[1:, 18:34].values,dtype='float64')
-
+X = np.array(dataset.iloc[1:, 0:19].values,dtype='float64')
+y = np.array(dataset.iloc[1:, 19:35].values,dtype='float64')
+X = np.delete(X, -1, axis=1)
 parname = [ 'lbias','lbp','lbn','lin1','lin2','ltn','ltp','vcmo','mamp','fbias','fbp','fbn','fin1','fin2','ftn1','ftn2','ftp1','ftp2']
 
 #remfilt = [not d<0 for d in y[:,2]]
@@ -43,7 +50,7 @@ from sklearn.preprocessing import MinMaxScaler
 #sc_y = MinMaxScaler(feature_range=(-1,1))
 
 sc_X = MinMaxScaler(feature_range=(-1,1))
-sc_y = MinMaxScaler(feature_range=(-1,1))
+sc_y = StandardScaler()
 
 sX_train = sc_X.fit_transform(X_train)
 sy_train = sc_y.fit_transform(y_train)
@@ -83,9 +90,9 @@ reg.compile(optimizer = optimizers.Adam(lr=0.001),loss = losses.mse)
 
 
 # Fitting the ANN to the Training set
-reg.fit(sX_train, sy_train, batch_size = 256, epochs = 500)
+reg.fit(sX_train, sy_train, batch_size = 256, epochs = 50)
 
-score = reg.evaluate(sX_test, sy_test, batch_size = 128)
+score = reg.evaluate(sX_test, sy_test, batch_size = 250)
 print(score)
 #plt.hist(y[:,2]);
 
@@ -95,7 +102,7 @@ print(score)
 
 import pickle
 name  = 'folded_cascode'
-addr = '/home/Pedram30may/Desktop/amplifier/Reg_files/folded_cascode_45/'
+addr = homefolder + '/Reg_files/folded_cascode_45/'
 
 reg_json=reg.to_json()
 with open(addr+'model_'+name+'.json', "w") as json_file:
@@ -115,11 +122,11 @@ pickle.dump( reg.get_weights(), open( addr+'w8_'+name+'.p', "wb" ) )
 '''
 from sklearn.externals import joblib
 from keras.models import model_from_json 
-json_file = open('/home/Pedram30may/Desktop/amplifier/Reg_files/folded_cascode_45/45_fc_cmfb_model_architecture.json', 'r')
+json_file = open(homefolder+'/Reg_files/folded_cascode_45/model_folded_cascode.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 reg = model_from_json(loaded_model_json)
-reg.load_weights('/home/Pedram30may/Desktop/amplifier/Reg_files/folded_cascode_45/45_fc_cmfb_model_weights.h5')
+reg.load_weights(homefolder+'/Reg_files/folded_cascode_45/reg_folded_cascode.h5')
 
 #Sc_X = joblib.load('scX_th65.pkl') 
 #Sc_y = joblib.load('scY_th65.pkl')

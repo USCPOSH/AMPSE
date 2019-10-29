@@ -7,19 +7,24 @@
 
 # Importing the libraries
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import pandas as pd
 import math
-
+import os
 
 # Importing the dataset
-dataset = pd.read_csv('/home/Pedram30may/Blocks/amplifier/Datasets/classAB_45.csv',header=None)
+cf = os.getcwd()
+cfs = cf.split('/')
+sss = '/'
+homefolder=sss.join(cfs[:-1])
+
+dataset = pd.read_csv(homefolder+'/Datasets/classAB_45.csv',header=None)
 
 dataset =  dataset.dropna()
 
-X = np.array(dataset.iloc[1:, 0:8].values,dtype='float64')
-y = np.array(dataset.iloc[1:, 8:19].values,dtype='float64')
-
+X = np.array(dataset.iloc[1:, 0:9].values,dtype='float64')
+y = np.array(dataset.iloc[1:, 9:20].values,dtype='float64')
+X = np.delete(X, -1, axis=1)
 parname = [ 'fbias','lbias','fin','fp','lin','lp','vcmo','mamp']
 
 #remfilt = [not d<0 for d in y[:,2]]
@@ -32,7 +37,6 @@ np.random.seed(1234)
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25)
 
-#
 #plt.scatter(X_train[:,4]*1e0,y_train[:,3]*1e3)
 #plt.scatter(X_test [:,4]*1e0,y_test [:,3]*1e3)
 
@@ -77,7 +81,7 @@ reg.compile(optimizer = optimizers.Adam(lr=0.001),loss = losses.mse)
 
 
 # Fitting the ANN to the Training set
-reg.fit(sX_train, sy_train, validation_split=0.1, batch_size = 128, epochs = 100)
+reg.fit(sX_train, sy_train, batch_size = 256, epochs = 50)
 
 score = reg.evaluate(sX_test, sy_test, batch_size = 250)
 print(score)
@@ -89,7 +93,7 @@ print(score)
 
 import pickle
 name  = 'classAB'
-addr = '/home/Pedram30may/Desktop/PYTHON_PHD/Blocks/amplifier/Reg_files/class_ab_45/'
+addr = homefolder + '/Reg_files/class_ab_45/'
 
 reg_json=reg.to_json()
 with open(addr+'model_'+name+'.json', "w") as json_file:
@@ -109,12 +113,12 @@ pickle.dump( reg.get_weights(), open( addr+'w8_'+name+'.p', "wb" ) )
 """
 from sklearn.externals import joblib
 from keras.models import model_from_json 
-json_file = open('TH/model_th65.json', 'r')
+json_file = open(homefolder+'/Reg_files/class_ab_45/model_classAB.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 reg = model_from_json(loaded_model_json)
-reg.load_weights('TH/reg_th65.h5')
-   """ 
+reg.load_weights(homefolder+'/Reg_files/class_ab_45/reg_classAB.h5')
+ 
 #Sc_X = joblib.load('scX_th65.pkl') 
 #Sc_y = joblib.load('scY_th65.pkl')
 
@@ -138,3 +142,4 @@ plt.figure()
 plt.grid();plt.scatter(y_test[:,i]*lst_metric_coef[i],z[:,i]*lst_metric_coef[i]);plt.xlabel('SPICE Simulated '+lst_metric_names[i]);plt.ylabel('Error of '+lst_metric_names[i])
 j=2
 plt.grid();plt.scatter(np.log(y[:,i]),y[:,j]*lst_metric_coef[j]);plt.xlabel('SPICE Simulated '+lst_metric_names[i]);plt.ylabel(lst_metric_names[j])
+"""

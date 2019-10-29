@@ -1,3 +1,0 @@
-from Netlist_Database import Folded_Cascode_spice
-fc = Folded_Cascode_spice(45)
-fc.put_on_csv(tedad=2, outcsv ='/home/Pedram30may/Desktop/PYTHON_PHD/Blocks/amplifier/Datasets/foldedcascode_cmfb_PTM45_v2.csv', do_header = True)

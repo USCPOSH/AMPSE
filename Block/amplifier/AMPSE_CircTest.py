@@ -8,12 +8,11 @@
 
 import sys
 #sys.path.insert(0,'/shares/MLLibs/GlobalLibrary')
-sys.path.insert(0,'/home/mohsen/PYTHON_PHD/GlobalLibrary')
-
+import os
+home_address  = os.getcwd()
+sys.path.insert(0, home_address+'/MLLibs/GlobalLibrary')
 
 import numpy as np
-#from VCOSpectre import obj as vco_simul
-#from THSpectre import obj as th_simul
 from AMPSE_Graphs import Folded_Cascode,ClassAB
 from pickle import load
 from Netlist_Database import Folded_Cascode_spice, ClassAB_spice
