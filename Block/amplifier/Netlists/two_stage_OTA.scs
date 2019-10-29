@@ -1,0 +1,164 @@
+// Generated for: spectre
+// Generated on: Oct 24 18:43:54 2019
+// Design library name: brbcad
+// Design cell name: two_stage_OTA_compensated
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters Cc=50p Rc=267.97 mab=2 fin=10 fp=10 lin=100n lp=100n lbn=100n \
+    lbp=100n lin1=100n lin2=100n ltn=100n ltp=100n cload=100f vcmo=500m \
+    mamp=2 fbn=10 fbp=10 fin1=10 fin2=10 ftn1=10 ftn2=10 ftp1=10 ftp2=10
+include "/shares/techfile/PTM/45nm/Techfile_45nm.scs"
+
+// Library name: brbcad
+// Cell name: folded3
+// View name: schematic
+subckt folded3 VDD VSS vbn vbp vin vip voutn voutp vtn vtp
+parameters _par0 _par1 _par2 _par3 _par4 _par5 _par6 _par7 _par8 _par9 \
+        _par10 _par11 _par12 _par13
+    M13 (net35 vtn VSS VSS) nmos w=300n l=_par0 m=_par1
+    M15 (voutp vbn net35 VSS) nmos w=300n l=_par2 m=_par3
+    M4 (net33 vtn VSS VSS) nmos w=600n l=_par0 m=_par4
+    M3 (net24 vip net33 VSS) nmos w=300n l=_par5 m=_par6
+    M2 (net32 vin net33 VSS) nmos w=300n l=_par5 m=_par6
+    M1 (net34 vtn VSS VSS) nmos w=300n l=_par0 m=_par1
+    M0 (voutn vbn net34 VSS) nmos w=300n l=_par2 m=_par3
+    M14 (net35 vip net20 VDD) pmos w=600n l=_par7 m=_par8
+    M12 (net20 vtp VDD VDD) pmos w=1.2u l=_par9 m=_par10
+    M11 (net34 vin net20 VDD) pmos w=600n l=_par7 m=_par8
+    M17 (voutp vbp net24 VDD) pmos w=600n l=_par11 m=_par12
+    M8 (voutn vbp net32 VDD) pmos w=600n l=_par11 m=_par12
+    M7 (net32 vtp VDD VDD) pmos w=600n l=_par9 m=_par13
+    M16 (net24 vtp VDD VDD) pmos w=600n l=_par9 m=_par13
+ends folded3
+// End of subcircuit definition.
+
+// Library name: brbcad
+// Cell name: classab
+// View name: schematic
+subckt classab VDD VSS vin vip voutn voutp
+parameters _par0 _par1 _par2 _par3
+    M15 (voutp vip VSS VSS) nmos w=300n l=_par0 m=_par1
+    M0 (voutn vin VSS VSS) nmos w=300n l=_par0 m=_par1
+    M17 (voutp voutp VDD VDD) pmos w=600n l=_par2 m=_par3
+    M8 (voutn voutp VDD VDD) pmos w=600n l=_par2 m=_par3
+ends classab
+// End of subcircuit definition.
+
+// Library name: brbcad
+// Cell name: bias_cascode
+// View name: schematic
+subckt bias_cascode VDD VSS vbn vbp vcm vtn
+parameters _par0 _par1 _par2 _par3 _par4 _par5 _par6 _par7 _par8 _par9 \
+        _par10 _par11 _par12 _par13
+    M4 (net33 vtn VSS VSS) nmos w=600n l=_par0 m=_par1
+    M2 (vbn vcm net33 VSS) nmos w=300n l=_par2 m=_par3
+    M1 (vbp vtn VSS VSS) nmos w=300n l=_par0 m=_par4
+    M0 (vtn vbn vbp VSS) nmos w=300n l=_par5 m=_par6
+    M12 (net20 vtn VDD VDD) pmos w=1.2u l=_par7 m=_par8
+    M11 (vbp vcm net20 VDD) pmos w=600n l=_par9 m=_par10
+    M8 (vtn vbp vbn VDD) pmos w=600n l=_par11 m=_par12
+    M7 (vbn vtn VDD VDD) pmos w=600n l=_par7 m=_par13
+ends bias_cascode
+// End of subcircuit definition.
+
+// Library name: brbcad
+// Cell name: differ_amplifier_gain10
+// View name: schematic
+subckt differ_amplifier_gain10 VDD VSS vin vip voutn voutp
+    M20 (net22 net22 VSS VSS) nmos w=300n l=100n m=1
+    M15 (voutp vip net13 VSS) nmos w=300n l=100n m=1
+    M18 (net13 net22 VSS VSS) nmos w=600n l=1u m=1
+    M0 (voutn vin net13 VSS) nmos w=300n l=100n m=1
+    M19 (net22 net22 VDD VDD) pmos w=600n l=100n m=1
+    M17 (voutp voutp VDD VDD) pmos w=600n l=100n m=1
+    M8 (voutn voutp VDD VDD) pmos w=600n l=100n m=1
+ends differ_amplifier_gain10
+// End of subcircuit definition.
+
+// Library name: brbcad
+// Cell name: CMFB
+// View name: schematic
+subckt CMFB VCMO VDD VFN VFP VSS
+    R7 (net11 VFN) resistor r=1M
+    R6 (VFP net11) resistor r=1M
+    I23 (VDD VSS VCMO net11 net16 net23) differ_amplifier_gain10
+    M4 (VFN net16 VSS VSS) nmos w=300n l=500n m=10
+    M5 (VFP net16 VSS VSS) nmos w=300n l=500n m=10
+    M6 (VFP net16 VDD VDD) pmos w=600n l=500n m=10
+    M2 (VFN net16 VDD VDD) pmos w=600n l=500n m=10
+ends CMFB
+// End of subcircuit definition.
+
+// Library name: brbcad
+// Cell name: two_stage_OTA_compensated
+// View name: schematic
+I5 (VDD VSS vbn vbp vin1 vip1 voutn1 voutp1 vtn vtn) folded3 _par0=ltn \
+        _par1=ftn1*mamp _par2=lbn _par3=fbn*mamp _par4=ftn2*mamp \
+        _par5=lin2 _par6=fin2*mamp _par7=lin1 _par8=fin1*mamp _par9=ltp \
+        _par10=ftp2*mamp _par11=lbp _par12=fbp*mamp _par13=ftp1*mamp
+C5 (voutn1 net018) capacitor c=Cc
+C6 (voutp1 net014) capacitor c=Cc
+C3 (voutn22 VSS) capacitor c=cload
+C4 (voutn21 VSS) capacitor c=cload
+V18 (net015 VSS) vsource dc=vcmo type=dc
+V9 (VCM1 VSS) vsource dc=500.0m type=dc
+V8 (VDD2 0) vsource dc=1 type=dc
+V14 (net035 VSS) vsource dc=vcmo type=dc
+V2 (net07 VSS) vsource dc=0 mag=500.0m phase=0 type=dc
+V1 (VSS 0) vsource dc=0 type=dc
+V0 (VDD 0) vsource dc=1 type=dc
+R0 (net018 voutn21) resistor r=Rc
+R1 (net014 voutn22) resistor r=Rc
+E2 (vin1 VCM1 net07 VSS) vcvs gain=1
+E1 (vip1 VCM1 VSS net07) vcvs gain=1
+//intentionally added
+E12(outd VSS  voutn21 voutn22) vcvs gain=1
+
+I20 (VDD VSS voutn1 voutp1 voutn21 voutp21) classab _par0=lin \
+        _par1=fin*mab _par2=lp _par3=fp*mab
+I21 (VDD VSS voutp1 voutn1 voutn22 voutp22) classab _par0=lin _par1=fin \
+        _par2=lp _par3=fp
+I11 (VDD2 VSS vbn vbp VCM1 vtn) bias_cascode _par0=ltn _par1=ftn2*mamp \
+        _par2=lin2 _par3=2*fin2*mamp _par4=2*ftn1*mamp _par5=lbn \
+        _par6=2*fbn*mamp _par7=ltp _par8=ftp2*mamp _par9=lin1 \
+        _par10=2*fin1*mamp _par11=lbp _par12=2*fbp*mamp _par13=2*ftp1*mamp
+I18 (net035 VDD voutn1 voutp1 VSS) CMFB
+I19 (net015 VDD voutn21 voutn22 VSS) CMFB
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+ac ac start=1 stop=5T annotate=status 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub
+
+
+simulator lang=spice
+
+//gain
+.MEAS AC gain MAX vdb(outd)
+//pole1
+.MEAS AC pole1 WHEN vp(outd) = -45
+//pole2
+.MEAS AC pole2 WHEN vp(outd) = -135
+//UGB
+.MEAS AC UGB WHEN vdb(outd) = 0
+//phase margin
+.MEAS AC Phase_atUGB FIND vp(outd) AT UGB
+.MEAS AC Phase_margin PARAM = PAR('Phase_atUGB+180')
+//power
+.MEAS DC pwr AVG I(V0)
+
+
+
+
+
+

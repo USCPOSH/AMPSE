@@ -1,0 +1,136 @@
+// Generated for: spectre
+// Generated on: Oct  3 17:54:59 2019
+// Design library name: brbcad
+// Design cell name: test_class_ab
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters fbias=10 lbias=500n fin=100 fp=100 lin=100n lp=100n cload=1p vcmo=600m mamp=1
+
+
+include "/shares/techfile/PTM/45nm/Techfile_45nm.scs"
+
+// Library name: brbcad
+// Cell name: differ_amplifier_gain10
+// View name: schematic
+subckt differ_amplifier_gain10 VDD VSS vin vip voutn voutp
+    M20 (net22 net22 VSS VSS) nmos w=300n l=100n m=1
+    M15 (voutp vip net13 VSS) nmos w=300n l=100n m=1
+    M18 (net13 net22 VSS VSS) nmos w=600n l=1u m=1
+    M0 (voutn vin net13 VSS) nmos w=300n l=100n m=1
+    M19 (net22 net22 VDD VDD) pmos w=600n l=100n m=1
+    M17 (voutp voutp VDD VDD) pmos w=600n l=100n m=1
+    M8 (voutn voutp VDD VDD) pmos w=600n l=100n m=1
+ends differ_amplifier_gain10
+// End of subcircuit definition.
+
+// Library name: brbcad
+// Cell name: classab
+// View name: schematic
+subckt classab VDD VSS vin vip voutn voutp
+parameters _par0 _par1 _par2 _par3
+    M15 (voutp vip VSS VSS) nmos w=300n l=_par0 m=_par1
+    M0 (voutn vin VSS VSS) nmos w=300n l=_par0 m=_par1
+    M17 (voutp voutp VDD VDD) pmos w=600n l=_par2 m=_par3
+    M8 (voutn voutp VDD VDD) pmos w=600n l=_par2 m=_par3
+ends classab
+// End of subcircuit definition.
+
+// Library name: brbcad
+// Cell name: test_class_ab
+// View name: schematic
+I29 (rout1 rout2) isource mag=1A type=dc
+C5 (rout1 VSS) capacitor c=cload
+C4 (rout2 VSS) capacitor c=cload
+C3 (voutn2 VSS) capacitor c=cload
+C0 (voutn1 VSS) capacitor c=cload
+V18 (net056 VSS) vsource dc=500m mag=1 type=dc
+V16 (net049 VSS) vsource dc=vcmo type=dc
+V14 (net034 VSS) vsource dc=vcmo type=dc
+V9 (VCM VSS) vsource dc=500.0m mag=0 type=dc
+V8 (VDD2 0) vsource dc=1 type=dc
+V2 (net07 VSS) vsource dc=0 mag=500.0m phase=0 type=dc
+V1 (VSS 0) vsource dc=0 type=dc
+v0 (VDD 0) vsource dc=1 type=dc
+R10 (net056 cap_cal) resistor r=1K
+R7 (net04 rout2) resistor r=1M
+R6 (rout1 net04) resistor r=1M
+R5 (net06 voutn2) resistor r=1M
+R4 (voutn1 net06) resistor r=1M
+E2 (vip VCM net07 VSS) vcvs gain=1
+E1 (vin VCM VSS net07) vcvs gain=1
+//intentionally added
+E12(outd VSS  voutn1 voutn2) vcvs gain=1
+E13(outr VSS  rout1 rout2) vcvs gain=1
+
+I26 (VDD2 VSS net049 net04 net011 net047) differ_amplifier_gain10
+I23 (VDD VSS net034 net06 net037 net026) differ_amplifier_gain10
+I33 (VDD2 VSS cap_cal cap_cal net052 net064) classab _par0=lin _par1=fin \
+        _par2=lp _par3=fp
+I28 (VDD2 VSS VCM VCM rout1 net046) classab _par0=lin _par1=fin _par2=lp \
+        _par3=fp
+I27 (VDD2 VSS VCM VCM rout2 net045) classab _par0=lin _par1=fin _par2=lp \
+        _par3=fp
+I21 (VDD VSS vip vin voutn2 voutp2) classab _par0=lin _par1=fin _par2=lp \
+        _par3=fp
+X20 (VDD VSS vin vip voutn1 voutp1) classab _par0=lin _par1=fin _par2=lp \
+        _par3=fp
+M10 (rout1 net011 VDD2 VDD2) pmos w=600n l=lbias m=fbias
+M9 (rout2 net011 VDD2 VDD2) pmos w=600n l=lbias m=fbias
+M6 (voutn1 net037 VDD VDD) pmos w=600n l=lbias m=fbias
+M2 (voutn2 net037 VDD VDD) pmos w=600n l=lbias m=fbias
+M8 (rout2 net011 VSS VSS) nmos w=300n l=lbias m=fbias
+M7 (rout1 net011 VSS VSS) nmos w=300n l=lbias m=fbias
+M5 (voutn1 net037 VSS VSS) nmos w=300n l=lbias m=fbias
+M4 (voutn2 net037 VSS VSS) nmos w=300n l=lbias m=fbias
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+ac ac start=1k stop=1T annotate=status 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts  where=rawfile
+saveOptions options save=allpub
+
+simulator lang=spice
+
+//gain
+.MEAS AC gain MAX vdb(outd)
+//pole1
+.MEAS AC pole1 WHEN vp(outd) = -45
+//zero
+.MEAS AC zero WHEN vp(outd) = -135
+//Rout
+.MEAS AC ROUT MAX vm(outr)
+//GM
+.MEAS AC gmax MAX vm(outd)
+.MEAS AC GM PARAM = PAR('gmax/rout')
+//power
+.MEAS DC pwr AVG I(v0)
+//SWINGP
+.MEAS DC vovp PARAM = 'lv10(X20.M8)'
+.MEAS DC vdsp PARAM = 'lx3(X20.M8)'
+.MEAS DC swingp PARAM=PAR('-vdsp-vovp')
+//SWINGN
+.MEAS DC vovn PARAM = 'lv10(X20.M0)'
+.MEAS DC vdsn PARAM = 'lx3(X20.M0)'
+.MEAS DC swingn PARAM=PAR('vdsn-vovn')
+
+.MEAS DC cmo AVG V(rout1)
+
+//Cin
+.MEAS AC Cin3db WHEN vdb(cap_cal) =-3
+.MEAS AC Cin PARAM=PAR('1/2/3.1415/1000/Cin3db')
+//Cout
+.MEAS AC cout3db WHEN vp(outr) = 135
+.MEAS AC COUT PARAM=PAR('1/2/3.1415/ROUT/cout3db')
+
+
+
+

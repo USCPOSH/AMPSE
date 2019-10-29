@@ -1,0 +1,186 @@
+// Generated for: spectre
+// Generated on: Oct  8 13:08:59 2019
+// Design library name: brbcad
+// Design cell name: test_folded_CMFB
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters lbias=500n fbias=10 lbn=100n lbp=100n lin1=100n lin2=100n ltn=100n ltp=100n cload=100f vcmo=500m mamp=2 fbn=100 fbp=100 fin1=100 fin2=100 ftn1=100 ftn2=100 ftp1=100 ftp2=100
+
+
+include "/shares/techfile/PTM/45nm/Techfile_45nm.scs"
+
+// Library name: brbcad
+// Cell name: folded3
+// View name: schematic
+subckt folded3 VDD VSS vbn vbp vin vip voutn voutp vtn vtp
+parameters _par0 _par1 _par2 _par3 _par4 _par5 _par6 _par7 _par8 _par9 \
+        _par10 _par11 _par12 _par13
+    M13 (net35 vtn VSS VSS) nmos w=300n l=_par0 m=_par1
+    M15 (voutp vbn net35 VSS) nmos w=300n l=_par2 m=_par3
+    M4 (net33 vtn VSS VSS) nmos w=600n l=_par0 m=_par4
+    M3 (net24 vip net33 VSS) nmos w=300n l=_par5 m=_par6
+    M2 (net32 vin net33 VSS) nmos w=300n l=_par5 m=_par6
+    M1 (net34 vtn VSS VSS) nmos w=300n l=_par0 m=_par1
+    M0 (voutn vbn net34 VSS) nmos w=300n l=_par2 m=_par3
+    M14 (net35 vip net20 VDD) pmos w=600n l=_par7 m=_par8
+    M12 (net20 vtp VDD VDD) pmos w=1.2u l=_par9 m=_par10
+    M11 (net34 vin net20 VDD) pmos w=600n l=_par7 m=_par8
+    M17 (voutp vbp net24 VDD) pmos w=600n l=_par11 m=_par12
+    M8 (voutn vbp net32 VDD) pmos w=600n l=_par11 m=_par12
+    M7 (net32 vtp VDD VDD) pmos w=600n l=_par9 m=_par13
+    M16 (net24 vtp VDD VDD) pmos w=600n l=_par9 m=_par13
+ends folded3
+// End of subcircuit definition.
+
+// Library name: brbcad
+// Cell name: bias_cascode
+// View name: schematic
+subckt bias_cascode VDD VSS vbn vbp vcm vtn
+parameters _par0 _par1 _par2 _par3 _par4 _par5 _par6 _par7 _par8 _par9 \
+        _par10 _par11 _par12 _par13
+    M4 (net33 vtn VSS VSS) nmos w=600n l=_par0 m=_par1
+    M2 (vbn vcm net33 VSS) nmos w=300n l=_par2 m=_par3
+    M1 (vbp vtn VSS VSS) nmos w=300n l=_par0 m=_par4
+    M0 (vtn vbn vbp VSS) nmos w=300n l=_par5 m=_par6
+    M12 (net20 vtn VDD VDD) pmos w=1.2u l=_par7 m=_par8
+    M11 (vbp vcm net20 VDD) pmos w=600n l=_par9 m=_par10
+    M8 (vtn vbp vbn VDD) pmos w=600n l=_par11 m=_par12
+    M7 (vbn vtn VDD VDD) pmos w=600n l=_par7 m=_par13
+ends bias_cascode
+// End of subcircuit definition.
+
+// Library name: brbcad
+// Cell name: differ_amplifier_gain10
+// View name: schematic
+subckt differ_amplifier_gain10 VDD VSS vin vip voutn voutp
+    M20 (net22 net22 VSS VSS) nmos w=300n l=100n m=1
+    M15 (voutp vip net13 VSS) nmos w=300n l=100n m=1
+    M18 (net13 net22 VSS VSS) nmos w=600n l=1u m=1
+    M0 (voutn vin net13 VSS) nmos w=300n l=100n m=1
+    M19 (net22 net22 VDD VDD) pmos w=600n l=100n m=1
+    M17 (voutp voutp VDD VDD) pmos w=600n l=100n m=1
+    M8 (voutn voutp VDD VDD) pmos w=600n l=100n m=1
+ends differ_amplifier_gain10
+// End of subcircuit definition.
+
+// Library name: brbcad
+// Cell name: test_folded_CMFB
+// View name: schematic
+I12 (VDD2 VSS vbn vbp VCM VCM rout1 rout2 vtn vtn) folded3 _par0=ltn \
+        _par1=ftn1*mamp _par2=lbn _par3=fbn*mamp _par4=ftn2*mamp \
+        _par5=lin2 _par6=fin2*mamp _par7=lin1 _par8=fin1*mamp _par9=ltp \
+        _par10=ftp2*mamp _par11=lbp _par12=fbp*mamp _par13=ftp1*mamp
+I13 (VDD2 VSS vbn vbp cap_cal cap_cal net015 net014 vtn vtn) folded3 \
+        _par0=ltn _par1=ftn1*mamp _par2=lbn _par3=fbn*mamp _par4=ftn2*mamp \
+        _par5=lin2 _par6=fin2*mamp _par7=lin1 _par8=fin1*mamp _par9=ltp \
+        _par10=ftp2*mamp _par11=lbp _par12=fbp*mamp _par13=ftp1*mamp
+X5 (VDD VSS vbn vbp vin vip voutn voutp vtn vtn) folded3 _par0=ltn \
+        _par1=ftn1*mamp _par2=lbn _par3=fbn*mamp _par4=ftn2*mamp \
+        _par5=lin2 _par6=fin2*mamp _par7=lin1 _par8=fin1*mamp _par9=ltp \
+        _par10=ftp2*mamp _par11=lbp _par12=fbp*mamp _par13=ftp1*mamp
+C1 (voutp VSS) capacitor c=cload
+C0 (voutn VSS) capacitor c=cload
+V13 (net039 VSS) vsource dc=vcmo type=dc
+V14 (net031 VSS) vsource dc=vcmo type=dc
+V10 (net019 VSS) vsource dc=500.0m mag=1 type=dc
+V9 (VCM VSS) vsource dc=500.0m type=dc
+V8 (VDD2 0) vsource dc=1 type=dc
+V2 (net07 VSS) vsource dc=0 mag=500.0m phase=0 type=dc
+V1 (VSS 0) vsource dc=0 type=dc
+v0 (VDD 0) vsource dc=1 type=dc
+R9 (net012 rout2) resistor r=1M
+R8 (rout1 net012) resistor r=1M
+R7 (net03 voutn) resistor r=1M
+R6 (voutp net03) resistor r=1M
+R2 (cap_cal net019) resistor r=1K
+E2 (vin VCM net07 VSS) vcvs gain=1
+E1 (vip VCM VSS net07) vcvs gain=1
+// intentionally added
+E12(outd VSS  voutp voutn) vcvs gain=1
+E13(outr VSS  rout1 rout2) vcvs gain=1
+
+I10 (rout1 rout2) isource mag=1 phase=0 type=dc
+I11 (VDD2 VSS vbn vbp VCM vtn) bias_cascode _par0=ltn _par1=ftn2*mamp \
+        _par2=lin2 _par3=2*fin2*mamp _par4=2*ftn1*mamp _par5=lbn \
+        _par6=2*fbn*mamp _par7=ltp _par8=ftp2*mamp _par9=lin1 \
+        _par10=2*fin1*mamp _par11=lbp _par12=2*fbp*mamp _par13=2*ftp1*mamp
+I16 (VDD VSS net039 net012 net017 net037) differ_amplifier_gain10
+I23 (VDD VSS net031 net03 net09 net029) differ_amplifier_gain10
+M1 (rout2 net017 VSS VSS) nmos w=300n l=lbias m=fbias
+M0 (rout1 net017 VSS VSS) nmos w=300n l=lbias m=fbias
+M4 (voutn net09 VSS VSS) nmos w=300n l=lbias m=fbias
+M5 (voutp net09 VSS VSS) nmos w=300n l=lbias m=fbias
+M7 (rout2 net017 VDD VDD) pmos w=600n l=lbias m=fbias
+M3 (rout1 net017 VDD VDD) pmos w=600n l=lbias m=fbias
+M6 (voutp net09 VDD VDD) pmos w=600n l=lbias m=fbias
+M2 (voutn net09 VDD VDD) pmos w=600n l=lbias m=fbias
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+
+pz ( voutp voutn ) pz iprobe=V2 freq=1
+ac ac start=1k stop=1T annotate=status 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+noise ( voutp voutn ) noise start=1k stop=1T iprobe=V2 annotate=status 
+saveOptions options save=allpub
+
+simulator lang=spice
+
+//gain
+.MEAS AC gain MAX vdb(outd)
+//pole1
+.MEAS AC pole1 WHEN vp(outd) = -45
+//pole2
+.MEAS AC pole2 WHEN vp(outd) = -135
+//Rout
+.MEAS AC ROUT MAX vm(outr)
+//GM
+.MEAS AC gmax MAX vm(outd)
+.MEAS AC GM PARAM = PAR('gmax/rout')
+//power
+.MEAS DC pwr AVG i(v0)
+
+.MEAS DC cmo AVG V(voutn)
+//SWINGP
+.MEAS DC vovp PARAM = 'lv10(X5.M8)'
+.MEAS DC vdsp PARAM = 'lx3(X5.M8)'
+.MEAS DC swingp PARAM = PAR('-vdsp-vovp')
+//SWINGN
+.MEAS DC vovn PARAM = 'lv10(X5.M0)'
+.MEAS DC vdsn PARAM = 'lx3(X5.M0)'
+.MEAS DC swingn PARAM = PAR('vdsn-vovn')
+
+//tail transistors
+//SWING of M7
+.MEAS DC vov7 PARAM = 'lv10(X5.M7)'
+.MEAS DC vds7 PARAM = 'lx3(X5.M7)'
+.MEAS DC swing7 PARAM = PAR('-vds7-vov7')
+//SWING of M1
+.MEAS DC vovn1 PARAM = 'lv10(X5.M1)'
+.MEAS DC vdsn1 PARAM = 'lx3(X5.M1)'
+.MEAS DC swingn1 PARAM = PAR('vdsn1-vovn1')
+
+//SWING of M14
+.MEAS DC vov14 PARAM = 'lv10(X5.M14)'
+.MEAS DC vds14 PARAM = 'lx3(X5.M14)'
+.MEAS DC swing14 PARAM = PAR('-vds14-vov14')
+//SWING of M4
+.MEAS DC vovn4 PARAM = 'lv10(X5.M4)'
+.MEAS DC vdsn4 PARAM = 'lx3(X5.M4)'
+.MEAS DC swingn4 PARAM = PAR('vdsn4-vovn4')
+
+//Cin
+.MEAS AC Cin3db WHEN vdb(cap_cal) =-3
+.MEAS AC Cin PARAM = PAR('1/2/3.1415/1000/Cin3db')
+//Cout
+.MEAS AC cout3db WHEN vp(outr) = 135
+.MEAS AC COUT PARAM = PAR('1/2/3.1415/ROUT/cout3db')
+
+//noise
+.MEAS NOISE invn RMS INOISE //multiply by sqrt of pole1 in python to get the actual irn
+//.MEAS NOISE irn PARAM = PAR('pole1*invn')
+
+
