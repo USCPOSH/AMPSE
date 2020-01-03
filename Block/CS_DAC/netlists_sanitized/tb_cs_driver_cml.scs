@@ -1,0 +1,48 @@
+simulator lang = spectre 
+global 0 
+parameters l_cs_driver=400n l_sw_driver=60n m_cs_driver=12 m_sw_driver=20 w_cs_driver=8u w_sw_driver=3u fs=20G l_cs=685n l_cs_cas=120n l_sw=60n l_sw_cas=280n R_driver=50 tfall=10p trise=10p v_swing=400m vbias=0.4 vdd=1 w_cs=2u w_cs_cas=375n w_sw=560n w_sw_cas=400n 
+include "/shares/shiyusu1/workarea_TSMC65_9M/tsmcN65_mc_shares.scs" section = TT 
+subckt cs_16 MSB_cas_d MSB_cur_d MSB_vbias_sn MSB_vbias_sp gnd inn inp ncas ncur_MSB outn outp vbias 
+	M0 ( outn vbias MSB_vbias_sn gnd ) nmos l=l_sw_cas w=w_sw_cas*32 multi=1 nf=32 sigma=1  
+	M7 ( outp vbias MSB_vbias_sp gnd ) nmos l=l_sw_cas w=w_sw_cas*32 multi=1 nf=32 sigma=1  
+	M15 ( MSB_vbias_sp inp MSB_cas_d gnd ) nmos l=l_sw w=w_sw*32 multi=1 nf=32 sigma=1  
+	M14 ( MSB_vbias_sn inn MSB_cas_d gnd ) nmos l=l_sw w=w_sw*32 multi=1 nf=32 sigma=1  
+	LSB1_tail ( MSB_cas_d ncas MSB_cur_d gnd ) nmos l=l_cs_cas w=w_cs_cas*32 multi=1 nf=32 sigma=1  
+	MSB_tail ( MSB_cur_d ncur_MSB gnd gnd ) nmos l=l_cs w=w_cs*32 multi=1 nf=32 sigma=1  
+ends cs_16 
+subckt cs_driver_cml gnd in inb out outb vbias vdd 
+	MP2b ( out inb net7 gnd ) nmos l=l_sw_driver w=w_sw_driver*m_sw_driver multi=1 nf=m_sw_driver sigma=1  
+	MP2 ( outb in net7 gnd ) nmos l=l_sw_driver w=w_sw_driver*m_sw_driver multi=1 nf=m_sw_driver sigma=1  
+	slave_driver_cs ( net7 vbias gnd gnd ) nmos l=l_cs_driver w=w_cs_driver*m_cs_driver multi=1 nf=m_cs_driver sigma=1  
+	R1 ( vdd out ) resistor r=R_driver  
+	R0 ( vdd outb ) resistor r=R_driver  
+ends cs_driver_cml 
+	V12 ( vbias_sw_cas 0 ) vsource dc=1.8 type=dc  
+	V11 ( vbias_cas 0 ) vsource dc=749.7m type=dc  
+	V10 ( vbias_cs 0 ) vsource dc=404.3m type=dc  
+	V9 ( vdd25 0 ) vsource dc=2.5 type=dc  
+	V2 ( vbias 0 ) vsource dc=vbias type=dc  
+	V0 ( vdd 0 ) vsource dc=vdd type=dc  
+	R1 ( vdd25 net2 ) resistor r=25  
+	R0 ( vdd25 net1 ) resistor r=25  
+	I27 ( net2 0 ) isource dc=10m type=dc  
+	I26 ( net1 0 ) isource dc=10m type=dc  
+	I21 ( net4 net6 net3 net5 0 out outb vbias_cas vbias_cs net2 net1 vbias_sw_cas ) cs_16  
+	V1 ( inb 0 ) vsource type=pulse val0=vdd-v_swing val1=vdd period=1/fs rise=trise fall=tfall width=1/fs/2-trise  
+	V3 ( in 0 ) vsource type=pulse val0=vdd val1=vdd-v_swing period=1/fs rise=trise fall=tfall width=1/fs/2-trise  
+	I20 ( 0 in inb out outb vbias vdd ) cs_driver_cml  
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=1n errpreset=moderate write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save V0:p 
+saveOptions options save=allpub

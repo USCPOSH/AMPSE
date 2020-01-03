@@ -1,0 +1,138 @@
+simulator lang = spectre 
+global 0 
+parameters vbias_SW_cas=1.86 vbias_cs_cas=749.7m vbias_cs=404.3m v_swing=250m l_cs=685n l_cs_cas=120n l_sw=60n l_sw_cas=280n w_cs=2u w_cs_cas=375n w_sw=560n w_sw_cas=400n adcfullscal=1 amp_sine=0.499 freq_sine=9.015G fs=20G os_sine=0.5 tfall=10p trise=10p vdd=1 v_high=1 R=25 
+include "/home/shiyusu1/workarea_TSMC65_9M/tsmcN65_mc_shares.scs" section = TT 
+subckt cs_1 MSB_cas_d MSB_cur_d MSB_vbias_sn MSB_vbias_sp gnd inn inp ncas ncur_MSB outn outp vbias vdd 
+	M0 ( outn vbias MSB_vbias_sn gnd ) nmos l=l_sw_cas w=w_sw_cas*2 multi=1 nf=2 sigma=1  
+	M7 ( outp vbias MSB_vbias_sp gnd ) nmos l=l_sw_cas w=w_sw_cas*2 multi=1 nf=2 sigma=1  
+	M19 ( vdd inp net017 gnd ) nmos l=l_sw w=w_sw*30 multi=1 nf=30 sigma=1  
+	M17 ( net017 ncas net018 gnd ) nmos l=l_cs_cas w=w_cs_cas*30 multi=1 nf=30 sigma=1  
+	M18 ( vdd inn net017 gnd ) nmos l=l_sw w=w_sw*30 multi=1 nf=30 sigma=1  
+	M16 ( net018 ncur_MSB gnd gnd ) nmos l=l_cs w=w_cs*30 multi=1 nf=30 sigma=1  
+	M15 ( MSB_vbias_sp inp MSB_cas_d gnd ) nmos l=l_sw w=w_sw*2 multi=1 nf=2 sigma=1  
+	M14 ( MSB_vbias_sn inn MSB_cas_d gnd ) nmos l=l_sw w=w_sw*2 multi=1 nf=2 sigma=1  
+	LSB1_tail ( MSB_cas_d ncas MSB_cur_d gnd ) nmos l=l_cs_cas w=w_cs_cas*2 multi=1 nf=2 sigma=1  
+	MSB_tail ( MSB_cur_d ncur_MSB gnd gnd ) nmos l=l_cs w=w_cs*2 multi=1 nf=2 sigma=1  
+ends cs_1 
+subckt cs_2 MSB_cas_d MSB_cur_d MSB_vbias_sn MSB_vbias_sp gnd inn inp ncas ncur_MSB outn outp vbias vdd 
+	M0 ( outn vbias MSB_vbias_sn gnd ) nmos l=l_sw_cas w=w_sw_cas*4 multi=1 nf=4 sigma=1  
+	M7 ( outp vbias MSB_vbias_sp gnd ) nmos l=l_sw_cas w=w_sw_cas*4 multi=1 nf=4 sigma=1  
+	M19 ( vdd inp net017 gnd ) nmos l=l_sw w=w_sw*28 multi=1 nf=28 sigma=1  
+	M17 ( net017 ncas net018 gnd ) nmos l=l_cs_cas w=w_cs_cas*28 multi=1 nf=28 sigma=1  
+	M18 ( vdd inn net017 gnd ) nmos l=l_sw w=w_sw*28 multi=1 nf=28 sigma=1  
+	M16 ( net018 ncur_MSB gnd gnd ) nmos l=l_cs w=w_cs*28 multi=1 nf=28 sigma=1  
+	M15 ( MSB_vbias_sp inp MSB_cas_d gnd ) nmos l=l_sw w=w_sw*4 multi=1 nf=4 sigma=1  
+	M14 ( MSB_vbias_sn inn MSB_cas_d gnd ) nmos l=l_sw w=w_sw*4 multi=1 nf=4 sigma=1  
+	LSB1_tail ( MSB_cas_d ncas MSB_cur_d gnd ) nmos l=l_cs_cas w=w_cs_cas*4 multi=1 nf=4 sigma=1  
+	MSB_tail ( MSB_cur_d ncur_MSB gnd gnd ) nmos l=l_cs w=w_cs*4 multi=1 nf=4 sigma=1  
+ends cs_2 
+subckt cs_4 MSB_cas_d MSB_cur_d MSB_vbias_sn MSB_vbias_sp gnd inn inp ncas ncur_MSB outn outp vbias vdd 
+	M0 ( outn vbias MSB_vbias_sn gnd ) nmos l=l_sw_cas w=w_sw_cas*8 multi=1 nf=8 sigma=1  
+	M7 ( outp vbias MSB_vbias_sp gnd ) nmos l=l_sw_cas w=w_sw_cas*8 multi=1 nf=8 sigma=1  
+	M19 ( vdd inp net017 gnd ) nmos l=l_sw w=w_sw*24 multi=1 nf=24 sigma=1  
+	M16 ( net018 ncur_MSB gnd gnd ) nmos l=l_cs w=w_cs*24 multi=1 nf=24 sigma=1  
+	M18 ( vdd inn net017 gnd ) nmos l=l_sw w=w_sw*24 multi=1 nf=24 sigma=1  
+	M17 ( net017 ncas net018 gnd ) nmos l=l_cs_cas w=w_cs_cas*24 multi=1 nf=24 sigma=1  
+	M15 ( MSB_vbias_sp inp MSB_cas_d gnd ) nmos l=l_sw w=w_sw*8 multi=1 nf=8 sigma=1  
+	M14 ( MSB_vbias_sn inn MSB_cas_d gnd ) nmos l=l_sw w=w_sw*8 multi=1 nf=8 sigma=1  
+	LSB1_tail ( MSB_cas_d ncas MSB_cur_d gnd ) nmos l=l_cs_cas w=w_cs_cas*8 multi=1 nf=8 sigma=1  
+	MSB_tail ( MSB_cur_d ncur_MSB gnd gnd ) nmos l=l_cs w=w_cs*8 multi=1 nf=8 sigma=1  
+ends cs_4 
+subckt cs_8 MSB_cas_d MSB_cur_d MSB_vbias_sn MSB_vbias_sp gnd inn inp ncas ncur_MSB outn outp vbias vdd 
+	M0 ( outn vbias MSB_vbias_sn gnd ) nmos l=l_sw_cas w=w_sw_cas*16 multi=1 nf=16 sigma=1  
+	M7 ( outp vbias MSB_vbias_sp gnd ) nmos l=l_sw_cas w=w_sw_cas*16 multi=1 nf=16 sigma=1  
+	M16 ( net29 ncur_MSB gnd gnd ) nmos l=l_cs w=w_cs*16 multi=1 nf=16 sigma=1  
+	M17 ( net28 ncas net29 gnd ) nmos l=l_cs_cas w=w_cs_cas*16 multi=1 nf=16 sigma=1  
+	M18 ( vdd inn net28 gnd ) nmos l=l_sw w=w_sw*16 multi=1 nf=16 sigma=1  
+	M19 ( vdd inp net28 gnd ) nmos l=l_sw w=w_sw*16 multi=1 nf=16 sigma=1  
+	M15 ( MSB_vbias_sp inp MSB_cas_d gnd ) nmos l=l_sw w=w_sw*16 multi=1 nf=16 sigma=1  
+	M14 ( MSB_vbias_sn inn MSB_cas_d gnd ) nmos l=l_sw w=w_sw*16 multi=1 nf=16 sigma=1  
+	LSB1_tail ( MSB_cas_d ncas MSB_cur_d gnd ) nmos l=l_cs_cas w=w_cs_cas*16 multi=1 nf=16 sigma=1  
+	MSB_tail ( MSB_cur_d ncur_MSB gnd gnd ) nmos l=l_cs w=w_cs*16 multi=1 nf=16 sigma=1  
+ends cs_8 
+subckt cs_16 MSB_cas_d MSB_cur_d MSB_vbias_sn MSB_vbias_sp gnd inn inp ncas ncur_MSB outn outp vbias 
+	M0 ( outn vbias MSB_vbias_sn gnd ) nmos l=l_sw_cas w=w_sw_cas*32 multi=1 nf=32 sigma=1  
+	M7 ( outp vbias MSB_vbias_sp gnd ) nmos l=l_sw_cas w=w_sw_cas*32 multi=1 nf=32 sigma=1  
+	M15 ( MSB_vbias_sp inp MSB_cas_d gnd ) nmos l=l_sw w=w_sw*32 multi=1 nf=32 sigma=1  
+	M14 ( MSB_vbias_sn inn MSB_cas_d gnd ) nmos l=l_sw w=w_sw*32 multi=1 nf=32 sigma=1  
+	LSB1_tail ( MSB_cas_d ncas MSB_cur_d gnd ) nmos l=l_cs_cas w=w_cs_cas*32 multi=1 nf=32 sigma=1  
+	MSB_tail ( MSB_cur_d ncur_MSB gnd gnd ) nmos l=l_cs w=w_cs*32 multi=1 nf=32 sigma=1  
+ends cs_16 
+subckt cs_array_8b gnd inn_lsb\<3\> inn_lsb\<2\> inn_lsb\<1\> inn_lsb\<0\> inn_msb\<14\> inn_msb\<13\> inn_msb\<12\> inn_msb\<11\> inn_msb\<10\> inn_msb\<9\> inn_msb\<8\> inn_msb\<7\> inn_msb\<6\> inn_msb\<5\> inn_msb\<4\> inn_msb\<3\> inn_msb\<2\> inn_msb\<1\> inn_msb\<0\> inp_lsb\<3\> inp_lsb\<2\> inp_lsb\<1\> inp_lsb\<0\> inp_msb\<14\> inp_msb\<13\> inp_msb\<12\> inp_msb\<11\> inp_msb\<10\> inp_msb\<9\> inp_msb\<8\> inp_msb\<7\> inp_msb\<6\> inp_msb\<5\> inp_msb\<4\> inp_msb\<3\> inp_msb\<2\> inp_msb\<1\> inp_msb\<0\> outn_lsb\<3\> outn_lsb\<2\> outn_lsb\<1\> outn_lsb\<0\> outn_msb\<14\> outn_msb\<13\> outn_msb\<12\> outn_msb\<11\> outn_msb\<10\> outn_msb\<9\> outn_msb\<8\> outn_msb\<7\> outn_msb\<6\> outn_msb\<5\> outn_msb\<4\> outn_msb\<3\> outn_msb\<2\> outn_msb\<1\> outn_msb\<0\> outp_lsb\<3\> outp_lsb\<2\> outp_lsb\<1\> outp_lsb\<0\> outp_msb\<14\> outp_msb\<13\> outp_msb\<12\> outp_msb\<11\> outp_msb\<10\> outp_msb\<9\> outp_msb\<8\> outp_msb\<7\> outp_msb\<6\> outp_msb\<5\> outp_msb\<4\> outp_msb\<3\> outp_msb\<2\> outp_msb\<1\> outp_msb\<0\> vbias_cs vbias_cs_cas vbias_sw_cas vdd 
+	I0 ( net4 net3 net1 net2 gnd inn_lsb\<0\> inp_lsb\<0\> vbias_cs_cas vbias_cs outn_lsb\<0\> outp_lsb\<0\> vbias_sw_cas vdd ) cs_1  
+	I10 ( net01 net02 net04 net03 gnd inn_lsb\<1\> inp_lsb\<1\> vbias_cs_cas vbias_cs outn_lsb\<1\> outp_lsb\<1\> vbias_sw_cas vdd ) cs_2  
+	I15 ( net09 net010 net012 net011 gnd inn_lsb\<2\> inp_lsb\<2\> vbias_cs_cas vbias_cs outn_lsb\<2\> outp_lsb\<2\> vbias_sw_cas vdd ) cs_4  
+	I20 ( net05 net06 net08 net07 gnd inn_lsb\<3\> inp_lsb\<3\> vbias_cs_cas vbias_cs outn_lsb\<3\> outp_lsb\<3\> vbias_sw_cas vdd ) cs_8  
+	I25\<14\> ( net021\<0\> net024\<0\> net023\<0\> net022\<0\> gnd inn_msb\<14\> inp_msb\<14\> vbias_cs_cas vbias_cs outn_msb\<14\> outp_msb\<14\> vbias_sw_cas ) cs_16  
+	I25\<13\> ( net021\<1\> net024\<1\> net023\<1\> net022\<1\> gnd inn_msb\<13\> inp_msb\<13\> vbias_cs_cas vbias_cs outn_msb\<13\> outp_msb\<13\> vbias_sw_cas ) cs_16  
+	I25\<12\> ( net021\<2\> net024\<2\> net023\<2\> net022\<2\> gnd inn_msb\<12\> inp_msb\<12\> vbias_cs_cas vbias_cs outn_msb\<12\> outp_msb\<12\> vbias_sw_cas ) cs_16  
+	I25\<11\> ( net021\<3\> net024\<3\> net023\<3\> net022\<3\> gnd inn_msb\<11\> inp_msb\<11\> vbias_cs_cas vbias_cs outn_msb\<11\> outp_msb\<11\> vbias_sw_cas ) cs_16  
+	I25\<10\> ( net021\<4\> net024\<4\> net023\<4\> net022\<4\> gnd inn_msb\<10\> inp_msb\<10\> vbias_cs_cas vbias_cs outn_msb\<10\> outp_msb\<10\> vbias_sw_cas ) cs_16  
+	I25\<9\> ( net021\<5\> net024\<5\> net023\<5\> net022\<5\> gnd inn_msb\<9\> inp_msb\<9\> vbias_cs_cas vbias_cs outn_msb\<9\> outp_msb\<9\> vbias_sw_cas ) cs_16  
+	I25\<8\> ( net021\<6\> net024\<6\> net023\<6\> net022\<6\> gnd inn_msb\<8\> inp_msb\<8\> vbias_cs_cas vbias_cs outn_msb\<8\> outp_msb\<8\> vbias_sw_cas ) cs_16  
+	I25\<7\> ( net021\<7\> net024\<7\> net023\<7\> net022\<7\> gnd inn_msb\<7\> inp_msb\<7\> vbias_cs_cas vbias_cs outn_msb\<7\> outp_msb\<7\> vbias_sw_cas ) cs_16  
+	I25\<6\> ( net021\<8\> net024\<8\> net023\<8\> net022\<8\> gnd inn_msb\<6\> inp_msb\<6\> vbias_cs_cas vbias_cs outn_msb\<6\> outp_msb\<6\> vbias_sw_cas ) cs_16  
+	I25\<5\> ( net021\<9\> net024\<9\> net023\<9\> net022\<9\> gnd inn_msb\<5\> inp_msb\<5\> vbias_cs_cas vbias_cs outn_msb\<5\> outp_msb\<5\> vbias_sw_cas ) cs_16  
+	I25\<4\> ( net021\<10\> net024\<10\> net023\<10\> net022\<10\> gnd inn_msb\<4\> inp_msb\<4\> vbias_cs_cas vbias_cs outn_msb\<4\> outp_msb\<4\> vbias_sw_cas ) cs_16  
+	I25\<3\> ( net021\<11\> net024\<11\> net023\<11\> net022\<11\> gnd inn_msb\<3\> inp_msb\<3\> vbias_cs_cas vbias_cs outn_msb\<3\> outp_msb\<3\> vbias_sw_cas ) cs_16  
+	I25\<2\> ( net021\<12\> net024\<12\> net023\<12\> net022\<12\> gnd inn_msb\<2\> inp_msb\<2\> vbias_cs_cas vbias_cs outn_msb\<2\> outp_msb\<2\> vbias_sw_cas ) cs_16  
+	I25\<1\> ( net021\<13\> net024\<13\> net023\<13\> net022\<13\> gnd inn_msb\<1\> inp_msb\<1\> vbias_cs_cas vbias_cs outn_msb\<1\> outp_msb\<1\> vbias_sw_cas ) cs_16  
+	I25\<0\> ( net021\<14\> net024\<14\> net023\<14\> net022\<14\> gnd inn_msb\<0\> inp_msb\<0\> vbias_cs_cas vbias_cs outn_msb\<0\> outp_msb\<0\> vbias_sw_cas ) cs_16  
+ends cs_array_8b 
+	R0 ( vdd_cell DACoutp ) resistor r=R  
+	V4 ( vdd_cell DACoutn ) resistor r=R  
+	V9 ( vdd 0 ) vsource dc=1 type=dc  
+	V7 ( vbias_cs 0 ) vsource dc=vbias_cs type=dc  
+	V2 ( vbias_sw_cas 0 ) vsource dc=vbias_SW_cas type=dc  
+	V1 ( vbias_cs_cas 0 ) vsource dc=vbias_cs_cas type=dc  
+	V0 ( vdd_cell 0 ) vsource dc=2.5 type=dc  
+	V5 ( analog_in 0 ) vsource dc=os_sine type=sine ampl=amp_sine freq=freq_sine  
+	I9 ( 0 inn_lsb\<3\> inn_lsb\<2\> inn_lsb\<1\> inn_lsb\<0\> inn_msb\<14\> inn_msb\<13\> inn_msb\<12\> inn_msb\<11\> inn_msb\<10\> inn_msb\<9\> inn_msb\<8\> inn_msb\<7\> inn_msb\<6\> inn_msb\<5\> inn_msb\<4\> inn_msb\<3\> inn_msb\<2\> inn_msb\<1\> inn_msb\<0\> inp_lsb\<3\> inp_lsb\<2\> inp_lsb\<1\> inp_lsb\<0\> inp_msb\<14\> inp_msb\<13\> inp_msb\<12\> inp_msb\<11\> inp_msb\<10\> inp_msb\<9\> inp_msb\<8\> inp_msb\<7\> inp_msb\<6\> inp_msb\<5\> inp_msb\<4\> inp_msb\<3\> inp_msb\<2\> inp_msb\<1\> inp_msb\<0\> DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutn DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp DACoutp vbias_cs vbias_cs_cas vbias_sw_cas vdd ) cs_array_8b  
+	I10 ( msb\<3\> msb\<2\> msb\<1\> msb\<0\> inp_lsb\<3\> inp_lsb\<2\> inp_lsb\<1\> inp_lsb\<0\> msbb\<3\> msbb\<2\> msbb\<1\> msbb\<0\> inn_lsb\<3\> inn_lsb\<2\> inn_lsb\<1\> inn_lsb\<0\> analog_in clk_sample ) adc_8bit_ideal trise=trise tfall=tfall tdel=0 vlogic_high=v_high vlogic_low=v_high-v_swing vtrans_clk=vdd/2 vref=adcfullscal  
+	V3 ( clk_sample 0 ) vsource type=pulse val0=vdd val1=0 period=1/fs rise=trise fall=tfall width=1/fs/2-trise  
+	I18\<7\> ( msb\<3\> inp_msb\<14\> ) iprobe  
+	I18\<6\> ( msb\<3\> inp_msb\<13\> ) iprobe  
+	I18\<5\> ( msb\<3\> inp_msb\<12\> ) iprobe  
+	I18\<4\> ( msb\<3\> inp_msb\<11\> ) iprobe  
+	I18\<3\> ( msb\<3\> inp_msb\<10\> ) iprobe  
+	I18\<2\> ( msb\<3\> inp_msb\<9\> ) iprobe  
+	I18\<1\> ( msb\<3\> inp_msb\<8\> ) iprobe  
+	I18\<0\> ( msb\<3\> inp_msb\<7\> ) iprobe  
+	I17\<7\> ( msbb\<3\> inn_msb\<14\> ) iprobe  
+	I17\<6\> ( msbb\<3\> inn_msb\<13\> ) iprobe  
+	I17\<5\> ( msbb\<3\> inn_msb\<12\> ) iprobe  
+	I17\<4\> ( msbb\<3\> inn_msb\<11\> ) iprobe  
+	I17\<3\> ( msbb\<3\> inn_msb\<10\> ) iprobe  
+	I17\<2\> ( msbb\<3\> inn_msb\<9\> ) iprobe  
+	I17\<1\> ( msbb\<3\> inn_msb\<8\> ) iprobe  
+	I17\<0\> ( msbb\<3\> inn_msb\<7\> ) iprobe  
+	I14\<1\> ( msb\<1\> inp_msb\<2\> ) iprobe  
+	I14\<0\> ( msb\<1\> inp_msb\<1\> ) iprobe  
+	I11 ( msb\<0\> inp_msb\<0\> ) iprobe  
+	I12 ( msbb\<0\> inn_msb\<0\> ) iprobe  
+	I13\<1\> ( msbb\<1\> inn_msb\<2\> ) iprobe  
+	I13\<0\> ( msbb\<1\> inn_msb\<1\> ) iprobe  
+	I15\<3\> ( msbb\<2\> inn_msb\<6\> ) iprobe  
+	I15\<2\> ( msbb\<2\> inn_msb\<5\> ) iprobe  
+	I15\<1\> ( msbb\<2\> inn_msb\<4\> ) iprobe  
+	I15\<0\> ( msbb\<2\> inn_msb\<3\> ) iprobe  
+	I16\<3\> ( msb\<2\> inp_msb\<6\> ) iprobe  
+	I16\<2\> ( msb\<2\> inp_msb\<5\> ) iprobe  
+	I16\<1\> ( msb\<2\> inp_msb\<4\> ) iprobe  
+	I16\<0\> ( msb\<2\> inp_msb\<3\> ) iprobe  
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf colonasdelimiter=none 
+tran tran stop=210n errpreset=moderate write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save DACoutn DACoutp vdd_cell V0:p V4:1 R0:1 
+saveOptions options save=selected
+ahdl_include "/home/shiyusu1/workarea_TSMC65_9M/AMPSE_DAC_2019/adc_8bit_ideal/veriloga/veriloga.va"

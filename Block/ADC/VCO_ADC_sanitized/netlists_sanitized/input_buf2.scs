@@ -1,0 +1,92 @@
+// Generated for: spectre
+// Generated on: Oct 28 09:41:05 2019
+// Design library name: CAD_modules
+// Design cell name: test_VCO_analogin_cmlbuffer_v2
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters multi=20 fing_in=20 l_ttt=200n fing_ttt=2 VCM=0.8 dvv=0   wpppp=1200n fpppp=20
+
+
+
+
+include "/home/mohsen/workarea_TSMC_MS_65_9M/tsmcN65_mc_shares.scs" section=TT
+
+// Library name: CAD_modules
+// Cell name: VCO_analogin_cmlbuffer_v2
+// View name: schematic
+subckt VCO_analogin_cmlbuffer_v2 VDD VSS on op vin vip
+parameters _par0 _par1 _par2
+    m1 (VDD vip op VSS) nmos l=l_ttt w=6e-07*_par0 m=_par1 nf=_par0
+    m23 (on vin VSS VSS) nmos l=l_ttt w=600n m=_par1 nf=1
+    m22 (op vip VSS VSS) nmos l=l_ttt w=600n m=_par1 nf=1
+    m19 (on net014 VSS VSS) nmos l=l_ttt w=6e-07*_par2 m=_par1 nf=_par2
+    m18 (op net014 VSS VSS) nmos l=l_ttt w=6e-07*_par2 m=_par1 nf=_par2
+    m13 (VDD vip net014 VSS) nmos l=l_ttt w=6e-07*_par0 m=1 nf=_par0
+    m12 (VDD vin net014 VSS) nmos l=l_ttt w=6e-07*_par0 m=1 nf=_par0
+    m11 (net014 net014 VSS VSS) nmos l=l_ttt w=6e-07*_par2 m=2 nf=_par2 
+    m4 (VDD vin on VSS) nmos l=l_ttt w=6e-07*_par0 m=_par1 nf=_par0 
+ends VCO_analogin_cmlbuffer_v2
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: test_VCO_analogin_cmlbuffer_v2
+// View name: schematic
+V5 (net04 VSS) vsource dc=VCM mag=1 type=dc
+V4 (net03 VSS) vsource dc=VCM type=dc
+V3 (VDD 0) vsource dc=1.2 type=dc
+V2 (VSS 0) vsource dc=0 type=dc
+V0 (VCM VSS) vsource dc=VCM mag=1 type=dc
+M3 (VDD oxp net04 VDD) pmos l=60n w=wpppp*fpppp multi=16 nf=fpppp 
+M2 (net04 oxn VDD VDD) pmos l=60n w=wpppp*fpppp multi=16 nf=fpppp 
+M1 (net015 op VSS net015) pmos l=60n w=wpppp*fpppp multi=16 nf=fpppp
+M0 (VSS on VDD VDD) pmos l=60n w=wpppp*fpppp multi=16 nf=fpppp 
+E1 (net3 VCM VSS DVV) vcvs gain=1.0
+E0 (net4 VCM DVV VSS) vcvs gain=1.0
+v1 (DVV VSS) vsource dc=dvv mag=500.0m type=sine ampl=0 freq=466.000M
+I2 (VDD VSS oxn oxp net03 net03) VCO_analogin_cmlbuffer_v2 _par0=fing_in \
+        _par1=multi _par2=fing_ttt
+x2 (VDD VSS on op net4 net3) VCO_analogin_cmlbuffer_v2 _par0=fing_in \
+        _par1=multi _par2=fing_ttt
+
+E2 (outd VSS) op on vcvs gain=1.0
+
+R8 (on vcmo) resistor r=100M 
+R9 (op vcmo) resistor r=100M 
+
+
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+
+noise ( on op ) noise start=1k stop=1T iprobe=v1 annotate=status 
+dcOp dc maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+ac ac start=1k stop=1T annotate=status 
+
+cmsweep sweep param=dvv start=-0.3 stop=0.3 step=0.2 {
+	noise ( on op ) noise start=1k stop=1T iprobe=v1 annotate=status 
+	dcOp dc maxiters=150 maxsteps=10000 annotate=status
+	dcOpInfo info what=oppoint where=rawfile
+	ac ac start=1k stop=1T annotate=status 
+}
+
+
+
+
+saveOptions options save=allpub
+simulator lang=spice
+
+
+.MEAS AC onon RMS onoise(m) FROM=1k TO=bw
+.MEAS  power PARAM = PAR('+ids(x2.m1)+ids(x2.m4)+ids(x2.m11)')
+.MEAS AC gain MAX Vdb(outd)
+.MEAS AC bw When Vdb(outd) = gain-3
+.MEAS outcm PARAM = PAR('lx3(x2.m18)')
+.MEAS AC AVCM FIND Vdb(vcmo) AT 10k
+.MEAS AC kickn MAX Vdb(oxn)
+.MEAS  irn PARAM = PAR('onon*SQRT(bw)')
+
+
+

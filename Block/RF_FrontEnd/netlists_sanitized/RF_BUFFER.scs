@@ -1,0 +1,125 @@
+simulator lang=spectre
+global 0
+parameters Wpmos_in Wnmos_follower L_Radius
+R12_1__dmy0  (VB_IN R12_1__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R12_2__dmy0  (R12_1__dmy0 R12_2__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R12_3__dmy0  (R12_2__dmy0 vss ) res l=2u w=500n m=1 multi=(1)
+//End of R12
+ 
+R4 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+R5 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+R6 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+R7 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+R8 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+R10 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1) 
+R11 (vdd vdd ) res l=2u w=500n m=1 multi=(26) 
+R14 (vdd vdd ) res l=2u w=500n m=1 multi=(26) 
+R15 (vdd vdd ) res l=5u w=400n m=1 multi=(16) 
+R9 (Inp_buff2 vdd ) res l=5u w=400n m=1 multi=(1) 
+R29 (vdd Inn_buff2 ) res l=5u w=400n m=1 multi=(1)
+ 
+//Series configuration of R21
+R21_1__dmy0  (vdd R21_1__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_2__dmy0  (R21_1__dmy0 R21_2__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_3__dmy0  (R21_2__dmy0 R21_3__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_4__dmy0  (R21_3__dmy0 R21_4__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_5__dmy0  (R21_4__dmy0 R21_5__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_6__dmy0  (R21_5__dmy0 R21_6__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_7__dmy0  (R21_6__dmy0 VB_IN ) res l=2u w=500n m=1 multi=(1)
+//End of R21
+ 
+R33 (Inp_buff VB_IN ) res l=2u w=2u m=6 multi=(1)
+ 
+//Series configuration of R13
+R13_1__dmy0  (vdd R13_1__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_2__dmy0  (R13_1__dmy0 R13_2__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_3__dmy0  (R13_2__dmy0 R13_3__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_4__dmy0  (R13_3__dmy0 R13_4__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_5__dmy0  (R13_4__dmy0 R13_5__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_6__dmy0  (R13_5__dmy0 R13_6__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_7__dmy0  (R13_6__dmy0 VB_IN ) res l=2u w=500n m=1 multi=(1)
+//End of R13
+ 
+R32 (VB_IN Inn_buff ) res l=2u w=2u m=6 multi=(1)
+ 
+//Series configuration of R18
+R18_1__dmy0  (VB_IN R18_1__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R18_2__dmy0  (R18_1__dmy0 R18_2__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R18_3__dmy0  (R18_2__dmy0 vss ) res l=2u w=500n m=1 multi=(1)
+//End of R18
+ 
+C17 (voutp_buf1 Inp_buff2 vdd) cap nr=120 lr=40u w=50n s=50n stm=1 \
+C32 (voutn_buf1 Inn_buff2 vdd) cap nr=120 lr=40u w=50n s=50n stm=1 \
+C22 (Inp_buff INp vdd) cap nr=40 lr=40u w=50n s=50n stm=1 spm=7 \
+C21 (Inn_buff INn vdd) cap nr=40 lr=40u w=50n s=50n stm=1 spm=7 \
+C19 (VB_IN vss vdd) cap nr=80 lr=40u w=75.0n s=50n stm=3 spm=7 \
+ 
+M29 (net0126 B2 vdd vdd) pmos l=30n w=10u multi=1 nf=10  \
+M28 (net0124 B1 vdd vdd) pmos l=30n w=10u multi=1 nf=10  \
+M27 (net0119 B0 vdd vdd) pmos l=30n w=10u multi=1 nf=10  \
+M26 (net0131 B3 vdd vdd) pmos l=30n w=10u multi=1 nf=10   \
+M25 (vx1 net0124 vdd vdd) pmos l=300n w=24.0u multi=1 nf=8 \
+M24 (vx1 net0119 vdd vdd) pmos l=300n w=12.0u multi=1 nf=4 \
+M23 (vx1 net0126 vdd vdd) pmos l=300n w=48.0u multi=1 nf=16 \
+M22 (vx1 VBiasp vdd vdd) pmos l=300n w=120.00000u multi=1 nf=40 \
+M21 (vx1 net0131 vdd vdd) pmos l=300n w=96.0u multi=1 nf=32 \
+M18 (voutp_buf1 Inn_buff vx1 vdd) pmos l=30n w=1e-06*Wpmos_in multi=1 nf=Wpmos_in \ 
+M17 (voutn_buf1 Inp_buff vx1 vdd) pmos l=30n w=1e-06*Wpmos_in multi=1 nf=Wpmos_in \
+ 
+M14 (VBiasp VBiasp vdd vdd) pmos l=300n w=6u multi=1 nf=2 \
+M16 (vdd vdd vx1 vdd) pmos l=30n w=2u multi=1 nf=2 \
+M15 (vdd vdd vdd vdd) pmos l=300n w=12.0u multi=1 nf=4  \
+M44 (OUTp2 vss vss vss) nmos l=200n w=2u multi=1 nf=1 \
+M43 (OUTn2 vss vss vss) nmos l=200n w=2u multi=1 nf=1  \
+M45 (vss vss vss vss) nmos l=300n w=2u multi=1 nf=2  \
+M51 (net0131 B3 VBiasp vss) nmos l=30n w=1u multi=1 nf=1  \
+M52 (net0119 B0 VBiasp vss) nmos l=30n w=1u multi=1 nf=1  \
+M50 (net0126 B2 VBiasp vss) nmos l=30n w=1u multi=1 nf=1  \
+M53 (net0124 B1 VBiasp vss) nmos l=30n w=1u multi=1 nf=1  \
+ 
+ 
+M39 (vdd vss vdd vss) nmos l=200n w=4u multi=1 nf=2  \
+    
+M64 (vdd Inn_buff2 OUTn1 vss) nmos l=200n w=2e-06*Wnmos_follower \
+        multi=1 nf=Wnmos_follower  \
+      
+M63 (vdd Inp_buff2 OUTp1 vss) nmos l=200n w=2e-06*Wnmos_follower \
+        multi=1 nf=Wnmos_follower  \
+        
+M48 (VBiasp Ibias_200u vss vss) nmos l=300n w=4u multi=1 nf=2 \
+        
+M47 (Ibias_200u Ibias_200u vss vss) nmos l=300n w=4u multi=1 nf=2 \
+       
+M46 (vss Ibias_200u vss vss) nmos l=300n w=4u multi=1 nf=2 \
+        
+M35 (vdd Inn_buff2 OUTn2 vss) nmos l=200n w=2e-06*Wnmos_follower \
+        multi=1 nf=Wnmos_follower \
+        
+M36 (OUTn2 Ibias_200u vss vss) nmos l=300n w=20u multi=1 nf=20 \
+       
+M37 (OUTp2 Ibias_200u vss vss) nmos l=300n w=20u multi=1 nf=20 \
+       
+M38 (vdd Inp_buff2 OUTp2 vss) nmos l=200n w=2e-06*Wnmos_follower \
+        multi=1 nf=Wnmos_follower  \
+        
+M34 (OUTp1 Ibias_200u vss vss) nmos l=300n w=20u multi=1 nf=20 \
+        
+M32 (OUTn1 Ibias_200u vss vss) nmos l=300n w=20u multi=1 nf=20 \
+       
+M57 (vss vss vss vss) nmos l=300n w=2u multi=1 nf=2  \
+       
+M69 (OUTp1 vss vss vss) nmos l=200n w=2u multi=1 nf=1  \
+       
+M70 (OUTn1 vss vss vss) nmos l=200n w=2u multi=1 nf=1  \
+    
+M49 (VBiasp vss vss vss) nmos l=300n w=4u multi=1 nf=2 \
+      
+M71 (vdd vss vdd vss) nmos l=200n w=4u multi=1 nf=2  \
+ 
+ 
+L0 (voutn_buf1 vss vss) inductor multi=1 gdis=13.0u lay=9 nr=2 \
+        rad=L_Radius spacing=3u w=3u
+L1 (voutp_buf1 vss vss) inductor multi=1 gdis=13.0u lay=9 nr=2 \
+        rad=L_Radius spacing=3u w=3u 
+ 
+

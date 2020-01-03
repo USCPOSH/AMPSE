@@ -1,0 +1,208 @@
+simulator lang=spectre
+global 0 
+parameters Wpmos_in Wnmos_follower L_Radius fin_battery_cap=80 fin_gnd_1=2 \
+    fin_gnd_2=10 fin_main_sw=4 fin_nmos_bootstrapped_clk_1=10 \
+    fin_pmos_bootstrapped_clk_1=6 fin_sampling_Cap=4 fin_vdd_1=2 VCM=0.3 \
+    tr_tf=20p Pulse_width=312.5p fs=3.2G amp=300m frf=409/1024*64G vclk=1 \
+    vdd=1 fch=fs Tw=((1/fch)-(8*tr_tf))/4 Tw_from_Ce=((1/fch)-(8*tr_tf))/4
+ 
+subckt bootstrap_nMOS_cap_neutralization_Parametrized CLK INN INP OUT vdd \
+        vss
+    M21 (OUT vss INN vss) nmos l=30n w=5e-07*fin_main_sw multi=1 \
+        nf=fin_main_sw \
+    M0 (net019 CLK vss vss) nmos l=30n w=1e-06*fin_gnd_2 multi=1 \
+        nf=fin_gnd_2 sd=100n \
+ 
+    M8 (INP net019 net014 vss) nmos l=30n \
+        w=2e-06*fin_nmos_bootstrapped_clk_1 multi=1 \
+        nf=fin_nmos_bootstrapped_clk_1 sd=100n \
+ 
+    M20 (OUT net019 INP vss) nmos l=30n w=5e-07*fin_main_sw \
+        multi=1 nf=fin_main_sw sd=100n \
+ 
+    M2 (net014 CLK vss vss) nmos l=30n w=1e-07*fin_gnd_1 multi=1 \
+        nf=fin_gnd_1 sd=100n \
+ 
+    M40 (net019 CLK net013 net013) pmos l=30n \
+        w=1e-07*fin_pmos_bootstrapped_clk_1 multi=1 \
+        nf=fin_pmos_bootstrapped_clk_1 sd=100n \
+ 
+    M32 (vdd net019 net013 net013) pmos l=30n w=1e-07*fin_vdd_1 \
+        multi=1 nf=fin_vdd_1 \
+ 
+    C1 (net013 net014 vss) capacitor nr=fin_battery_cap lr=10u w=75.0n \
+        s=50n stm=1 spm=3 dmflag=0 shield=2 multi=1
+    C0 (OUT vss vss) capacitor nr=fin_sampling_Cap lr=2u w=75.0n s=50n \
+        stm=1 spm=3 dmflag=0 shield=2 multi=1
+ends bootstrap_nMOS_cap_neutralization_Parametrized
+ 
+subckt Diff_sampling_SW_Parametrized clk inn inp op1 op2 vdd vss
+    M22 (inn vss vss vss) nmos l=30n w=1u multi=1 nf=2 sd=100n \
+ 
+    M18 (inn vss vss vss) nmos l=30n w=4u multi=1 nf=2 sd=100n \
+ 
+    M17 (inp vss vss vss) nmos l=30n w=4u multi=1 nf=2 sd=100n \
+ 
+    I5 (clk inp inn op2 vdd vss) \
+        bootstrap_nMOS_cap_neutralization_Parametrized
+    I2 (clk inn inp op1 vdd vss) \
+        bootstrap_nMOS_cap_neutralization_Parametrized
+ends Diff_sampling_SW_Parametrized
+ 
+ 
+subckt INPUT_BUFFER_parametrized B0 B1 B2 B3 INn INp Ibias_200u OUTn1 \
+        OUTn2 OUTp1 OUTp2 vdd vss
+R12_1__dmy0  (VB_IN R12_1__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R12_2__dmy0  (R12_1__dmy0 R12_2__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R12_3__dmy0  (R12_2__dmy0 vss ) res l=2u w=500n m=1 multi=(1)
+//End of R12
+ 
+R4 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+ 
+R5 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+ 
+R6 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+ 
+R7 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+ 
+R8 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+ 
+R10 (VB_IN VB_IN ) res l=2u w=2u m=6 multi=(1)
+ 
+R11 (vdd vdd ) res l=2u w=500n m=1 multi=(26)
+ 
+R14 (vdd vdd ) res l=2u w=500n m=1 multi=(26)
+ 
+R15 (vdd vdd ) res l=5u w=400n m=1 multi=(16)
+ 
+R9 (Inp_buff2 vdd ) res l=5u w=400n m=1 multi=(1)
+ 
+R29 (vdd Inn_buff2 ) res l=5u w=400n m=1 multi=(1)
+ 
+R21_1__dmy0  (vdd R21_1__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_2__dmy0  (R21_1__dmy0 R21_2__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_3__dmy0  (R21_2__dmy0 R21_3__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_4__dmy0  (R21_3__dmy0 R21_4__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_5__dmy0  (R21_4__dmy0 R21_5__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_6__dmy0  (R21_5__dmy0 R21_6__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R21_7__dmy0  (R21_6__dmy0 VB_IN ) res l=2u w=500n m=1 multi=(1)
+ 
+R33 (Inp_buff VB_IN ) res l=2u w=2u m=6 multi=(1)
+ 
+R13_1__dmy0  (vdd R13_1__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_2__dmy0  (R13_1__dmy0 R13_2__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_3__dmy0  (R13_2__dmy0 R13_3__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_4__dmy0  (R13_3__dmy0 R13_4__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_5__dmy0  (R13_4__dmy0 R13_5__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_6__dmy0  (R13_5__dmy0 R13_6__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R13_7__dmy0  (R13_6__dmy0 VB_IN ) res l=2u w=500n m=1 multi=(1)
+ 
+R32 (VB_IN Inn_buff ) res l=2u w=2u m=6 multi=(1)
+ 
+R18_1__dmy0  (VB_IN R18_1__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R18_2__dmy0  (R18_1__dmy0 R18_2__dmy0 ) res l=2u w=500n m=1 multi=(1)
+R18_3__dmy0  (R18_2__dmy0 vss ) res l=2u w=500n m=1 multi=(1)
+ 
+    C17 (voutp_buf1 Inp_buff2 vdd) capacitor nr=120 lr=40u w=50n s=50n \
+        stm=1 spm=7 dmflag=0 shield=1 multi=1
+    C32 (voutn_buf1 Inn_buff2 vdd) capacitor nr=120 lr=40u w=50n s=50n \
+        stm=1 spm=7 dmflag=0 shield=1 multi=1
+    C22 (Inp_buff INp vdd) capacitor nr=40 lr=40u w=50n s=50n stm=1 \
+        spm=7 dmflag=0 shield=1 multi=1
+    C21 (Inn_buff INn vdd) capacitor nr=40 lr=40u w=50n s=50n stm=1 \
+        spm=7 dmflag=0 shield=1 multi=1
+    C19 (VB_IN vss vdd) capacitor nr=80 lr=40u w=75.0n s=50n stm=3 spm=7 \
+        dmflag=0 shield=1 multi=1
+    M29 (net0126 B2 vdd vdd) pmos l=30n w=10u multi=1 nf=10 \
+ 
+    M28 (net0124 B1 vdd vdd) pmos l=30n w=10u multi=1 nf=10 \
+ 
+    M27 (net0119 B0 vdd vdd) pmos l=30n w=10u multi=1 nf=10 \
+ 
+    M26 (net0131 B3 vdd vdd) pmos l=30n w=10u multi=1 nf=10 \
+ 
+    M25 (vx1 net0124 vdd vdd) pmos l=300n w=24.0u multi=1 nf=8 \
+ 
+    M24 (vx1 net0119 vdd vdd) pmos l=300n w=12.0u multi=1 nf=4 \
+ 
+    M23 (vx1 net0126 vdd vdd) pmos l=300n w=48.0u multi=1 nf=16 \
+ 
+    M22 (vx1 VBiasp vdd vdd) pmos l=300n w=120.00000u multi=1 \
+        nf=40 \
+    M21 (vx1 net0131 vdd vdd) pmos l=300n w=96.0u multi=1 nf=32 \
+ 
+    M18 (voutp_buf1 Inn_buff vx1 vdd) pmos l=30n w=1e-06*Wpmos_in \
+        multi=1 nf=Wpmos_in sd=100n \
+ 
+    M17 (voutn_buf1 Inp_buff vx1 vdd) pmos l=30n w=1e-06*Wpmos_in \
+        multi=1 nf=Wpmos_in sd=100n \
+ 
+    M14 (VBiasp VBiasp vdd vdd) pmos l=300n w=6u multi=1 nf=2 \
+ 
+    M16 (vdd vdd vx1 vdd) pmos l=30n w=2u multi=1 nf=2 sd=100n \
+ 
+    M15 (vdd vdd vdd vdd) pmos l=300n w=12.0u multi=1 nf=4 \
+ 
+    M44 (OUTp2 vss vss vss) nmos l=200n w=2u multi=1 nf=1 \
+ 
+    M43 (OUTn2 vss vss vss) nmos l=200n w=2u multi=1 nf=1 \
+ 
+    M45 (vss vss vss vss) nmos l=300n w=2u multi=1 nf=2 sd=120.0n \
+ 
+    M51 (net0131 B3 VBiasp vss) nmos l=30n w=1u multi=1 nf=1 \
+ 
+    M52 (net0119 B0 VBiasp vss) nmos l=30n w=1u multi=1 nf=1 \
+   
+    M50 (net0126 B2 VBiasp vss) nmos l=30n w=1u multi=1 nf=1 \
+ 
+    M53 (net0124 B1 VBiasp vss) nmos l=30n w=1u multi=1 nf=1 \
+ 
+    M39 (vdd vss vdd vss) nmos l=200n w=4u multi=1 nf=2 sd=120.0n \
+ 
+    M64 (vdd Inn_buff2 OUTn1 vss) nmos l=200n \
+        w=2e-06*Wnmos_follower multi=1 nf=Wnmos_follower sd=120.0n \
+ 
+    M63 (vdd Inp_buff2 OUTp1 vss) nmos l=200n \
+        w=2e-06*Wnmos_follower multi=1 nf=Wnmos_follower sd=120.0n \
+ 
+    M48 (VBiasp Ibias_200u vss vss) nmos l=300n w=4u multi=1 nf=2 \
+ 
+    M47 (Ibias_200u Ibias_200u vss vss) nmos l=300n w=4u multi=1 \
+        nf=2 \
+ 
+    M46 (vss Ibias_200u vss vss) nmos l=300n w=4u multi=1 nf=2 \
+ 
+    M35 (vdd Inn_buff2 OUTn2 vss) nmos l=200n \
+        w=2e-06*Wnmos_follower multi=1 nf=Wnmos_follower sd=120.0n \
+ 
+    M36 (OUTn2 Ibias_200u vss vss) nmos l=300n w=20u multi=1 nf=20 \
+ 
+    M37 (OUTp2 Ibias_200u vss vss) nmos l=300n w=20u multi=1 nf=20 \
+ 
+    M38 (vdd Inp_buff2 OUTp2 vss) nmos l=200n \
+        w=2e-06*Wnmos_follower multi=1 nf=Wnmos_follower sd=120.0n \
+ 
+    M34 (OUTp1 Ibias_200u vss vss) nmos l=300n w=20u multi=1 nf=20 \
+ 
+    M32 (OUTn1 Ibias_200u vss vss) nmos l=300n w=20u multi=1 nf=20 \
+ 
+    M57 (vss vss vss vss) nmos l=300n w=2u multi=1 nf=2 sd=120.0n \
+ 
+    M69 (OUTp1 vss vss vss) nmos l=200n w=2u multi=1 nf=1 \
+ 
+    M70 (OUTn1 vss vss vss) nmos l=200n w=2u multi=1 nf=1 \
+ 
+    M49 (VBiasp vss vss vss) nmos l=300n w=4u multi=1 nf=2 \
+ 
+    M71 (vdd vss vdd vss) nmos l=200n w=4u multi=1 nf=2 sd=120.0n \
+ 
+    L0 (voutn_buf1 vss vss) inductor multi=1 gdis=13.0u lay=9 \
+        nr=2 rad=L_Radius spacing=3u w=3u
+    L1 (voutp_buf1 vss vss) inductor multi=1 gdis=13.0u lay=9 \
+        nr=2 rad=L_Radius spacing=3u w=3u
+ends INPUT_BUFFER_parametrized
+ 
+I73 (CLK net4 net3 OUTn OUTp VDD VSS) Diff_sampling_SW_Parametrized
+I12 (B0 B1 B2 B3 INn INp Ibias_200uA net3 net6 net4 net5 VDD VSS) INPUT_BUFFER_parametrized
+ 
+

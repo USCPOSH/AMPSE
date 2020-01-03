@@ -1,0 +1,82 @@
+// Generated for: spectre
+// Generated on: Dec 31 18:40:27 2019
+// Design library name: posh_test_circuits
+// Design cell name: tb_DTC_2nd_stage
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters trf=400p nf_dif=16 nf_load=16 PN_inj_bias_100u_pside=100u res=3k
+include "/home/qiaochuz/workarea_TSMC65_9M/tsmcN65_mc_mcdell0.scs" section=TT
+
+// Library name: posh_test_circuits
+// Cell name: differential_cml_RingDPLL_v1
+// View name: schematic
+subckt differential_cml_RingDPLL_v1 REFinj_bias gnd out\+ out\- vdd vin\+ \
+        vin\-
+    M5 (net4 REFinj_bias gnd gnd) nmos l=200n w=96.0u m=1 nf=24 
+    M11 (REFinj_bias gnd gnd gnd) nmos l=200n w=8u m=1 nf=2 
+    M6 (REFinj_bias REFinj_bias gnd gnd) nmos l=200n w=8u m=1 nf=2 \
+       
+    M2 (out\- vin\+ net4 gnd) nmos l=60n w=4e-06*nf_dif m=1 nf=nf_dif \
+       
+    M4 (out\+ vin\- net4 gnd) nmos l=60n w=4e-06*nf_dif m=1 nf=nf_dif 
+    R3 (net6 out\+) resistor r=res
+    R2 (out\- net6) resistor r=res
+    M0 (out\+ net6 vdd vdd) pmos l=60n w=4e-06*nf_load m=1 nf=nf_load
+    M1 (out\- net6 vdd vdd) pmos l=60n w=4e-06*nf_load m=1 nf=nf_load 
+ends differential_cml_RingDPLL_v1
+// End of subcircuit definition.
+
+// Library name: posh_test_circuits
+// Cell name: refclk_tree_current_Ring_PNinj_CML2_v2
+// View name: schematic
+subckt refclk_tree_current_Ring_PNinj_CML2_v2 IL_gnd IL_vdd \
+        PN_inj_bias_100u_inject_1 PN_inj_bias_100u_pside
+    M0 (PN_inj_bias_100u_pside PN_inj_bias_100u_pside IL_gnd IL_gnd) \
+        nmos l=200n w=16.0u m=1 nf=4 
+    M13 (IL_gnd PN_inj_bias_100u_pside IL_gnd IL_gnd) nmos l=200n w=8u \
+        m=1 nf=2 
+    M14 (net038 PN_inj_bias_100u_pside IL_gnd IL_gnd) nmos l=200n \
+        w=16.0u m=1 nf=4 
+    M17 (PN_inj_bias_100u_inject_1 net038 IL_vdd IL_vdd) pmos l=200n \
+        w=16.0u m=1 nf=4 
+    M16 (IL_vdd net038 IL_vdd IL_vdd) pmos l=200n w=8u m=1 nf=2 
+    M15 (net038 net038 IL_vdd IL_vdd) pmos l=200n w=16.0u m=1 nf=4 
+ends refclk_tree_current_Ring_PNinj_CML2_v2
+// End of subcircuit definition.
+
+// Library name: posh_test_circuits
+// Cell name: tb_DTC_2nd_stage
+// View name: schematic
+I11 (PN_inj_bias_300u_1 IL_gnd net4 net3 IL_vdd REF_inj_in\+ REF_inj_in\-) \
+        differential_cml_RingDPLL_v1
+I19 (IL_gnd IL_vdd PN_inj_bias_300u_1 PN_inj_bias_100u_pside) \
+        refclk_tree_current_Ring_PNinj_CML2_v2
+V3 (IL_gnd 0) vsource dc=0 type=dc
+V2 (IL_vdd 0) vsource dc=1 type=dc
+V1 (net8 0) vsource dc=1 type=dc
+I9 (net8 PN_inj_bias_100u_pside) isource dc=PN_inj_bias_100u_pside type=dc
+V0 (REF_inj_in\- IL_gnd) vsource dc=0 type=pulse val0=1 val1=300m \
+        delay=50p rise=trf fall=trf
+V5 (REF_inj_in\+ IL_gnd) vsource dc=0 type=pulse val0=300m val1=1 \
+        delay=50p rise=trf fall=trf
+E2 (in IL_gnd REF_inj_in\+ REF_inj_in\-) vcvs gain=1.0
+E0 (out IL_gnd net4 net3) vcvs gain=1.0
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=300p errpreset=conservative write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub
+
+simulator lang=spice
+.MEAS TRAN delay TRIG V(in) VAL=0 RISE=1 TARG V(out) VAL=0 RISE=1
+.MEAS TRAN trf   TRIG V(out) VAL=-0.5 RISE=1 TARG V(out) VAL=0.5 RISE=1

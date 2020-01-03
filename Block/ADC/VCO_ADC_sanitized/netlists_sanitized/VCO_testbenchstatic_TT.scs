@@ -1,0 +1,126 @@
+// Generated for: spectre
+// Generated on: Jul 26 14:27:14 2019
+// Design library name: CAD_modules
+// Design cell name: test_VCO_Dtype2_65
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters  rres=2K fnnn=15 fppp=5 VDD=1 VBIAS=0.9 wpppn=670n wnnn=390n    lastt=60n
+
+include "/home/mohsen/workarea_TSMC_MS_65_9M/tsmcN65_mc_shares.scs" section=MC_TT
+
+// Library name: CAD_modules
+// Cell name: diff2sing_v1
+// View name: schematic
+subckt diff2sing_v1 B VDD VSS in1 in2 o
+    M2 (net3 B VDD VDD) pmos l=60n w=2.08u m=1 nf=4
+    M0 (net8 in1 net3 VDD) pmos l=60n w=2.08u m=1 nf=4 
+    M1 (o in2 net3 VDD) pmos l=60n w=2.08u m=1 nf=4 
+    M4 (net8 net8 VSS VSS) nmos l=60n w=1.56u m=1 nf=4 
+    M3 (o net8 VSS VSS) nmos l=60n w=1.56u m=1 nf=4 
+ends diff2sing_v1
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: VCO_type2_65
+// View name: schematic
+subckt VCO_type2_65 VDD VSS o\<1\> o\<2\> o\<3\> o\<4\> o\<5\> o\<6\> \
+        o\<7\> o\<8\> op\<1\> vbias
+    M12 (op\<1\> o\<8\> VSS VSS) nmos l=60n w=wnnn*fnnn multi=1 nf=fnnn
+    M11 (o\<8\> o\<7\> VSS VSS) nmos l=60n w=wnnn*fnnn multi=1 nf=fnnn
+    M10 (o\<7\> o\<6\> VSS VSS) nmos l=60n w=wnnn*fnnn multi=1 nf=fnnn
+    M4 (o\<6\> o\<5\> VSS VSS) nmos l=60n w=wnnn*fnnn multi=1 nf=fnnn
+    M3 (o\<5\> o\<4\> VSS VSS) nmos l=60n w=wnnn*fnnn multi=1 nf=fnnn
+    M2 (o\<4\> o\<3\> VSS VSS) nmos l=60n w=wnnn*fnnn multi=1 nf=fnnn
+    M1 (o\<3\> o\<2\> VSS VSS) nmos l=60n w=wnnn*fnnn multi=1 nf=fnnn
+    M0 (o\<2\> o\<1\> VSS VSS) nmos l=60n w=wnnn*fnnn multi=1 nf=fnnn
+    M15 (op\<1\> vbias VDD VDD) pmos l=60n w=wpppn*fppp multi=1 nf=fppp
+    M14 (o\<7\> vbias VDD VDD) pmos l=60n w=wpppn*fppp multi=1 nf=fppp
+    M13 (o\<8\> vbias VDD VDD) pmos l=60n w=wpppn*fppp multi=1 nf=fppp
+    M9 (o\<6\> vbias VDD VDD) pmos l=60n w=wpppn*fppp multi=1 nf=fppp
+    M8 (o\<4\> vbias VDD VDD) pmos l=60n w=wpppn*fppp multi=1 nf=fppp
+    M7 (o\<5\> vbias VDD VDD) pmos l=60n w=wpppn*fppp multi=1 nf=fppp 
+    M6 (o\<2\> vbias VDD VDD) pmos l=60n w=wpppn*fppp multi=1 nf=fppp
+    M5 (o\<3\> vbias VDD VDD) pmos l=60n w=wpppn*fppp multi=1 nf=fppp
+ends VCO_type2_65
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: VCO_Dtype2_65
+// View name: schematic
+subckt VCO_Dtype2_65 VDD VSS on\<1\> on\<2\> on\<3\> on\<4\> on\<5\> \
+        on\<6\> on\<7\> on\<8\> op\<1\> op\<2\> op\<3\> op\<4\> op\<5\> \
+        op\<6\> op\<7\> op\<8\> vbias
+    R1\<1\> (on\<1\> op\<2\>) resistor r=rres
+    R1\<2\> (on\<2\> op\<3\>) resistor r=rres
+    R1\<3\> (on\<3\> op\<4\>) resistor r=rres
+    R1\<4\> (on\<4\> op\<5\>) resistor r=rres
+    R1\<5\> (on\<5\> op\<6\>) resistor r=rres
+    R1\<6\> (on\<6\> op\<7\>) resistor r=rres
+    R1\<7\> (on\<7\> op\<8\>) resistor r=rres
+    R0\<1\> (op\<1\> on\<2\>) resistor r=rres
+    R0\<2\> (op\<2\> on\<3\>) resistor r=rres
+    R0\<3\> (op\<3\> on\<4\>) resistor r=rres
+    R0\<4\> (op\<4\> on\<5\>) resistor r=rres
+    R0\<5\> (op\<5\> on\<6\>) resistor r=rres
+    R0\<6\> (op\<6\> on\<7\>) resistor r=rres
+    R0\<7\> (op\<7\> on\<8\>) resistor r=rres
+    I1 (VDD VSS op\<1\> op\<2\> op\<3\> op\<4\> op\<5\> op\<6\> op\<7\> \
+        op\<8\> on\<1\> vbias) VCO_type2_65
+    I0 (VDD VSS on\<1\> on\<2\> on\<3\> on\<4\> on\<5\> on\<6\> on\<7\> \
+        on\<8\> op\<1\> vbias) VCO_type2_65
+ends VCO_Dtype2_65
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: test_VCO_Dtype2_65
+// View name: schematic
+v1 (VSS 0) vsource dc=0 type=dc
+v0 (VDD 0) vsource dc=VDD type=dc
+I6\<1\> (VSS VDD VSS on\<1\> op\<1\> oo\<1\>) diff2sing_v1
+I6\<2\> (VSS VDD VSS on\<2\> op\<2\> oo\<2\>) diff2sing_v1
+I6\<3\> (VSS VDD VSS on\<3\> op\<3\> oo\<3\>) diff2sing_v1
+I6\<4\> (VSS VDD VSS on\<4\> op\<4\> oo\<4\>) diff2sing_v1
+I6\<5\> (VSS VDD VSS on\<5\> op\<5\> oo\<5\>) diff2sing_v1
+I6\<6\> (VSS VDD VSS on\<6\> op\<6\> oo\<6\>) diff2sing_v1
+I6\<7\> (VSS VDD VSS on\<7\> op\<7\> oo\<7\>) diff2sing_v1
+I6\<8\> (VSS VDD VSS on\<8\> op\<8\> oo\<8\>) diff2sing_v1
+V3 (vbias 0) vsource type=pwl wave=[ 0 0 lastt VBIAS ]
+C1\<1\> (op\<1\> VSS) capacitor c=2f
+C1\<2\> (op\<2\> VSS) capacitor c=2f
+C1\<3\> (op\<3\> VSS) capacitor c=2f
+C1\<4\> (op\<4\> VSS) capacitor c=2f
+C1\<5\> (op\<5\> VSS) capacitor c=2f
+C1\<6\> (op\<6\> VSS) capacitor c=2f
+C1\<7\> (op\<7\> VSS) capacitor c=2f
+C1\<8\> (op\<8\> VSS) capacitor c=2f
+C0\<1\> (on\<1\> VSS) capacitor c=2f
+C0\<2\> (on\<2\> VSS) capacitor c=2f
+C0\<3\> (on\<3\> VSS) capacitor c=2f
+C0\<4\> (on\<4\> VSS) capacitor c=2f
+C0\<5\> (on\<5\> VSS) capacitor c=2f
+C0\<6\> (on\<6\> VSS) capacitor c=2f
+C0\<7\> (on\<7\> VSS) capacitor c=2f
+C0\<8\> (on\<8\> VSS) capacitor c=2f
+
+I0 (VDD VSS on\<1\> on\<2\> on\<3\> on\<4\> on\<5\> on\<6\> on\<7\> \
+        on\<8\> op\<1\> op\<2\> op\<3\> op\<4\> op\<5\> op\<6\> op\<7\> \
+        op\<8\> vbias) VCO_Dtype2_65
+ic on\<1\>=0 
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=lastt errpreset=conservative noisefmax=50G noiseseed=1234 \
+    write="spectre.ic" writefinal="spectre.fc" annotate=status maxiters=5 
+saveOptions options save=allpub
+
+
+
+
+simulator lang=spice
+.MEAS TRAN pwr  AVG I(v1)
+.MEAS TRAN_CONT cont_vout1 find v(vbias) when v(oo\<1\>)=0.8 rise=1
+.MEAS TRAN_CONT cont_tout1 when v(oo\<1\>)=0.8 rise=1
+
+
