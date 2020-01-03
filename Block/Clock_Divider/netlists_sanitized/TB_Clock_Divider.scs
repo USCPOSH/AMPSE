@@ -1,0 +1,183 @@
+// Generated for: spectre
+// Generated on: Dec 29 03:21:09 2019
+// Design library name: ClockDivider
+// Design cell name: TB_CK_Divider
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters vctrl=1 ain=100m fin=12G vbias=500m
+
+// Library name: DAC_2018_May_TSMC65_ss_soumya
+// Cell name: divby2_cml_tail
+// View name: schematic
+subckt divby2_cml_tail Vtail gnd idiv_ctrl\<0\> idiv_ctrl\<1\> \
+        idiv_ctrl\<2\> vdd vdiv
+    M15 (Vtail vdiv net18 gnd) nmos l=240.0n w=3u multi=2 nf=1 \
+        
+    M14 (Vtail vdiv net19 gnd) nmos l=240.0n w=3u multi=4 nf=1 \
+        
+    M5 (net18 idiv_ctrl\<0\> gnd gnd) nmos l=240.0n w=3u multi=2 \
+        nf=1 \
+
+    M0 (Vtail vdiv net20 gnd) nmos l=240.0n w=3u multi=8 nf=1 \
+        
+    M4 (net19 idiv_ctrl\<1\> gnd gnd) nmos l=240.0n w=3u multi=4 \
+        nf=1 \
+
+    M11 (Vtail gnd gnd gnd) nmos l=240.0n w=3u multi=2 nf=1 \
+
+    M8 (vdiv vdiv net013 gnd) nmos l=240.0n w=3u multi=2 nf=1 \
+        
+    M6 (net20 idiv_ctrl\<2\> gnd gnd) nmos l=240.0n w=3u multi=8 \
+        nf=1 \
+
+    M9 (vdiv gnd gnd gnd) nmos l=240.0n w=3u multi=2 nf=1 \
+
+    M12 (gnd gnd gnd gnd) nmos l=240.0n w=3u multi=8 nf=1 \
+
+    M7 (net013 vdd gnd gnd) nmos l=240.0n w=3u multi=2 nf=1 \
+
+ends divby2_cml_tail
+// End of subcircuit definition.
+
+// Library name: DAC_2018_May_TSMC65_ss_soumya
+// Cell name: divby2_cml_latch
+// View name: schematic
+subckt divby2_cml_latch CLK CLKb D Db P Pb Vtail gnd rst rstb vdd
+    M43 (gnd gnd gnd gnd) nmos l=60n w=2.5u multi=28 nf=1 \
+
+    M42 (gnd gnd gnd gnd) nmos l=60n w=2.125u multi=4 nf=1 \
+
+    M39 (gnd gnd gnd gnd) nmos l=60n w=2.125u multi=2 nf=1 \
+
+    M38 (gnd gnd gnd gnd) nmos l=60n w=2.5u multi=2 nf=1\
+
+    M37 (net022 gnd gnd gnd) nmos l=60n w=2.5u multi=2 nf=1 \
+
+    M36 (Vtail gnd gnd gnd) nmos l=60n w=2.125u multi=2 nf=1 \
+        
+    M32 (P gnd Vtail gnd) nmos l=60n w=2.125u multi=2 nf=1 \
+
+    M35 (net1 gnd gnd gnd) nmos l=60n w=2.125u multi=2 nf=1 \
+
+    M24 (Pb rst Vtail gnd) nmos l=60n w=2.125u multi=2 nf=1 \
+
+    M25 (net022 rstb Vtail gnd) nmos l=60n w=2.5u multi=4 nf=1 \
+        
+    M34 (net04 gnd gnd gnd) nmos l=60n w=2.125u multi=4 nf=1 \
+      
+    M17 (Pb Db net04 gnd) nmos l=60n w=1u multi=17 nf=1 \
+       
+    M5 (net04 D P gnd) nmos l=60n w=1u multi=17 nf=1 \
+
+    M41 (net1 P Pb gnd) nmos l=60n w=1u multi=17 nf=1 \
+
+    M3 (P Pb net1 gnd) nmos l=60n w=1u multi=17 nf=1 \
+
+    M33 (Vtail gnd gnd gnd) nmos l=60n w=2.125u multi=2 nf=1 \
+        
+    M30 (net1 CLKb net022 gnd) nmos l=60n w=4u multi=5 nf=1 \
+
+R3 (gnd gnd gnd ) res l=2.5u w=510.0n m=5 multi=(1) \
+
+//Series configuration of R0
+R0_1__dmy0  (vdd R0_1__dmy0 gnd ) res l=2.5u w=510.0n m=1 multi=(1) \
+       
+R0_2__dmy0  (R0_1__dmy0 R0_2__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1)\
+R0_3__dmy0  (R0_2__dmy0 R0_3__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1) \
+R0_4__dmy0  (R0_3__dmy0 R0_4__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1) \
+R0_5__dmy0  (R0_4__dmy0 R0_5__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1) \
+R0_6__dmy0  (R0_5__dmy0 R0_6__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1)\
+R0_7__dmy0  (R0_6__dmy0 R0_7__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1)\
+R0_8__dmy0  (R0_7__dmy0 Pb gnd ) res l=2.5u w=510.0n m=1 multi=(1) \
+        
+//End of R0
+
+//Series configuration of R2
+R2_1__dmy0  (vdd R2_1__dmy0 gnd ) res l=2.5u w=510.0n m=1 multi=(1) \
+        
+R2_2__dmy0  (R2_1__dmy0 R2_2__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1) \
+R2_3__dmy0  (R2_2__dmy0 R2_3__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1) \
+R2_4__dmy0  (R2_3__dmy0 R2_4__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1)\
+R2_5__dmy0  (R2_4__dmy0 R2_5__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1) \
+R2_6__dmy0  (R2_5__dmy0 R2_6__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1) \
+R2_7__dmy0  (R2_6__dmy0 R2_7__dmy0 gnd ) res l=2.5u w=510.0n m=1 \
+        multi=(1) \
+R2_8__dmy0  (R2_7__dmy0 P gnd ) res l=2.5u w=510.0n m=1 multi=(1) \
+      
+//End of R2
+
+ends divby2_cml_latch
+// End of subcircuit definition.
+
+// Library name: DAC_2018_May_TSMC65_ss_soumya
+// Cell name: divby2_cml_DFF
+// View name: schematic
+subckt divby2_cml_DFF CLK CLKb D Db P Pb Vtail\<1\> Vtail\<0\> gnd rst \
+        rstb vdd
+    I1 (CLK CLKb P Pb Db D Vtail\<0\> gnd rst rstb vdd) divby2_cml_latch
+    I0 (CLKb CLK D Db P Pb Vtail\<1\> gnd rst rstb vdd) divby2_cml_latch
+ends divby2_cml_DFF
+// End of subcircuit definition.
+
+// Library name: DAC_2018_May_TSMC65_ss_soumya
+// Cell name: divby2_cml
+// View name: schematic
+subckt divby2_cml CLK CLKb D Db P Pb gnd idiv_ctrl\<0\> idiv_ctrl\<1\> \
+        idiv_ctrl\<2\> rst rstb vdd vdiv
+    I3 (Vtail\<0\> gnd idiv_ctrl\<0\> idiv_ctrl\<1\> idiv_ctrl\<2\> vdd \
+        vdiv) divby2_cml_tail
+    I2 (Vtail\<1\> gnd idiv_ctrl\<0\> idiv_ctrl\<1\> idiv_ctrl\<2\> vdd \
+        vdiv) divby2_cml_tail
+    M3 (gnd vdiv gnd gnd) nmos l=800n w=4u multi=15 nf=1 \
+
+    M2 (gnd vdiv gnd gnd) nmos l=800n w=6u multi=25 nf=1 \
+
+    M1 (gnd vdiv gnd gnd) nmos l=60n w=4u multi=40 nf=1 \
+
+    M0 (gnd vdiv gnd gnd) nmos l=60n w=4u multi=40 nf=1\
+
+    I4 (CLK CLKb D Db P Pb Vtail\<1\> Vtail\<0\> gnd rst rstb vdd) \
+        divby2_cml_DFF
+ends divby2_cml
+// End of subcircuit definition.
+
+// Library name: ClockDivider
+// Cell name: TB_CK_Divider
+// View name: schematic
+I1 (CLK CLKb D Db P Pb gnd idiv_ctrl\<0\> idiv_ctrl\<1\> idiv_ctrl\<2\> \
+        gnd vdd vdd vdiv) divby2_cml
+V8 (net1 0) vsource dc=vbias type=dc
+V5 (vdiv 0) vsource dc=1 type=dc
+V4 (idiv_ctrl\<0\> 0) vsource dc=vctrl type=dc
+V3 (idiv_ctrl\<1\> 0) vsource dc=1 type=dc
+V2 (idiv_ctrl\<2\> 0) vsource dc=1 type=dc
+V1 (gnd 0) vsource dc=0 type=dc
+V0 (vdd 0) vsource dc=1 type=dc
+V7 (CLKb net1) vsource dc=0 type=sine ampl=-ain freq=fin
+V6 (CLK net1) vsource dc=0 type=sine ampl=ain freq=fin
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 maxnotes=5 maxwarns=5 \
+    digits=5 cols=80 pivrel=1e-3 sensfile="../psf/sens.output" \
+    checklimitdest=psf 
+tran tran stop=10n errpreset=conservative wite="spectre.ic" \
+    witefinal="spectre.fc" annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub
