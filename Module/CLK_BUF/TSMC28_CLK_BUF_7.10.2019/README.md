@@ -11,3 +11,11 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+<img src="Documents/images/CLK_BUF_Page_1.png">
+<img src="Documents/images/CLK_BUF_Page_2png">
+<img src="Documents/images/CLK_BUF_Page_3png">
+<img src="Documents/images/CLK_BUF_Page_4png">
+<img src="Documents/images/CLK_BUF_Page_5png">
+<img src="Documents/images/CLK_BUF_Page_6png">
+<img src="Documents/images/CLK_BUF_Page_7png">
