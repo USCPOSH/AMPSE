@@ -11,3 +11,8 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+<img src="Documentation/images/SAR_ADC_documentation_Page_1.png">
+<img src="Documentation/images/SAR_ADC_documentation_Page_2.png">
+<img src="Documentation/images/SAR_ADC_documentation_Page_3.png">
+<img src="Documentation/images/SAR_ADC_documentation_Page_4.png">
