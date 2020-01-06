@@ -11,3 +11,14 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+# Functions
+
+1. ADC
+2. CS DAC
+3. Clock Divider
+4. DLL
+5. DTC
+6. RF Frontend
+7. TDC
+8. Amplifier
