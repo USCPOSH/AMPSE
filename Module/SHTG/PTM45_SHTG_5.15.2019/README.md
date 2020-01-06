@@ -14,7 +14,7 @@ limitations under the License.
 
 # PTM45_SHTG_5.15.2019
 
-<img src="Document/images/sandhold_Page_1.png">
-<img src="Document/images/sandhold_Page_2.png">
-<img src="Document/images/sandhold_Page_3.png">
-<img src="Document/images/sandhold_Page_4.png">
+<img src="Documents/images/sandhold_Page_1.png">
+<img src="Documents/images/sandhold_Page_2.png">
+<img src="Documents/images/sandhold_Page_3.png">
+<img src="Documents/images/sandhold_Page_4.png">
