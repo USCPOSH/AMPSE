@@ -18,6 +18,9 @@ This is the repository of IPs of the group in USC who is developing Analog Mixed
 # Schema
 <img src="Documentation/images/Schema_AMPSE.png">
 
+# Summary of Predictive Models
+<img src="Documentation/images/Summary_of_predictive_models.png">
+
 # USC POSH Netlist Database
 <img src="Documentation/images/USC_POSH_netlist_database_Page_01.png">
 <img src="Documentation/images/USC_POSH_netlist_database_Page_02.png">
@@ -39,6 +42,3 @@ This is the repository of IPs of the group in USC who is developing Analog Mixed
 
 # Simulating AMPSE Modules
 <img src="Documentation/images/Simulating_AMPSE_modules.png">
-
-# Summary of Predictive Models
-<img src="Documentation/images/Summary_of_predictive_models.png">
