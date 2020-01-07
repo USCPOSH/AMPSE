@@ -20,5 +20,4 @@ limitations under the License.
 4. DLL
 5. DTC
 6. RF Frontend
-7. TDC
-8. Amplifier
+7. Amplifier
