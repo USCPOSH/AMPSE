@@ -13,7 +13,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 # Functions
-
 1. CLK BUF
 2. CS Amplifier
 3. Comparator
