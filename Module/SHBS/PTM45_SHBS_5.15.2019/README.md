@@ -12,8 +12,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-# PTM45_SHBS_5.15.2019
-
+# README
 <img src="Document/images/SHBS_Page_1.png">
 <img src="Document/images/SHBS_Page_2.png">
 <img src="Document/images/SHBS_Page_3.png">
