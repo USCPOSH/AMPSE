@@ -12,9 +12,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-# README
 ## Xyce-compatible netlists will be located under Netlist/xyce/
 ## Hspice netlists will be located under Netlist/hspice/
+
+# README
 <img src="Documentation/images/SAR_ADC_documentation_Page_1.png">
 <img src="Documentation/images/SAR_ADC_documentation_Page_2.png">
 <img src="Documentation/images/SAR_ADC_documentation_Page_3.png">
