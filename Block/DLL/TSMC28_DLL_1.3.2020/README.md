@@ -12,8 +12,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## Xyce-compatible netlists will be located under netlists_sanitized/xyce/
-## Hspice netlists will be located under netlists_sanitized/hspice/
+## Xyce-compatible netlists will be located under netlists/xyce/
+## Hspice netlists will be located under netlists/hspice/
 
 # README
 <img src="documentation/images/DLL_Ce_Page_1.png">
