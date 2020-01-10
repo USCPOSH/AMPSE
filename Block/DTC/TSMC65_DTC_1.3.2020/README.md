@@ -12,6 +12,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
+## Xyce-compatible netlists will be located under netlists_sanitized/xyce/
+## Hspice netlists will be located under netlists_sanitized/hspice/
+
 # README
 <img src="documentation/images/DTC_Qiaochu_Page_1.png">
 <img src="documentation/images/DTC_Qiaochu_Page_2.png">
