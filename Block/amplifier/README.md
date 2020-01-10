@@ -14,4 +14,5 @@ limitations under the License.
 
 # README
 
-hspice netlists may be found under Netlists/hspice/
+## Xyce-compatible netlists will be located under netlists_sanitized/xyce/
+## Hspice netlists will be located under netlists_sanitized/hspice/
