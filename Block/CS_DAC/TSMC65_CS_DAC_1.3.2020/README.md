@@ -13,6 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 # README
+## Xyce-compatible netlists will be located under netlists_sanitized/xyce/
 <img src="documentation/images/CS_DAC_AMPSE_Page_01.png">
 <img src="documentation/images/CS_DAC_AMPSE_Page_02.png">
 <img src="documentation/images/CS_DAC_AMPSE_Page_03.png">
