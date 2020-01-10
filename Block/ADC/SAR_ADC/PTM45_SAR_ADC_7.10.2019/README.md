@@ -13,6 +13,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 # README
+
+## Xyce-compatible netlists are located under Netlist/xyce/
+
 <img src="Documentation/images/SAR_ADC_documentation_Page_1.png">
 <img src="Documentation/images/SAR_ADC_documentation_Page_2.png">
 <img src="Documentation/images/SAR_ADC_documentation_Page_3.png">
