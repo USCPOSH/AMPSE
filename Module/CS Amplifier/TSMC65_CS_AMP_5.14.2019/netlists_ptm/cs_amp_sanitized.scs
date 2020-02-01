@@ -1,0 +1,6 @@
+simulator lang = spectre 
+global 0  
+parameters ibias=100u l=60n vbias=0.5 w=2u 
+	M28 ( vout net6 VSS VSS )  ptmn65  l=l w=w*1 m=1  
+	M0 ( net4 net4 VDD VDD )  ptmp65  l=l w=w*1 m=1  
+	M33 ( vout net4 VDD VDD )  ptmp65  l=l w=w*1 m=1  

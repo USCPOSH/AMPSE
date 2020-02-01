@@ -1,0 +1,752 @@
+simulator lang = spectre 
+global 0  
+parameters nf_cap=14 nf_load=16 res=3k nf_dif=16 dtc_gain_m=32 PN_CML_bias_pside_small=30u phi_df_frac_retimed_0=0 PN_CML_bias_300u_pside=240u PN_inj_bias_100u_pside=100u dtc_offset=32 phi_df_frac_retimed=50 fref=40M dtc_gain=32 
+include "/home/qiaochuz/Downloads/DTC/ptmn65.scs" 
+include "/home/qiaochuz/Downloads/DTC/ptmp65.scs" 
+subckt DTC_offset_v3_schematic IL_gnd dtc_offset_m\<5\> dtc_offset_m\<4\> dtc_offset_m\<3\> dtc_offset_m\<2\> dtc_offset_m\<1\> dtc_offset_m\<0\> offset_node\+ offset_node\- 
+	C25\<1\> ( IL_gnd net031\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C25\<0\> ( IL_gnd net031\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<31\> ( offset_node\- net024\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<30\> ( offset_node\- net024\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<29\> ( offset_node\- net024\<2\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<28\> ( offset_node\- net024\<3\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<27\> ( offset_node\- net024\<4\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<26\> ( offset_node\- net024\<5\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<25\> ( offset_node\- net024\<6\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<24\> ( offset_node\- net024\<7\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<23\> ( offset_node\- net024\<8\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<22\> ( offset_node\- net024\<9\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<21\> ( offset_node\- net024\<10\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<20\> ( offset_node\- net024\<11\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<19\> ( offset_node\- net024\<12\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<18\> ( offset_node\- net024\<13\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<17\> ( offset_node\- net024\<14\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<16\> ( offset_node\- net024\<15\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<15\> ( offset_node\- net024\<16\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<14\> ( offset_node\- net024\<17\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<13\> ( offset_node\- net024\<18\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<12\> ( offset_node\- net024\<19\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<11\> ( offset_node\- net024\<20\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<10\> ( offset_node\- net024\<21\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<9\> ( offset_node\- net024\<22\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<8\> ( offset_node\- net024\<23\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<7\> ( offset_node\- net024\<24\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<6\> ( offset_node\- net024\<25\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<5\> ( offset_node\- net024\<26\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<4\> ( offset_node\- net024\<27\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<3\> ( offset_node\- net024\<28\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<2\> ( offset_node\- net024\<29\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<1\> ( offset_node\- net024\<30\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C24\<0\> ( offset_node\- net024\<31\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C23\<3\> ( offset_node\- net018\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C23\<2\> ( offset_node\- net018\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C23\<1\> ( offset_node\- net018\<2\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C23\<0\> ( offset_node\- net018\<3\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<15\> ( offset_node\- net022\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<14\> ( offset_node\- net022\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<13\> ( offset_node\- net022\<2\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<12\> ( offset_node\- net022\<3\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<11\> ( offset_node\- net022\<4\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<10\> ( offset_node\- net022\<5\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<9\> ( offset_node\- net022\<6\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<8\> ( offset_node\- net022\<7\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<7\> ( offset_node\- net022\<8\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<6\> ( offset_node\- net022\<9\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<5\> ( offset_node\- net022\<10\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<4\> ( offset_node\- net022\<11\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<3\> ( offset_node\- net022\<12\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<2\> ( offset_node\- net022\<13\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<1\> ( offset_node\- net022\<14\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C22\<0\> ( offset_node\- net022\<15\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C21\<7\> ( offset_node\- net020\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C21\<6\> ( offset_node\- net020\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C21\<5\> ( offset_node\- net020\<2\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C21\<4\> ( offset_node\- net020\<3\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C21\<3\> ( offset_node\- net020\<4\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C21\<2\> ( offset_node\- net020\<5\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C21\<1\> ( offset_node\- net020\<6\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C21\<0\> ( offset_node\- net020\<7\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C20\<1\> ( offset_node\- net016\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C20\<0\> ( offset_node\- net016\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C19 ( offset_node\- net025 ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<31\> ( offset_node\+ net026\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<30\> ( offset_node\+ net026\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<29\> ( offset_node\+ net026\<2\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<28\> ( offset_node\+ net026\<3\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<27\> ( offset_node\+ net026\<4\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<26\> ( offset_node\+ net026\<5\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<25\> ( offset_node\+ net026\<6\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<24\> ( offset_node\+ net026\<7\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<23\> ( offset_node\+ net026\<8\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<22\> ( offset_node\+ net026\<9\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<21\> ( offset_node\+ net026\<10\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<20\> ( offset_node\+ net026\<11\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<19\> ( offset_node\+ net026\<12\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<18\> ( offset_node\+ net026\<13\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<17\> ( offset_node\+ net026\<14\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<16\> ( offset_node\+ net026\<15\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<15\> ( offset_node\+ net026\<16\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<14\> ( offset_node\+ net026\<17\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<13\> ( offset_node\+ net026\<18\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<12\> ( offset_node\+ net026\<19\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<11\> ( offset_node\+ net026\<20\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<10\> ( offset_node\+ net026\<21\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<9\> ( offset_node\+ net026\<22\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<8\> ( offset_node\+ net026\<23\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<7\> ( offset_node\+ net026\<24\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<6\> ( offset_node\+ net026\<25\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<5\> ( offset_node\+ net026\<26\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<4\> ( offset_node\+ net026\<27\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<3\> ( offset_node\+ net026\<28\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<2\> ( offset_node\+ net026\<29\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<1\> ( offset_node\+ net026\<30\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C18\<0\> ( offset_node\+ net026\<31\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<15\> ( offset_node\+ net023\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<14\> ( offset_node\+ net023\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<13\> ( offset_node\+ net023\<2\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<12\> ( offset_node\+ net023\<3\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<11\> ( offset_node\+ net023\<4\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<10\> ( offset_node\+ net023\<5\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<9\> ( offset_node\+ net023\<6\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<8\> ( offset_node\+ net023\<7\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<7\> ( offset_node\+ net023\<8\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<6\> ( offset_node\+ net023\<9\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<5\> ( offset_node\+ net023\<10\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<4\> ( offset_node\+ net023\<11\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<3\> ( offset_node\+ net023\<12\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<2\> ( offset_node\+ net023\<13\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<1\> ( offset_node\+ net023\<14\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C17\<0\> ( offset_node\+ net023\<15\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C16\<7\> ( offset_node\+ net021\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C16\<6\> ( offset_node\+ net021\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C16\<5\> ( offset_node\+ net021\<2\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C16\<4\> ( offset_node\+ net021\<3\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C16\<3\> ( offset_node\+ net021\<4\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C16\<2\> ( offset_node\+ net021\<5\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C16\<1\> ( offset_node\+ net021\<6\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C16\<0\> ( offset_node\+ net021\<7\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C15\<3\> ( offset_node\+ net019\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C15\<2\> ( offset_node\+ net019\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C15\<1\> ( offset_node\+ net019\<2\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C15\<0\> ( offset_node\+ net019\<3\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C14\<1\> ( offset_node\+ net017\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C14\<0\> ( offset_node\+ net017\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C6 ( offset_node\+ net6 ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	M1\<1\> ( net031\<0\> IL_gnd IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M1\<0\> ( net031\<1\> IL_gnd IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<31\> ( net024\<0\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<30\> ( net024\<1\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<29\> ( net024\<2\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<28\> ( net024\<3\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<27\> ( net024\<4\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<26\> ( net024\<5\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<25\> ( net024\<6\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<24\> ( net024\<7\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<23\> ( net024\<8\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<22\> ( net024\<9\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<21\> ( net024\<10\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<20\> ( net024\<11\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<19\> ( net024\<12\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<18\> ( net024\<13\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<17\> ( net024\<14\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<16\> ( net024\<15\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<15\> ( net024\<16\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<14\> ( net024\<17\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<13\> ( net024\<18\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<12\> ( net024\<19\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<11\> ( net024\<20\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<10\> ( net024\<21\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<9\> ( net024\<22\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<8\> ( net024\<23\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<7\> ( net024\<24\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<6\> ( net024\<25\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<5\> ( net024\<26\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<4\> ( net024\<27\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<3\> ( net024\<28\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<2\> ( net024\<29\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<1\> ( net024\<30\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M13\<0\> ( net024\<31\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<31\> ( net026\<0\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<30\> ( net026\<1\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<29\> ( net026\<2\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<28\> ( net026\<3\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<27\> ( net026\<4\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<26\> ( net026\<5\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<25\> ( net026\<6\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<24\> ( net026\<7\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<23\> ( net026\<8\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<22\> ( net026\<9\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<21\> ( net026\<10\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<20\> ( net026\<11\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<19\> ( net026\<12\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<18\> ( net026\<13\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<17\> ( net026\<14\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<16\> ( net026\<15\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<15\> ( net026\<16\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<14\> ( net026\<17\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<13\> ( net026\<18\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<12\> ( net026\<19\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<11\> ( net026\<20\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<10\> ( net026\<21\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<9\> ( net026\<22\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<8\> ( net026\<23\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<7\> ( net026\<24\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<6\> ( net026\<25\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<5\> ( net026\<26\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<4\> ( net026\<27\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<3\> ( net026\<28\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<2\> ( net026\<29\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<1\> ( net026\<30\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M14\<0\> ( net026\<31\> dtc_offset_m\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<15\> ( net023\<0\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<14\> ( net023\<1\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<13\> ( net023\<2\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<12\> ( net023\<3\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<11\> ( net023\<4\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<10\> ( net023\<5\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<9\> ( net023\<6\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<8\> ( net023\<7\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<7\> ( net023\<8\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<6\> ( net023\<9\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<5\> ( net023\<10\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<4\> ( net023\<11\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<3\> ( net023\<12\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<2\> ( net023\<13\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<1\> ( net023\<14\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M10\<0\> ( net023\<15\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<15\> ( net022\<0\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<14\> ( net022\<1\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<13\> ( net022\<2\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<12\> ( net022\<3\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<11\> ( net022\<4\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<10\> ( net022\<5\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<9\> ( net022\<6\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<8\> ( net022\<7\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<7\> ( net022\<8\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<6\> ( net022\<9\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<5\> ( net022\<10\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<4\> ( net022\<11\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<3\> ( net022\<12\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<2\> ( net022\<13\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<1\> ( net022\<14\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M11\<0\> ( net022\<15\> dtc_offset_m\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M6\<3\> ( net018\<0\> dtc_offset_m\<2\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M6\<2\> ( net018\<1\> dtc_offset_m\<2\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M6\<1\> ( net018\<2\> dtc_offset_m\<2\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M6\<0\> ( net018\<3\> dtc_offset_m\<2\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<1\> ( net017\<0\> dtc_offset_m\<1\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<0\> ( net017\<1\> dtc_offset_m\<1\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M8\<7\> ( net021\<0\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M8\<6\> ( net021\<1\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M8\<5\> ( net021\<2\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M8\<4\> ( net021\<3\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M8\<3\> ( net021\<4\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M8\<2\> ( net021\<5\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M8\<1\> ( net021\<6\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M8\<0\> ( net021\<7\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M16\<3\> ( net019\<0\> dtc_offset_m\<2\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M16\<2\> ( net019\<1\> dtc_offset_m\<2\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M16\<1\> ( net019\<2\> dtc_offset_m\<2\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M16\<0\> ( net019\<3\> dtc_offset_m\<2\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M4\<1\> ( net016\<0\> dtc_offset_m\<1\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M4\<0\> ( net016\<1\> dtc_offset_m\<1\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M15 ( net025 dtc_offset_m\<0\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M2 ( net6 dtc_offset_m\<0\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M7\<7\> ( net020\<0\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M7\<6\> ( net020\<1\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M7\<5\> ( net020\<2\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M7\<4\> ( net020\<3\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M7\<3\> ( net020\<4\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M7\<2\> ( net020\<5\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M7\<1\> ( net020\<6\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M7\<0\> ( net020\<7\> dtc_offset_m\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+ends DTC_offset_v3_schematic 
+subckt refclk_tree_current_Ring_PNinj_CML1_coarse_schematic IL_gnd IL_vdd PN_CML_bias_300u_inject PN_CML_bias_300u_pside dtc_gain_m\<5\> dtc_gain_m\<4\> dtc_gain_m\<3\> dtc_gain_m\<2\> dtc_gain_m\<1\> dtc_gain_m\<0\> 
+	M3 ( net18 PN_CML_bias_300u_pside IL_gnd IL_gnd )  ptmn65  l=200n w=8u m=1  
+	M4 ( PN_CML_bias_300u_pside PN_CML_bias_300u_pside IL_gnd IL_gnd )  ptmn65  l=200n w=8u m=1  
+	M1 ( IL_gnd PN_CML_bias_300u_pside IL_gnd IL_gnd )  ptmn65  l=200n w=24.0u m=1  
+	M59 ( 1 net18 IL_vdd IL_vdd )  ptmp65  l=200n w=300n m=1  
+	M58 ( 2 net18 IL_vdd IL_vdd )  ptmp65  l=200n w=600n m=1  
+	M57 ( 4 net18 IL_vdd IL_vdd )  ptmp65  l=200n w=1.2u m=1  
+	M56 ( net068 net18 IL_vdd IL_vdd )  ptmp65  l=200n w=2.4u m=1  
+	M38 ( PN_CML_bias_300u_inject dtc_gain_m\<3\> net068 IL_vdd )  ptmp65  l=200n w=2.4u m=1  
+	M42 ( PN_CML_bias_300u_inject dtc_gain_m\<1\> 2 IL_vdd )  ptmp65  l=200n w=600n m=1  
+	M45 ( IL_vdd IL_vdd IL_vdd IL_vdd )  ptmp65  l=200n w=7.5u m=1  
+	M46 ( 4 IL_vdd IL_vdd IL_vdd )  ptmp65  l=200n w=600n m=1  
+	M48 ( 2 IL_vdd IL_vdd IL_vdd )  ptmp65  l=200n w=600n m=1  
+	M49 ( PN_CML_bias_300u_inject IL_vdd IL_vdd IL_vdd )  ptmp65  l=200n w=900n m=1  
+	M54 ( net070 net18 IL_vdd IL_vdd )  ptmp65  l=200n w=9.6u m=1  
+	M52 ( 1 IL_vdd IL_vdd IL_vdd )  ptmp65  l=200n w=600n m=1  
+	M24 ( PN_CML_bias_300u_inject dtc_gain_m\<5\> net070 IL_vdd )  ptmp65  l=200n w=9.6u m=1  
+	M25 ( PN_CML_bias_300u_inject dtc_gain_m\<4\> net069 IL_vdd )  ptmp65  l=200n w=4.8u m=1  
+	M55 ( net069 net18 IL_vdd IL_vdd )  ptmp65  l=200n w=4.8u m=1  
+	M10 ( IL_vdd net18 IL_vdd IL_vdd )  ptmp65  l=200n w=24.0u m=1  
+	M43 ( PN_CML_bias_300u_inject dtc_gain_m\<0\> 1 IL_vdd )  ptmp65  l=200n w=300n m=1  
+	M5 ( PN_CML_bias_300u_inject net18 IL_vdd IL_vdd )  ptmp65  l=200n w=8u m=1  
+	M2 ( net18 net18 IL_vdd IL_vdd )  ptmp65  l=200n w=8u m=1  
+	M39 ( PN_CML_bias_300u_inject dtc_gain_m\<2\> 4 IL_vdd )  ptmp65  l=200n w=1.2u m=1  
+ends refclk_tree_current_Ring_PNinj_CML1_coarse_schematic 
+subckt differential_cml_RingDPLL_v1_schematic REFinj_bias gnd out\+ out\- vdd vin\+ vin\- 
+	M5 ( net4 REFinj_bias gnd gnd )  ptmn65  l=200n w=96.0u m=1  
+	M11 ( REFinj_bias gnd gnd gnd )  ptmn65  l=200n w=8u m=1  
+	M6 ( REFinj_bias REFinj_bias gnd gnd )  ptmn65  l=200n w=8u m=1  
+	M2 ( out\- vin\+ net4 gnd )  ptmn65  l=60n w=4e-06*nf_dif m=1  
+	M4 ( out\+ vin\- net4 gnd )  ptmn65  l=60n w=4e-06*nf_dif m=1  
+	R3 ( net6 out\+ ) resistor r=res  
+	R2 ( out\- net6 ) resistor r=res  
+	M0 ( out\+ net6 vdd vdd )  ptmp65  l=60n w=4e-06*nf_load m=1  
+	M1 ( out\- net6 vdd vdd )  ptmp65  l=60n w=4e-06*nf_load m=1  
+ends differential_cml_RingDPLL_v1_schematic 
+subckt DTC_df_map_v3_schematic IL_gnd dfmap_node\+ dfmap_node\- phi_df_frac_retimed\<63\> phi_df_frac_retimed\<62\> phi_df_frac_retimed\<61\> phi_df_frac_retimed\<60\> phi_df_frac_retimed\<59\> phi_df_frac_retimed\<58\> phi_df_frac_retimed\<57\> phi_df_frac_retimed\<56\> phi_df_frac_retimed\<55\> phi_df_frac_retimed\<54\> phi_df_frac_retimed\<53\> phi_df_frac_retimed\<52\> phi_df_frac_retimed\<51\> phi_df_frac_retimed\<50\> phi_df_frac_retimed\<49\> phi_df_frac_retimed\<48\> phi_df_frac_retimed\<47\> phi_df_frac_retimed\<46\> phi_df_frac_retimed\<45\> phi_df_frac_retimed\<44\> phi_df_frac_retimed\<43\> phi_df_frac_retimed\<42\> phi_df_frac_retimed\<41\> phi_df_frac_retimed\<40\> phi_df_frac_retimed\<39\> phi_df_frac_retimed\<38\> phi_df_frac_retimed\<37\> phi_df_frac_retimed\<36\> phi_df_frac_retimed\<35\> phi_df_frac_retimed\<34\> phi_df_frac_retimed\<33\> phi_df_frac_retimed\<32\> phi_df_frac_retimed\<31\> phi_df_frac_retimed\<30\> phi_df_frac_retimed\<29\> phi_df_frac_retimed\<28\> phi_df_frac_retimed\<27\> phi_df_frac_retimed\<26\> phi_df_frac_retimed\<25\> phi_df_frac_retimed\<24\> phi_df_frac_retimed\<23\> phi_df_frac_retimed\<22\> phi_df_frac_retimed\<21\> phi_df_frac_retimed\<20\> phi_df_frac_retimed\<19\> phi_df_frac_retimed\<18\> phi_df_frac_retimed\<17\> phi_df_frac_retimed\<16\> phi_df_frac_retimed\<15\> phi_df_frac_retimed\<14\> phi_df_frac_retimed\<13\> phi_df_frac_retimed\<12\> phi_df_frac_retimed\<11\> phi_df_frac_retimed\<10\> phi_df_frac_retimed\<9\> phi_df_frac_retimed\<8\> phi_df_frac_retimed\<7\> phi_df_frac_retimed\<6\> phi_df_frac_retimed\<5\> phi_df_frac_retimed\<4\> phi_df_frac_retimed\<3\> phi_df_frac_retimed\<2\> phi_df_frac_retimed\<1\> phi_df_frac_retimed\<0\> 
+	C1\<63\> ( dfmap_node\- internal\-\<63\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<62\> ( dfmap_node\- internal\-\<62\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<61\> ( dfmap_node\- internal\-\<61\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<60\> ( dfmap_node\- internal\-\<60\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<59\> ( dfmap_node\- internal\-\<59\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<58\> ( dfmap_node\- internal\-\<58\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<57\> ( dfmap_node\- internal\-\<57\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<56\> ( dfmap_node\- internal\-\<56\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<55\> ( dfmap_node\- internal\-\<55\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<54\> ( dfmap_node\- internal\-\<54\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<53\> ( dfmap_node\- internal\-\<53\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<52\> ( dfmap_node\- internal\-\<52\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<51\> ( dfmap_node\- internal\-\<51\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<50\> ( dfmap_node\- internal\-\<50\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<49\> ( dfmap_node\- internal\-\<49\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<48\> ( dfmap_node\- internal\-\<48\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<47\> ( dfmap_node\- internal\-\<47\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<46\> ( dfmap_node\- internal\-\<46\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<45\> ( dfmap_node\- internal\-\<45\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<44\> ( dfmap_node\- internal\-\<44\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<43\> ( dfmap_node\- internal\-\<43\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<42\> ( dfmap_node\- internal\-\<42\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<41\> ( dfmap_node\- internal\-\<41\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<40\> ( dfmap_node\- internal\-\<40\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<39\> ( dfmap_node\- internal\-\<39\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<38\> ( dfmap_node\- internal\-\<38\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<37\> ( dfmap_node\- internal\-\<37\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<36\> ( dfmap_node\- internal\-\<36\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<35\> ( dfmap_node\- internal\-\<35\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<34\> ( dfmap_node\- internal\-\<34\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<33\> ( dfmap_node\- internal\-\<33\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<32\> ( dfmap_node\- internal\-\<32\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<31\> ( dfmap_node\- internal\-\<31\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<30\> ( dfmap_node\- internal\-\<30\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<29\> ( dfmap_node\- internal\-\<29\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<28\> ( dfmap_node\- internal\-\<28\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<27\> ( dfmap_node\- internal\-\<27\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<26\> ( dfmap_node\- internal\-\<26\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<25\> ( dfmap_node\- internal\-\<25\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<24\> ( dfmap_node\- internal\-\<24\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<23\> ( dfmap_node\- internal\-\<23\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<22\> ( dfmap_node\- internal\-\<22\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<21\> ( dfmap_node\- internal\-\<21\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<20\> ( dfmap_node\- internal\-\<20\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<19\> ( dfmap_node\- internal\-\<19\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<18\> ( dfmap_node\- internal\-\<18\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<17\> ( dfmap_node\- internal\-\<17\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<16\> ( dfmap_node\- internal\-\<16\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<15\> ( dfmap_node\- internal\-\<15\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<14\> ( dfmap_node\- internal\-\<14\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<13\> ( dfmap_node\- internal\-\<13\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<12\> ( dfmap_node\- internal\-\<12\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<11\> ( dfmap_node\- internal\-\<11\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<10\> ( dfmap_node\- internal\-\<10\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<9\> ( dfmap_node\- internal\-\<9\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<8\> ( dfmap_node\- internal\-\<8\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<7\> ( dfmap_node\- internal\-\<7\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<6\> ( dfmap_node\- internal\-\<6\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<5\> ( dfmap_node\- internal\-\<5\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<4\> ( dfmap_node\- internal\-\<4\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<3\> ( dfmap_node\- internal\-\<3\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<2\> ( dfmap_node\- internal\-\<2\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<1\> ( dfmap_node\- internal\-\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C1\<0\> ( dfmap_node\- internal\-\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<63\> ( dfmap_node\+ internal\+\<63\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<62\> ( dfmap_node\+ internal\+\<62\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<61\> ( dfmap_node\+ internal\+\<61\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<60\> ( dfmap_node\+ internal\+\<60\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<59\> ( dfmap_node\+ internal\+\<59\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<58\> ( dfmap_node\+ internal\+\<58\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<57\> ( dfmap_node\+ internal\+\<57\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<56\> ( dfmap_node\+ internal\+\<56\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<55\> ( dfmap_node\+ internal\+\<55\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<54\> ( dfmap_node\+ internal\+\<54\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<53\> ( dfmap_node\+ internal\+\<53\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<52\> ( dfmap_node\+ internal\+\<52\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<51\> ( dfmap_node\+ internal\+\<51\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<50\> ( dfmap_node\+ internal\+\<50\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<49\> ( dfmap_node\+ internal\+\<49\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<48\> ( dfmap_node\+ internal\+\<48\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<47\> ( dfmap_node\+ internal\+\<47\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<46\> ( dfmap_node\+ internal\+\<46\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<45\> ( dfmap_node\+ internal\+\<45\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<44\> ( dfmap_node\+ internal\+\<44\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<43\> ( dfmap_node\+ internal\+\<43\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<42\> ( dfmap_node\+ internal\+\<42\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<41\> ( dfmap_node\+ internal\+\<41\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<40\> ( dfmap_node\+ internal\+\<40\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<39\> ( dfmap_node\+ internal\+\<39\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<38\> ( dfmap_node\+ internal\+\<38\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<37\> ( dfmap_node\+ internal\+\<37\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<36\> ( dfmap_node\+ internal\+\<36\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<35\> ( dfmap_node\+ internal\+\<35\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<34\> ( dfmap_node\+ internal\+\<34\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<33\> ( dfmap_node\+ internal\+\<33\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<32\> ( dfmap_node\+ internal\+\<32\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<31\> ( dfmap_node\+ internal\+\<31\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<30\> ( dfmap_node\+ internal\+\<30\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<29\> ( dfmap_node\+ internal\+\<29\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<28\> ( dfmap_node\+ internal\+\<28\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<27\> ( dfmap_node\+ internal\+\<27\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<26\> ( dfmap_node\+ internal\+\<26\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<25\> ( dfmap_node\+ internal\+\<25\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<24\> ( dfmap_node\+ internal\+\<24\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<23\> ( dfmap_node\+ internal\+\<23\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<22\> ( dfmap_node\+ internal\+\<22\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<21\> ( dfmap_node\+ internal\+\<21\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<20\> ( dfmap_node\+ internal\+\<20\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<19\> ( dfmap_node\+ internal\+\<19\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<18\> ( dfmap_node\+ internal\+\<18\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<17\> ( dfmap_node\+ internal\+\<17\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<16\> ( dfmap_node\+ internal\+\<16\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<15\> ( dfmap_node\+ internal\+\<15\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<14\> ( dfmap_node\+ internal\+\<14\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<13\> ( dfmap_node\+ internal\+\<13\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<12\> ( dfmap_node\+ internal\+\<12\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<11\> ( dfmap_node\+ internal\+\<11\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<10\> ( dfmap_node\+ internal\+\<10\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<9\> ( dfmap_node\+ internal\+\<9\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<8\> ( dfmap_node\+ internal\+\<8\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<7\> ( dfmap_node\+ internal\+\<7\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<6\> ( dfmap_node\+ internal\+\<6\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<5\> ( dfmap_node\+ internal\+\<5\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<4\> ( dfmap_node\+ internal\+\<4\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<3\> ( dfmap_node\+ internal\+\<3\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<2\> ( dfmap_node\+ internal\+\<2\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<1\> ( dfmap_node\+ internal\+\<1\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	C0\<0\> ( dfmap_node\+ internal\+\<0\> ) capacitor c=0.0592797f*nf_cap*nf_cap  
+	M0\<63\> ( internal\+\<63\> phi_df_frac_retimed\<63\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<62\> ( internal\+\<62\> phi_df_frac_retimed\<62\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<61\> ( internal\+\<61\> phi_df_frac_retimed\<61\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<60\> ( internal\+\<60\> phi_df_frac_retimed\<60\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<59\> ( internal\+\<59\> phi_df_frac_retimed\<59\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<58\> ( internal\+\<58\> phi_df_frac_retimed\<58\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<57\> ( internal\+\<57\> phi_df_frac_retimed\<57\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<56\> ( internal\+\<56\> phi_df_frac_retimed\<56\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<55\> ( internal\+\<55\> phi_df_frac_retimed\<55\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<54\> ( internal\+\<54\> phi_df_frac_retimed\<54\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<53\> ( internal\+\<53\> phi_df_frac_retimed\<53\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<52\> ( internal\+\<52\> phi_df_frac_retimed\<52\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<51\> ( internal\+\<51\> phi_df_frac_retimed\<51\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<50\> ( internal\+\<50\> phi_df_frac_retimed\<50\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<49\> ( internal\+\<49\> phi_df_frac_retimed\<49\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<48\> ( internal\+\<48\> phi_df_frac_retimed\<48\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<47\> ( internal\+\<47\> phi_df_frac_retimed\<47\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<46\> ( internal\+\<46\> phi_df_frac_retimed\<46\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<45\> ( internal\+\<45\> phi_df_frac_retimed\<45\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<44\> ( internal\+\<44\> phi_df_frac_retimed\<44\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<43\> ( internal\+\<43\> phi_df_frac_retimed\<43\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<42\> ( internal\+\<42\> phi_df_frac_retimed\<42\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<41\> ( internal\+\<41\> phi_df_frac_retimed\<41\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<40\> ( internal\+\<40\> phi_df_frac_retimed\<40\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<39\> ( internal\+\<39\> phi_df_frac_retimed\<39\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<38\> ( internal\+\<38\> phi_df_frac_retimed\<38\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<37\> ( internal\+\<37\> phi_df_frac_retimed\<37\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<36\> ( internal\+\<36\> phi_df_frac_retimed\<36\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<35\> ( internal\+\<35\> phi_df_frac_retimed\<35\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<34\> ( internal\+\<34\> phi_df_frac_retimed\<34\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<33\> ( internal\+\<33\> phi_df_frac_retimed\<33\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<32\> ( internal\+\<32\> phi_df_frac_retimed\<32\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<31\> ( internal\+\<31\> phi_df_frac_retimed\<31\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<30\> ( internal\+\<30\> phi_df_frac_retimed\<30\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<29\> ( internal\+\<29\> phi_df_frac_retimed\<29\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<28\> ( internal\+\<28\> phi_df_frac_retimed\<28\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<27\> ( internal\+\<27\> phi_df_frac_retimed\<27\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<26\> ( internal\+\<26\> phi_df_frac_retimed\<26\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<25\> ( internal\+\<25\> phi_df_frac_retimed\<25\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<24\> ( internal\+\<24\> phi_df_frac_retimed\<24\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<23\> ( internal\+\<23\> phi_df_frac_retimed\<23\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<22\> ( internal\+\<22\> phi_df_frac_retimed\<22\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<21\> ( internal\+\<21\> phi_df_frac_retimed\<21\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<20\> ( internal\+\<20\> phi_df_frac_retimed\<20\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<19\> ( internal\+\<19\> phi_df_frac_retimed\<19\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<18\> ( internal\+\<18\> phi_df_frac_retimed\<18\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<17\> ( internal\+\<17\> phi_df_frac_retimed\<17\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<16\> ( internal\+\<16\> phi_df_frac_retimed\<16\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<15\> ( internal\+\<15\> phi_df_frac_retimed\<15\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<14\> ( internal\+\<14\> phi_df_frac_retimed\<14\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<13\> ( internal\+\<13\> phi_df_frac_retimed\<13\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<12\> ( internal\+\<12\> phi_df_frac_retimed\<12\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<11\> ( internal\+\<11\> phi_df_frac_retimed\<11\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<10\> ( internal\+\<10\> phi_df_frac_retimed\<10\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<9\> ( internal\+\<9\> phi_df_frac_retimed\<9\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<8\> ( internal\+\<8\> phi_df_frac_retimed\<8\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<7\> ( internal\+\<7\> phi_df_frac_retimed\<7\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<6\> ( internal\+\<6\> phi_df_frac_retimed\<6\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<5\> ( internal\+\<5\> phi_df_frac_retimed\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<4\> ( internal\+\<4\> phi_df_frac_retimed\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<3\> ( internal\+\<3\> phi_df_frac_retimed\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<2\> ( internal\+\<2\> phi_df_frac_retimed\<2\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<1\> ( internal\+\<1\> phi_df_frac_retimed\<1\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M0\<0\> ( internal\+\<0\> phi_df_frac_retimed\<0\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<63\> ( internal\-\<63\> phi_df_frac_retimed\<63\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<62\> ( internal\-\<62\> phi_df_frac_retimed\<62\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<61\> ( internal\-\<61\> phi_df_frac_retimed\<61\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<60\> ( internal\-\<60\> phi_df_frac_retimed\<60\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<59\> ( internal\-\<59\> phi_df_frac_retimed\<59\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<58\> ( internal\-\<58\> phi_df_frac_retimed\<58\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<57\> ( internal\-\<57\> phi_df_frac_retimed\<57\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<56\> ( internal\-\<56\> phi_df_frac_retimed\<56\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<55\> ( internal\-\<55\> phi_df_frac_retimed\<55\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<54\> ( internal\-\<54\> phi_df_frac_retimed\<54\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<53\> ( internal\-\<53\> phi_df_frac_retimed\<53\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<52\> ( internal\-\<52\> phi_df_frac_retimed\<52\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<51\> ( internal\-\<51\> phi_df_frac_retimed\<51\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<50\> ( internal\-\<50\> phi_df_frac_retimed\<50\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<49\> ( internal\-\<49\> phi_df_frac_retimed\<49\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<48\> ( internal\-\<48\> phi_df_frac_retimed\<48\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<47\> ( internal\-\<47\> phi_df_frac_retimed\<47\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<46\> ( internal\-\<46\> phi_df_frac_retimed\<46\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<45\> ( internal\-\<45\> phi_df_frac_retimed\<45\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<44\> ( internal\-\<44\> phi_df_frac_retimed\<44\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<43\> ( internal\-\<43\> phi_df_frac_retimed\<43\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<42\> ( internal\-\<42\> phi_df_frac_retimed\<42\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<41\> ( internal\-\<41\> phi_df_frac_retimed\<41\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<40\> ( internal\-\<40\> phi_df_frac_retimed\<40\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<39\> ( internal\-\<39\> phi_df_frac_retimed\<39\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<38\> ( internal\-\<38\> phi_df_frac_retimed\<38\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<37\> ( internal\-\<37\> phi_df_frac_retimed\<37\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<36\> ( internal\-\<36\> phi_df_frac_retimed\<36\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<35\> ( internal\-\<35\> phi_df_frac_retimed\<35\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<34\> ( internal\-\<34\> phi_df_frac_retimed\<34\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<33\> ( internal\-\<33\> phi_df_frac_retimed\<33\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<32\> ( internal\-\<32\> phi_df_frac_retimed\<32\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<31\> ( internal\-\<31\> phi_df_frac_retimed\<31\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<30\> ( internal\-\<30\> phi_df_frac_retimed\<30\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<29\> ( internal\-\<29\> phi_df_frac_retimed\<29\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<28\> ( internal\-\<28\> phi_df_frac_retimed\<28\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<27\> ( internal\-\<27\> phi_df_frac_retimed\<27\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<26\> ( internal\-\<26\> phi_df_frac_retimed\<26\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<25\> ( internal\-\<25\> phi_df_frac_retimed\<25\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<24\> ( internal\-\<24\> phi_df_frac_retimed\<24\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<23\> ( internal\-\<23\> phi_df_frac_retimed\<23\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<22\> ( internal\-\<22\> phi_df_frac_retimed\<22\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<21\> ( internal\-\<21\> phi_df_frac_retimed\<21\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<20\> ( internal\-\<20\> phi_df_frac_retimed\<20\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<19\> ( internal\-\<19\> phi_df_frac_retimed\<19\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<18\> ( internal\-\<18\> phi_df_frac_retimed\<18\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<17\> ( internal\-\<17\> phi_df_frac_retimed\<17\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<16\> ( internal\-\<16\> phi_df_frac_retimed\<16\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<15\> ( internal\-\<15\> phi_df_frac_retimed\<15\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<14\> ( internal\-\<14\> phi_df_frac_retimed\<14\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<13\> ( internal\-\<13\> phi_df_frac_retimed\<13\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<12\> ( internal\-\<12\> phi_df_frac_retimed\<12\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<11\> ( internal\-\<11\> phi_df_frac_retimed\<11\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<10\> ( internal\-\<10\> phi_df_frac_retimed\<10\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<9\> ( internal\-\<9\> phi_df_frac_retimed\<9\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<8\> ( internal\-\<8\> phi_df_frac_retimed\<8\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<7\> ( internal\-\<7\> phi_df_frac_retimed\<7\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<6\> ( internal\-\<6\> phi_df_frac_retimed\<6\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<5\> ( internal\-\<5\> phi_df_frac_retimed\<5\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<4\> ( internal\-\<4\> phi_df_frac_retimed\<4\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<3\> ( internal\-\<3\> phi_df_frac_retimed\<3\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<2\> ( internal\-\<2\> phi_df_frac_retimed\<2\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<1\> ( internal\-\<1\> phi_df_frac_retimed\<1\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+	M3\<0\> ( internal\-\<0\> phi_df_frac_retimed\<0\> IL_gnd IL_gnd )  ptmn65  l=60n w=120.0n m=1  
+ends DTC_df_map_v3_schematic 
+subckt refclk_tree_current_Ring_PNinj_CML1_v3_schematic IL_vdd PN_CML_bias_300u_inject cs_bias dtc_gain\<33\> dtc_gain\<32\> dtc_gain\<31\> dtc_gain\<30\> dtc_gain\<29\> dtc_gain\<28\> dtc_gain\<27\> dtc_gain\<26\> dtc_gain\<25\> dtc_gain\<24\> dtc_gain\<23\> dtc_gain\<22\> dtc_gain\<21\> dtc_gain\<20\> dtc_gain\<19\> dtc_gain\<18\> dtc_gain\<17\> dtc_gain\<16\> dtc_gain\<15\> dtc_gain\<14\> dtc_gain\<13\> dtc_gain\<12\> dtc_gain\<11\> dtc_gain\<10\> dtc_gain\<9\> dtc_gain\<8\> dtc_gain\<7\> dtc_gain\<6\> dtc_gain\<5\> dtc_gain\<4\> dtc_gain\<3\> dtc_gain\<2\> dtc_gain\<1\> dtc_gain\<0\> 
+	M4 ( IL_vdd IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=9u m=1  
+	M2 ( IL_vdd IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=55.8u m=1  
+	M13 ( PN_CML_bias_300u_inject IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=1.8u m=1  
+	M12 ( bin_s_1 IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M11 ( IL_vdd IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=28.8u m=1  
+	M10 ( PN_CML_bias_300u_inject IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M9 ( bin_s_2 IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M6 ( IL_vdd IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=16.2u m=1  
+	M5 ( bin_s_4 IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=10.8u m=1  
+	M3\<30\> ( thermo_sw_s\<30\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<29\> ( thermo_sw_s\<29\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<28\> ( thermo_sw_s\<28\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<27\> ( thermo_sw_s\<27\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<26\> ( thermo_sw_s\<26\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<25\> ( thermo_sw_s\<25\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<24\> ( thermo_sw_s\<24\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<23\> ( thermo_sw_s\<23\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<22\> ( thermo_sw_s\<22\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<21\> ( thermo_sw_s\<21\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<20\> ( thermo_sw_s\<20\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<19\> ( thermo_sw_s\<19\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<18\> ( thermo_sw_s\<18\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<17\> ( thermo_sw_s\<17\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<16\> ( thermo_sw_s\<16\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<15\> ( thermo_sw_s\<15\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<14\> ( thermo_sw_s\<14\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<13\> ( thermo_sw_s\<13\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<12\> ( thermo_sw_s\<12\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<11\> ( thermo_sw_s\<11\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<10\> ( thermo_sw_s\<10\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<9\> ( thermo_sw_s\<9\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<8\> ( thermo_sw_s\<8\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<7\> ( thermo_sw_s\<7\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<6\> ( thermo_sw_s\<6\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<5\> ( thermo_sw_s\<5\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<4\> ( thermo_sw_s\<4\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<3\> ( thermo_sw_s\<3\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<2\> ( thermo_sw_s\<2\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<1\> ( thermo_sw_s\<1\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M3\<0\> ( thermo_sw_s\<0\> IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M65\<30\> ( thermo_sw_s\<30\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<29\> ( thermo_sw_s\<29\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<28\> ( thermo_sw_s\<28\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<27\> ( thermo_sw_s\<27\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<26\> ( thermo_sw_s\<26\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<25\> ( thermo_sw_s\<25\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<24\> ( thermo_sw_s\<24\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<23\> ( thermo_sw_s\<23\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<22\> ( thermo_sw_s\<22\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<21\> ( thermo_sw_s\<21\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<20\> ( thermo_sw_s\<20\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<19\> ( thermo_sw_s\<19\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<18\> ( thermo_sw_s\<18\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<17\> ( thermo_sw_s\<17\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<16\> ( thermo_sw_s\<16\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<15\> ( thermo_sw_s\<15\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<14\> ( thermo_sw_s\<14\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<13\> ( thermo_sw_s\<13\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<12\> ( thermo_sw_s\<12\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<11\> ( thermo_sw_s\<11\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<10\> ( thermo_sw_s\<10\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<9\> ( thermo_sw_s\<9\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<8\> ( thermo_sw_s\<8\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<7\> ( thermo_sw_s\<7\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<6\> ( thermo_sw_s\<6\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<5\> ( thermo_sw_s\<5\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<4\> ( thermo_sw_s\<4\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<3\> ( thermo_sw_s\<3\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<2\> ( thermo_sw_s\<2\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<1\> ( thermo_sw_s\<1\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M65\<0\> ( thermo_sw_s\<0\> cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M81 ( PN_CML_bias_300u_inject dtc_gain\<1\> bin_s_2 IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M80 ( bin_s_2 cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=3.6u m=1  
+	M14\<1\> ( IL_vdd IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=68.4u m=1  
+	M14\<0\> ( IL_vdd IL_vdd IL_vdd IL_vdd )  ptmp65  l=1.2u w=68.4u m=1  
+	M66\<30\> ( PN_CML_bias_300u_inject dtc_gain\<33\> thermo_sw_s\<30\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<29\> ( PN_CML_bias_300u_inject dtc_gain\<32\> thermo_sw_s\<29\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<28\> ( PN_CML_bias_300u_inject dtc_gain\<31\> thermo_sw_s\<28\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<27\> ( PN_CML_bias_300u_inject dtc_gain\<30\> thermo_sw_s\<27\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<26\> ( PN_CML_bias_300u_inject dtc_gain\<29\> thermo_sw_s\<26\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<25\> ( PN_CML_bias_300u_inject dtc_gain\<28\> thermo_sw_s\<25\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<24\> ( PN_CML_bias_300u_inject dtc_gain\<27\> thermo_sw_s\<24\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<23\> ( PN_CML_bias_300u_inject dtc_gain\<26\> thermo_sw_s\<23\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<22\> ( PN_CML_bias_300u_inject dtc_gain\<25\> thermo_sw_s\<22\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<21\> ( PN_CML_bias_300u_inject dtc_gain\<24\> thermo_sw_s\<21\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<20\> ( PN_CML_bias_300u_inject dtc_gain\<23\> thermo_sw_s\<20\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<19\> ( PN_CML_bias_300u_inject dtc_gain\<22\> thermo_sw_s\<19\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<18\> ( PN_CML_bias_300u_inject dtc_gain\<21\> thermo_sw_s\<18\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<17\> ( PN_CML_bias_300u_inject dtc_gain\<20\> thermo_sw_s\<17\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<16\> ( PN_CML_bias_300u_inject dtc_gain\<19\> thermo_sw_s\<16\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<15\> ( PN_CML_bias_300u_inject dtc_gain\<18\> thermo_sw_s\<15\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<14\> ( PN_CML_bias_300u_inject dtc_gain\<17\> thermo_sw_s\<14\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<13\> ( PN_CML_bias_300u_inject dtc_gain\<16\> thermo_sw_s\<13\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<12\> ( PN_CML_bias_300u_inject dtc_gain\<15\> thermo_sw_s\<12\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<11\> ( PN_CML_bias_300u_inject dtc_gain\<14\> thermo_sw_s\<11\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<10\> ( PN_CML_bias_300u_inject dtc_gain\<13\> thermo_sw_s\<10\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<9\> ( PN_CML_bias_300u_inject dtc_gain\<12\> thermo_sw_s\<9\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<8\> ( PN_CML_bias_300u_inject dtc_gain\<11\> thermo_sw_s\<8\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<7\> ( PN_CML_bias_300u_inject dtc_gain\<10\> thermo_sw_s\<7\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<6\> ( PN_CML_bias_300u_inject dtc_gain\<9\> thermo_sw_s\<6\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<5\> ( PN_CML_bias_300u_inject dtc_gain\<8\> thermo_sw_s\<5\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<4\> ( PN_CML_bias_300u_inject dtc_gain\<7\> thermo_sw_s\<4\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<3\> ( PN_CML_bias_300u_inject dtc_gain\<6\> thermo_sw_s\<3\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<2\> ( PN_CML_bias_300u_inject dtc_gain\<5\> thermo_sw_s\<2\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<1\> ( PN_CML_bias_300u_inject dtc_gain\<4\> thermo_sw_s\<1\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M66\<0\> ( PN_CML_bias_300u_inject dtc_gain\<3\> thermo_sw_s\<0\> IL_vdd )  ptmp65  l=1.2u w=14.4u m=1  
+	M78 ( PN_CML_bias_300u_inject dtc_gain\<2\> bin_s_4 IL_vdd )  ptmp65  l=1.2u w=7.2u m=1  
+	M79 ( bin_s_4 cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=7.2u m=1  
+	M83 ( bin_s_1 cs_bias IL_vdd IL_vdd )  ptmp65  l=1.2u w=1.8u m=1  
+	M82 ( PN_CML_bias_300u_inject dtc_gain\<0\> bin_s_1 IL_vdd )  ptmp65  l=1.2u w=1.8u m=1  
+ends refclk_tree_current_Ring_PNinj_CML1_v3_schematic 
+subckt refclk_tree_current_Ring_PNinj_CML1_v3_full_schematic IL_gnd IL_vdd PN_CML_bias_300u_inject PN_CML_bias_pside_small dtc_gain\<33\> dtc_gain\<32\> dtc_gain\<31\> dtc_gain\<30\> dtc_gain\<29\> dtc_gain\<28\> dtc_gain\<27\> dtc_gain\<26\> dtc_gain\<25\> dtc_gain\<24\> dtc_gain\<23\> dtc_gain\<22\> dtc_gain\<21\> dtc_gain\<20\> dtc_gain\<19\> dtc_gain\<18\> dtc_gain\<17\> dtc_gain\<16\> dtc_gain\<15\> dtc_gain\<14\> dtc_gain\<13\> dtc_gain\<12\> dtc_gain\<11\> dtc_gain\<10\> dtc_gain\<9\> dtc_gain\<8\> dtc_gain\<7\> dtc_gain\<6\> dtc_gain\<5\> dtc_gain\<4\> dtc_gain\<3\> dtc_gain\<2\> dtc_gain\<1\> dtc_gain\<0\> 
+	M8 ( cs_bias PN_CML_bias_pside_small IL_gnd IL_gnd )  ptmn65  l=200n w=8u m=1  
+	M7 ( PN_CML_bias_pside_small PN_CML_bias_pside_small IL_gnd IL_gnd )  ptmn65  l=200n w=32.0u m=1  
+	M63 ( cs_bias cs_bias IL_vdd IL_vdd )  ptmp65  l=200n w=32.0u m=1  
+	M1 ( IL_vdd cs_bias IL_vdd IL_vdd )  ptmp65  l=200n w=8u m=1  
+	I5 ( IL_vdd PN_CML_bias_300u_inject cs_bias dtc_gain\<33\> dtc_gain\<32\> dtc_gain\<31\> dtc_gain\<30\> dtc_gain\<29\> dtc_gain\<28\> dtc_gain\<27\> dtc_gain\<26\> dtc_gain\<25\> dtc_gain\<24\> dtc_gain\<23\> dtc_gain\<22\> dtc_gain\<21\> dtc_gain\<20\> dtc_gain\<19\> dtc_gain\<18\> dtc_gain\<17\> dtc_gain\<16\> dtc_gain\<15\> dtc_gain\<14\> dtc_gain\<13\> dtc_gain\<12\> dtc_gain\<11\> dtc_gain\<10\> dtc_gain\<9\> dtc_gain\<8\> dtc_gain\<7\> dtc_gain\<6\> dtc_gain\<5\> dtc_gain\<4\> dtc_gain\<3\> dtc_gain\<2\> dtc_gain\<1\> dtc_gain\<0\> ) refclk_tree_current_Ring_PNinj_CML1_v3_schematic  
+ends refclk_tree_current_Ring_PNinj_CML1_v3_full_schematic 
+subckt refclk_tree_current_Ring_PNinj_CML2_v2_schematic IL_gnd IL_vdd PN_inj_bias_100u_inject_1 PN_inj_bias_100u_pside 
+	M0 ( PN_inj_bias_100u_pside PN_inj_bias_100u_pside IL_gnd IL_gnd )  ptmn65  l=200n w=16.0u m=1  
+	M13 ( IL_gnd PN_inj_bias_100u_pside IL_gnd IL_gnd )  ptmn65  l=200n w=8u m=1  
+	M14 ( net038 PN_inj_bias_100u_pside IL_gnd IL_gnd )  ptmn65  l=200n w=16.0u m=1  
+	M17 ( PN_inj_bias_100u_inject_1 net038 IL_vdd IL_vdd )  ptmp65  l=200n w=16.0u m=1  
+	M16 ( IL_vdd net038 IL_vdd IL_vdd )  ptmp65  l=200n w=8u m=1  
+	M15 ( net038 net038 IL_vdd IL_vdd )  ptmp65  l=200n w=16.0u m=1  
+ends refclk_tree_current_Ring_PNinj_CML2_v2_schematic 
+subckt differential_cml_RingDPLL_v3_schematic REFinj_bias gnd out\+ out\- vdd vin\+ vin\- 
+	M5 ( net4 REFinj_bias gnd gnd )  ptmn65  l=200n w=96.0u m=1  
+	M6 ( REFinj_bias REFinj_bias gnd gnd )  ptmn65  l=200n w=32.0u m=1  
+	M2 ( out\- vin\+ net4 gnd )  ptmn65  l=60n w=4e-06*nf_dif m=1  
+	M4 ( out\+ vin\- net4 gnd )  ptmn65  l=60n w=4e-06*nf_dif m=1  
+	R3 ( net6 out\+ ) resistor r=res  
+	R2 ( out\- net6 ) resistor r=res  
+	M0 ( out\+ net6 vdd vdd )  ptmp65  l=60n w=64.0u m=1  
+	M1 ( out\- net6 vdd vdd )  ptmp65  l=60n w=64.0u m=1  
+ends differential_cml_RingDPLL_v3_schematic 
+subckt Analog_core_refclk_RingDPLL_PNinj_v4_schematic DTC_gnd DTC_vdd PN_CML_bias_300u_pside PN_CML_bias_pside_small PN_inj_bias_100u_pside REF_inj_in\+ REF_inj_in\- REF_inj_out\+ REF_inj_out\- dtc_gain\<33\> dtc_gain\<32\> dtc_gain\<31\> dtc_gain\<30\> dtc_gain\<29\> dtc_gain\<28\> dtc_gain\<27\> dtc_gain\<26\> dtc_gain\<25\> dtc_gain\<24\> dtc_gain\<23\> dtc_gain\<22\> dtc_gain\<21\> dtc_gain\<20\> dtc_gain\<19\> dtc_gain\<18\> dtc_gain\<17\> dtc_gain\<16\> dtc_gain\<15\> dtc_gain\<14\> dtc_gain\<13\> dtc_gain\<12\> dtc_gain\<11\> dtc_gain\<10\> dtc_gain\<9\> dtc_gain\<8\> dtc_gain\<7\> dtc_gain\<6\> dtc_gain\<5\> dtc_gain\<4\> dtc_gain\<3\> dtc_gain\<2\> dtc_gain\<1\> dtc_gain\<0\> dtc_gain_m\<5\> dtc_gain_m\<4\> dtc_gain_m\<3\> dtc_gain_m\<2\> dtc_gain_m\<1\> dtc_gain_m\<0\> dtc_offset_m\<5\> dtc_offset_m\<4\> dtc_offset_m\<3\> dtc_offset_m\<2\> dtc_offset_m\<1\> dtc_offset_m\<0\> phi_df_frac_retimed\<63\> phi_df_frac_retimed\<62\> phi_df_frac_retimed\<61\> phi_df_frac_retimed\<60\> phi_df_frac_retimed\<59\> phi_df_frac_retimed\<58\> phi_df_frac_retimed\<57\> phi_df_frac_retimed\<56\> phi_df_frac_retimed\<55\> phi_df_frac_retimed\<54\> phi_df_frac_retimed\<53\> phi_df_frac_retimed\<52\> phi_df_frac_retimed\<51\> phi_df_frac_retimed\<50\> phi_df_frac_retimed\<49\> phi_df_frac_retimed\<48\> phi_df_frac_retimed\<47\> phi_df_frac_retimed\<46\> phi_df_frac_retimed\<45\> phi_df_frac_retimed\<44\> phi_df_frac_retimed\<43\> phi_df_frac_retimed\<42\> phi_df_frac_retimed\<41\> phi_df_frac_retimed\<40\> phi_df_frac_retimed\<39\> phi_df_frac_retimed\<38\> phi_df_frac_retimed\<37\> phi_df_frac_retimed\<36\> phi_df_frac_retimed\<35\> phi_df_frac_retimed\<34\> phi_df_frac_retimed\<33\> phi_df_frac_retimed\<32\> phi_df_frac_retimed\<31\> phi_df_frac_retimed\<30\> phi_df_frac_retimed\<29\> phi_df_frac_retimed\<28\> phi_df_frac_retimed\<27\> phi_df_frac_retimed\<26\> phi_df_frac_retimed\<25\> phi_df_frac_retimed\<24\> phi_df_frac_retimed\<23\> phi_df_frac_retimed\<22\> phi_df_frac_retimed\<21\> phi_df_frac_retimed\<20\> phi_df_frac_retimed\<19\> phi_df_frac_retimed\<18\> phi_df_frac_retimed\<17\> phi_df_frac_retimed\<16\> phi_df_frac_retimed\<15\> phi_df_frac_retimed\<14\> phi_df_frac_retimed\<13\> phi_df_frac_retimed\<12\> phi_df_frac_retimed\<11\> phi_df_frac_retimed\<10\> phi_df_frac_retimed\<9\> phi_df_frac_retimed\<8\> phi_df_frac_retimed\<7\> phi_df_frac_retimed\<6\> phi_df_frac_retimed\<5\> phi_df_frac_retimed\<4\> phi_df_frac_retimed\<3\> phi_df_frac_retimed\<2\> phi_df_frac_retimed\<1\> phi_df_frac_retimed\<0\> 
+	I9 ( DTC_gnd dtc_offset_m\<5\> dtc_offset_m\<4\> dtc_offset_m\<3\> dtc_offset_m\<2\> dtc_offset_m\<1\> dtc_offset_m\<0\> dtc_node\+ dtc_node\- ) DTC_offset_v3_schematic  
+	I24 ( DTC_gnd DTC_vdd PN_dtc_gain_bias_300u PN_CML_bias_300u_pside dtc_gain_m\<5\> dtc_gain_m\<4\> dtc_gain_m\<3\> dtc_gain_m\<2\> dtc_gain_m\<1\> dtc_gain_m\<0\> ) refclk_tree_current_Ring_PNinj_CML1_coarse_schematic  
+	I11 ( PN_inj_bias_300u_1 DTC_gnd REF_inj_out\+ REF_inj_out\- DTC_vdd dtc_node\+ dtc_node\- ) differential_cml_RingDPLL_v1_schematic  
+	I12 ( DTC_gnd dtc_node\+ dtc_node\- phi_df_frac_retimed\<63\> phi_df_frac_retimed\<62\> phi_df_frac_retimed\<61\> phi_df_frac_retimed\<60\> phi_df_frac_retimed\<59\> phi_df_frac_retimed\<58\> phi_df_frac_retimed\<57\> phi_df_frac_retimed\<56\> phi_df_frac_retimed\<55\> phi_df_frac_retimed\<54\> phi_df_frac_retimed\<53\> phi_df_frac_retimed\<52\> phi_df_frac_retimed\<51\> phi_df_frac_retimed\<50\> phi_df_frac_retimed\<49\> phi_df_frac_retimed\<48\> phi_df_frac_retimed\<47\> phi_df_frac_retimed\<46\> phi_df_frac_retimed\<45\> phi_df_frac_retimed\<44\> phi_df_frac_retimed\<43\> phi_df_frac_retimed\<42\> phi_df_frac_retimed\<41\> phi_df_frac_retimed\<40\> phi_df_frac_retimed\<39\> phi_df_frac_retimed\<38\> phi_df_frac_retimed\<37\> phi_df_frac_retimed\<36\> phi_df_frac_retimed\<35\> phi_df_frac_retimed\<34\> phi_df_frac_retimed\<33\> phi_df_frac_retimed\<32\> phi_df_frac_retimed\<31\> phi_df_frac_retimed\<30\> phi_df_frac_retimed\<29\> phi_df_frac_retimed\<28\> phi_df_frac_retimed\<27\> phi_df_frac_retimed\<26\> phi_df_frac_retimed\<25\> phi_df_frac_retimed\<24\> phi_df_frac_retimed\<23\> phi_df_frac_retimed\<22\> phi_df_frac_retimed\<21\> phi_df_frac_retimed\<20\> phi_df_frac_retimed\<19\> phi_df_frac_retimed\<18\> phi_df_frac_retimed\<17\> phi_df_frac_retimed\<16\> phi_df_frac_retimed\<15\> phi_df_frac_retimed\<14\> phi_df_frac_retimed\<13\> phi_df_frac_retimed\<12\> phi_df_frac_retimed\<11\> phi_df_frac_retimed\<10\> phi_df_frac_retimed\<9\> phi_df_frac_retimed\<8\> phi_df_frac_retimed\<7\> phi_df_frac_retimed\<6\> phi_df_frac_retimed\<5\> phi_df_frac_retimed\<4\> phi_df_frac_retimed\<3\> phi_df_frac_retimed\<2\> phi_df_frac_retimed\<1\> phi_df_frac_retimed\<0\> ) DTC_df_map_v3_schematic  
+	I10 ( DTC_gnd DTC_vdd PN_dtc_gain_bias_300u PN_CML_bias_pside_small dtc_gain\<33\> dtc_gain\<32\> dtc_gain\<31\> dtc_gain\<30\> dtc_gain\<29\> dtc_gain\<28\> dtc_gain\<27\> dtc_gain\<26\> dtc_gain\<25\> dtc_gain\<24\> dtc_gain\<23\> dtc_gain\<22\> dtc_gain\<21\> dtc_gain\<20\> dtc_gain\<19\> dtc_gain\<18\> dtc_gain\<17\> dtc_gain\<16\> dtc_gain\<15\> dtc_gain\<14\> dtc_gain\<13\> dtc_gain\<12\> dtc_gain\<11\> dtc_gain\<10\> dtc_gain\<9\> dtc_gain\<8\> dtc_gain\<7\> dtc_gain\<6\> dtc_gain\<5\> dtc_gain\<4\> dtc_gain\<3\> dtc_gain\<2\> dtc_gain\<1\> dtc_gain\<0\> ) refclk_tree_current_Ring_PNinj_CML1_v3_full_schematic  
+	I19 ( DTC_gnd DTC_vdd PN_inj_bias_300u_1 PN_inj_bias_100u_pside ) refclk_tree_current_Ring_PNinj_CML2_v2_schematic  
+	I23 ( PN_dtc_gain_bias_300u DTC_gnd dtc_node\+ dtc_node\- DTC_vdd REF_inj_in\+ REF_inj_in\- ) differential_cml_RingDPLL_v3_schematic  
+ends Analog_core_refclk_RingDPLL_PNinj_v4_schematic 
+	E2 ( in IL_gnd REF_inj_in\+ REF_inj_in\- ) vcvs gain=1.0  
+	E1 ( out_0 IL_gnd REF_inj_out_0\+ REF_inj_out_0\- ) vcvs gain=1.0  
+	E0 ( out IL_gnd REF_inj_out\+ REF_inj_out\- ) vcvs gain=1.0  
+	V9 ( net03 0 ) vsource dc=1 type=dc  
+	V8 ( net017 0 ) vsource dc=1 type=dc  
+	V7 ( net04 0 ) vsource dc=1 type=dc  
+	V6 ( net06 0 ) vsource dc=1 type=dc  
+	V3 ( IL_gnd 0 ) vsource dc=0 type=dc  
+	V2 ( IL_vdd 0 ) vsource dc=1 type=dc  
+	V1 ( net1 0 ) vsource dc=1 type=dc  
+	V0 ( net2 0 ) vsource dc=1 type=dc  
+	I34 ( net03 PN_CML_bias_pside_small_0 ) isource dc=PN_CML_bias_pside_small type=dc  
+	I33 ( net017 PN_CML_bias_pside_small ) isource dc=PN_CML_bias_pside_small type=dc  
+	I28 ( net04 PN_CML_bias_300u_pside_0 ) isource dc=PN_CML_bias_300u_pside type=dc  
+	I26 ( net06 PN_inj_bias_100u_pside_0 ) isource dc=PN_inj_bias_100u_pside type=dc  
+	I9 ( net1 PN_inj_bias_100u_pside ) isource dc=PN_inj_bias_100u_pside type=dc  
+	I8 ( net2 PN_CML_bias_300u_pside ) isource dc=PN_CML_bias_300u_pside type=dc  
+	I24 ( phi_df_frac_retimed_0\<63\> phi_df_frac_retimed_0\<62\> phi_df_frac_retimed_0\<61\> phi_df_frac_retimed_0\<60\> phi_df_frac_retimed_0\<59\> phi_df_frac_retimed_0\<58\> phi_df_frac_retimed_0\<57\> phi_df_frac_retimed_0\<56\> phi_df_frac_retimed_0\<55\> phi_df_frac_retimed_0\<54\> phi_df_frac_retimed_0\<53\> phi_df_frac_retimed_0\<52\> phi_df_frac_retimed_0\<51\> phi_df_frac_retimed_0\<50\> phi_df_frac_retimed_0\<49\> phi_df_frac_retimed_0\<48\> phi_df_frac_retimed_0\<47\> phi_df_frac_retimed_0\<46\> phi_df_frac_retimed_0\<45\> phi_df_frac_retimed_0\<44\> phi_df_frac_retimed_0\<43\> phi_df_frac_retimed_0\<42\> phi_df_frac_retimed_0\<41\> phi_df_frac_retimed_0\<40\> phi_df_frac_retimed_0\<39\> phi_df_frac_retimed_0\<38\> phi_df_frac_retimed_0\<37\> phi_df_frac_retimed_0\<36\> phi_df_frac_retimed_0\<35\> phi_df_frac_retimed_0\<34\> phi_df_frac_retimed_0\<33\> phi_df_frac_retimed_0\<32\> phi_df_frac_retimed_0\<31\> phi_df_frac_retimed_0\<30\> phi_df_frac_retimed_0\<29\> phi_df_frac_retimed_0\<28\> phi_df_frac_retimed_0\<27\> phi_df_frac_retimed_0\<26\> phi_df_frac_retimed_0\<25\> phi_df_frac_retimed_0\<24\> phi_df_frac_retimed_0\<23\> phi_df_frac_retimed_0\<22\> phi_df_frac_retimed_0\<21\> phi_df_frac_retimed_0\<20\> phi_df_frac_retimed_0\<19\> phi_df_frac_retimed_0\<18\> phi_df_frac_retimed_0\<17\> phi_df_frac_retimed_0\<16\> phi_df_frac_retimed_0\<15\> phi_df_frac_retimed_0\<14\> phi_df_frac_retimed_0\<13\> phi_df_frac_retimed_0\<12\> phi_df_frac_retimed_0\<11\> phi_df_frac_retimed_0\<10\> phi_df_frac_retimed_0\<9\> phi_df_frac_retimed_0\<8\> phi_df_frac_retimed_0\<7\> phi_df_frac_retimed_0\<6\> phi_df_frac_retimed_0\<5\> phi_df_frac_retimed_0\<4\> phi_df_frac_retimed_0\<3\> phi_df_frac_retimed_0\<2\> phi_df_frac_retimed_0\<1\> phi_df_frac_retimed_0\<0\> ) AtoD_6bit_thermometer_code an=phi_df_frac_retimed_0  
+	I20 ( phi_df_frac_retimed\<63\> phi_df_frac_retimed\<62\> phi_df_frac_retimed\<61\> phi_df_frac_retimed\<60\> phi_df_frac_retimed\<59\> phi_df_frac_retimed\<58\> phi_df_frac_retimed\<57\> phi_df_frac_retimed\<56\> phi_df_frac_retimed\<55\> phi_df_frac_retimed\<54\> phi_df_frac_retimed\<53\> phi_df_frac_retimed\<52\> phi_df_frac_retimed\<51\> phi_df_frac_retimed\<50\> phi_df_frac_retimed\<49\> phi_df_frac_retimed\<48\> phi_df_frac_retimed\<47\> phi_df_frac_retimed\<46\> phi_df_frac_retimed\<45\> phi_df_frac_retimed\<44\> phi_df_frac_retimed\<43\> phi_df_frac_retimed\<42\> phi_df_frac_retimed\<41\> phi_df_frac_retimed\<40\> phi_df_frac_retimed\<39\> phi_df_frac_retimed\<38\> phi_df_frac_retimed\<37\> phi_df_frac_retimed\<36\> phi_df_frac_retimed\<35\> phi_df_frac_retimed\<34\> phi_df_frac_retimed\<33\> phi_df_frac_retimed\<32\> phi_df_frac_retimed\<31\> phi_df_frac_retimed\<30\> phi_df_frac_retimed\<29\> phi_df_frac_retimed\<28\> phi_df_frac_retimed\<27\> phi_df_frac_retimed\<26\> phi_df_frac_retimed\<25\> phi_df_frac_retimed\<24\> phi_df_frac_retimed\<23\> phi_df_frac_retimed\<22\> phi_df_frac_retimed\<21\> phi_df_frac_retimed\<20\> phi_df_frac_retimed\<19\> phi_df_frac_retimed\<18\> phi_df_frac_retimed\<17\> phi_df_frac_retimed\<16\> phi_df_frac_retimed\<15\> phi_df_frac_retimed\<14\> phi_df_frac_retimed\<13\> phi_df_frac_retimed\<12\> phi_df_frac_retimed\<11\> phi_df_frac_retimed\<10\> phi_df_frac_retimed\<9\> phi_df_frac_retimed\<8\> phi_df_frac_retimed\<7\> phi_df_frac_retimed\<6\> phi_df_frac_retimed\<5\> phi_df_frac_retimed\<4\> phi_df_frac_retimed\<3\> phi_df_frac_retimed\<2\> phi_df_frac_retimed\<1\> phi_df_frac_retimed\<0\> ) AtoD_6bit_thermometer_code an=phi_df_frac_retimed  
+	V5 ( REF_inj_in\+ IL_gnd ) vsource dc=0 type=pulse val0=0 val1=1 period=1/fref delay=0.5*1/fref rise=50p fall=50p width=0.5*1/fref  
+	V4 ( REF_inj_in\- IL_gnd ) vsource dc=0 type=pulse val0=1 val1=0 period=1/fref delay=0.5*1/fref rise=50p fall=50p width=0.5*1/fref  
+	I30 ( dtc_gain_m\<5\> dtc_gain_m\<4\> dtc_gain_m\<3\> dtc_gain_m\<2\> dtc_gain_m\<1\> dtc_gain_m\<0\> ) AtoD_6bit dec=dtc_gain_m VH=1 VL=0  
+	I15 ( dtc_offset_m\<5\> dtc_offset_m\<4\> dtc_offset_m\<3\> dtc_offset_m\<2\> dtc_offset_m\<1\> dtc_offset_m\<0\> ) AtoD_6bit dec=dtc_offset VH=1 VL=0  
+	I41 ( IL_gnd IL_vdd PN_CML_bias_300u_pside_0 PN_CML_bias_pside_small_0 PN_inj_bias_100u_pside_0 REF_inj_in\+ REF_inj_in\- REF_inj_out_0\+ REF_inj_out_0\- dtc_gain\<33\> dtc_gain\<32\> dtc_gain\<31\> dtc_gain\<30\> dtc_gain\<29\> dtc_gain\<28\> dtc_gain\<27\> dtc_gain\<26\> dtc_gain\<25\> dtc_gain\<24\> dtc_gain\<23\> dtc_gain\<22\> dtc_gain\<21\> dtc_gain\<20\> dtc_gain\<19\> dtc_gain\<18\> dtc_gain\<17\> dtc_gain\<16\> dtc_gain\<15\> dtc_gain\<14\> dtc_gain\<13\> dtc_gain\<12\> dtc_gain\<11\> dtc_gain\<10\> dtc_gain\<9\> dtc_gain\<8\> dtc_gain\<7\> dtc_gain\<6\> dtc_gain\<5\> dtc_gain\<4\> dtc_gain\<3\> dtc_gain\<2\> dtc_gain\<1\> dtc_gain\<0\> dtc_gain_m\<5\> dtc_gain_m\<4\> dtc_gain_m\<3\> dtc_gain_m\<2\> dtc_gain_m\<1\> dtc_gain_m\<0\> dtc_offset_m\<5\> dtc_offset_m\<4\> dtc_offset_m\<3\> dtc_offset_m\<2\> dtc_offset_m\<1\> dtc_offset_m\<0\> phi_df_frac_retimed_0\<63\> phi_df_frac_retimed_0\<62\> phi_df_frac_retimed_0\<61\> phi_df_frac_retimed_0\<60\> phi_df_frac_retimed_0\<59\> phi_df_frac_retimed_0\<58\> phi_df_frac_retimed_0\<57\> phi_df_frac_retimed_0\<56\> phi_df_frac_retimed_0\<55\> phi_df_frac_retimed_0\<54\> phi_df_frac_retimed_0\<53\> phi_df_frac_retimed_0\<52\> phi_df_frac_retimed_0\<51\> phi_df_frac_retimed_0\<50\> phi_df_frac_retimed_0\<49\> phi_df_frac_retimed_0\<48\> phi_df_frac_retimed_0\<47\> phi_df_frac_retimed_0\<46\> phi_df_frac_retimed_0\<45\> phi_df_frac_retimed_0\<44\> phi_df_frac_retimed_0\<43\> phi_df_frac_retimed_0\<42\> phi_df_frac_retimed_0\<41\> phi_df_frac_retimed_0\<40\> phi_df_frac_retimed_0\<39\> phi_df_frac_retimed_0\<38\> phi_df_frac_retimed_0\<37\> phi_df_frac_retimed_0\<36\> phi_df_frac_retimed_0\<35\> phi_df_frac_retimed_0\<34\> phi_df_frac_retimed_0\<33\> phi_df_frac_retimed_0\<32\> phi_df_frac_retimed_0\<31\> phi_df_frac_retimed_0\<30\> phi_df_frac_retimed_0\<29\> phi_df_frac_retimed_0\<28\> phi_df_frac_retimed_0\<27\> phi_df_frac_retimed_0\<26\> phi_df_frac_retimed_0\<25\> phi_df_frac_retimed_0\<24\> phi_df_frac_retimed_0\<23\> phi_df_frac_retimed_0\<22\> phi_df_frac_retimed_0\<21\> phi_df_frac_retimed_0\<20\> phi_df_frac_retimed_0\<19\> phi_df_frac_retimed_0\<18\> phi_df_frac_retimed_0\<17\> phi_df_frac_retimed_0\<16\> phi_df_frac_retimed_0\<15\> phi_df_frac_retimed_0\<14\> phi_df_frac_retimed_0\<13\> phi_df_frac_retimed_0\<12\> phi_df_frac_retimed_0\<11\> phi_df_frac_retimed_0\<10\> phi_df_frac_retimed_0\<9\> phi_df_frac_retimed_0\<8\> phi_df_frac_retimed_0\<7\> phi_df_frac_retimed_0\<6\> phi_df_frac_retimed_0\<5\> phi_df_frac_retimed_0\<4\> phi_df_frac_retimed_0\<3\> phi_df_frac_retimed_0\<2\> phi_df_frac_retimed_0\<1\> phi_df_frac_retimed_0\<0\> ) Analog_core_refclk_RingDPLL_PNinj_v4_schematic  
+	I1 ( IL_gnd IL_vdd PN_CML_bias_300u_pside PN_CML_bias_pside_small PN_inj_bias_100u_pside REF_inj_in\+ REF_inj_in\- REF_inj_out\+ REF_inj_out\- dtc_gain\<33\> dtc_gain\<32\> dtc_gain\<31\> dtc_gain\<30\> dtc_gain\<29\> dtc_gain\<28\> dtc_gain\<27\> dtc_gain\<26\> dtc_gain\<25\> dtc_gain\<24\> dtc_gain\<23\> dtc_gain\<22\> dtc_gain\<21\> dtc_gain\<20\> dtc_gain\<19\> dtc_gain\<18\> dtc_gain\<17\> dtc_gain\<16\> dtc_gain\<15\> dtc_gain\<14\> dtc_gain\<13\> dtc_gain\<12\> dtc_gain\<11\> dtc_gain\<10\> dtc_gain\<9\> dtc_gain\<8\> dtc_gain\<7\> dtc_gain\<6\> dtc_gain\<5\> dtc_gain\<4\> dtc_gain\<3\> dtc_gain\<2\> dtc_gain\<1\> dtc_gain\<0\> dtc_gain_m\<5\> dtc_gain_m\<4\> dtc_gain_m\<3\> dtc_gain_m\<2\> dtc_gain_m\<1\> dtc_gain_m\<0\> dtc_offset_m\<5\> dtc_offset_m\<4\> dtc_offset_m\<3\> dtc_offset_m\<2\> dtc_offset_m\<1\> dtc_offset_m\<0\> phi_df_frac_retimed\<63\> phi_df_frac_retimed\<62\> phi_df_frac_retimed\<61\> phi_df_frac_retimed\<60\> phi_df_frac_retimed\<59\> phi_df_frac_retimed\<58\> phi_df_frac_retimed\<57\> phi_df_frac_retimed\<56\> phi_df_frac_retimed\<55\> phi_df_frac_retimed\<54\> phi_df_frac_retimed\<53\> phi_df_frac_retimed\<52\> phi_df_frac_retimed\<51\> phi_df_frac_retimed\<50\> phi_df_frac_retimed\<49\> phi_df_frac_retimed\<48\> phi_df_frac_retimed\<47\> phi_df_frac_retimed\<46\> phi_df_frac_retimed\<45\> phi_df_frac_retimed\<44\> phi_df_frac_retimed\<43\> phi_df_frac_retimed\<42\> phi_df_frac_retimed\<41\> phi_df_frac_retimed\<40\> phi_df_frac_retimed\<39\> phi_df_frac_retimed\<38\> phi_df_frac_retimed\<37\> phi_df_frac_retimed\<36\> phi_df_frac_retimed\<35\> phi_df_frac_retimed\<34\> phi_df_frac_retimed\<33\> phi_df_frac_retimed\<32\> phi_df_frac_retimed\<31\> phi_df_frac_retimed\<30\> phi_df_frac_retimed\<29\> phi_df_frac_retimed\<28\> phi_df_frac_retimed\<27\> phi_df_frac_retimed\<26\> phi_df_frac_retimed\<25\> phi_df_frac_retimed\<24\> phi_df_frac_retimed\<23\> phi_df_frac_retimed\<22\> phi_df_frac_retimed\<21\> phi_df_frac_retimed\<20\> phi_df_frac_retimed\<19\> phi_df_frac_retimed\<18\> phi_df_frac_retimed\<17\> phi_df_frac_retimed\<16\> phi_df_frac_retimed\<15\> phi_df_frac_retimed\<14\> phi_df_frac_retimed\<13\> phi_df_frac_retimed\<12\> phi_df_frac_retimed\<11\> phi_df_frac_retimed\<10\> phi_df_frac_retimed\<9\> phi_df_frac_retimed\<8\> phi_df_frac_retimed\<7\> phi_df_frac_retimed\<6\> phi_df_frac_retimed\<5\> phi_df_frac_retimed\<4\> phi_df_frac_retimed\<3\> phi_df_frac_retimed\<2\> phi_df_frac_retimed\<1\> phi_df_frac_retimed\<0\> ) Analog_core_refclk_RingDPLL_PNinj_v4_schematic  
+	I36 ( dtc_gain\<33\> dtc_gain\<32\> dtc_gain\<31\> dtc_gain\<30\> dtc_gain\<29\> dtc_gain\<28\> dtc_gain\<27\> dtc_gain\<26\> dtc_gain\<25\> dtc_gain\<24\> dtc_gain\<23\> dtc_gain\<22\> dtc_gain\<21\> dtc_gain\<20\> dtc_gain\<19\> dtc_gain\<18\> dtc_gain\<17\> dtc_gain\<16\> dtc_gain\<15\> dtc_gain\<14\> dtc_gain\<13\> dtc_gain\<12\> dtc_gain\<11\> dtc_gain\<10\> dtc_gain\<9\> dtc_gain\<8\> dtc_gain\<7\> dtc_gain\<6\> dtc_gain\<5\> dtc_gain\<4\> dtc_gain\<3\> dtc_gain\<2\> dtc_gain\<1\> dtc_gain\<0\> ) AtoD_8bit_t_b_hybrid an=dtc_gain  
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=60n errpreset=conservative maxstep=5p write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub
+ahdl_include "/home/qiaochuz/Downloads/DTC/AtoD_6bit_thermometer_code/veriloga.va"
+ahdl_include "/home/qiaochuz/Downloads/DTC/AtoD_6bit/veriloga.va"
+ahdl_include "/home/qiaochuz/Downloads/DTC/AtoD_8bit_t_b_hybrid/veriloga.va"
+
+simulator lang=spice
+.MEAS TRAN delay TRIG V(in) VAL=0 RISE=2 TARG V(out) VAL=0 RISE=2
+.MEAS TRAN delay0 TRIG V(in) VAL=0 RISE=2 TARG V(out_0) VAL=0 RISE=2
+.MEAS TRAN trf_full   TRIG V(out) VAL=-0.5 RISE=2 TARG V(out) VAL=0.5 RISE=2
+.MEAS TRAN trf_zero   TRIG V(out_0) VAL=-0.5 RISE=2 TARG V(out_0) VAL=0.5 RISE=2

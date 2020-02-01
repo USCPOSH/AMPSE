@@ -1,0 +1,35 @@
+// VerilogA for pksLib, AtoD_3bit, veriloga
+// tui modified 10/23 2012
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module AtoD_6bit_thermometer_code(D);
+
+  //input A;
+  //electrical A;
+  
+  output [63:0]D;
+  electrical [63:0]D;
+
+  parameter real an = 0;
+  
+  //real an;
+  integer temp;
+  analog begin
+
+  //an = V(A); 
+ 
+  //temp = 40*an;
+
+  temp = an;
+  generate i(0,63) begin 
+    if (i<temp)
+     V( D[i]) <+ 1;
+    else
+     V( D[i]) <+ 0;
+  end   
+
+  end
+endmodule
+

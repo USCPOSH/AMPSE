@@ -1,0 +1,31 @@
+// VerilogA for veriloga, AtoD_6bit, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module AtoD_6bit(D);
+
+  output [5:0]D;
+  electrical [5:0]D;
+
+  parameter real dec = 0;
+  parameter real VH = 1;
+  parameter real VL = 0;
+  
+  //real dec;
+  integer temp;
+  analog begin
+
+  //dec = V(A); 
+
+  temp = dec;
+  generate i(0,5) begin 
+  	if( temp%2 == 1)
+    		V(D[i]) <+ VH;
+  	else
+    		V(D[i]) <+ VL;
+  		temp = temp/2;
+  	end   
+  end
+
+endmodule

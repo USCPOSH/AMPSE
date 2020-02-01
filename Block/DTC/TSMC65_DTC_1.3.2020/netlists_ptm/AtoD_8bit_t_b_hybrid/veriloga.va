@@ -1,0 +1,45 @@
+// VerilogA for qiaochuzlib_DPLL2019, AtoD_8bit_t_b_hybrid, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module AtoD_8bit_t_b_hybrid(D);
+
+  //input A;
+  //electrical A;
+  
+  output [33:0]D;
+  electrical [33:0]D;
+
+  parameter real an = 0;
+  
+  //real an;
+  integer temp;
+  analog begin
+
+  //an = V(A); 
+ 
+  //temp = 40*an;
+
+  temp = an;
+  generate i(0,2) begin 
+  		if( temp%2 == 1)
+    			V(D[i]) <+ 1;
+  		else
+    			V(D[i]) <+ 0;
+  			temp = temp/2;
+  end
+
+ generate i(3,33) begin 
+    if (i-3<temp)
+     V( D[i]) <+ 1;
+    else
+     V( D[i]) <+ 0;
+ 	 end   
+
+
+  end
+
+
+
+endmodule

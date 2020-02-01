@@ -1,0 +1,24 @@
+simulator lang = spectre 
+global 0  
+parameters ibias=100u l=60n vbias=0.5 w=2u 
+include "/home/qiaochuz/Downloads/cs_amp/ptmn65.scs" 
+include "/home/qiaochuz/Downloads/cs_amp/ptmp65.scs"
+	M28 ( vout net6 VSS VSS )  ptmn65  l=l w=w*1 m=1  
+	M0 ( net4 net4 VDD VDD )  ptmp65  l=l w=w*1 m=1  
+	M33 ( vout net4 VDD VDD )  ptmp65  l=l w=w*1 m=1  
+	V3 ( VSS 0 ) vsource type=dc  
+	V2 ( VDD 0 ) vsource dc=1 type=dc  
+	V1 ( net6 VSS ) vsource dc=vbias mag=1 type=dc  
+	V0 ( net4 VSS ) isource dc=ibias type=dc  
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+dc dc param=vbias start=0 stop=1 oppoint=rawfile maxiters=150 \
+    maxsteps=10000 annotate=status
+ac ac start=0 stop=100G annotate=status 
+outputParameter info what=output where=rawfile
+save vout M28:1 
+saveOptions options save=selected

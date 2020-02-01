@@ -1,0 +1,96 @@
+simulator lang = spectre 
+global 0  
+parameters res=487 w_int=2.93u w_ip=1.15u w_tail=2u vctrl=1 ain=100m fin=18G vbias=600m 
+include "/~/Sanitizer/posh/bin/uscposh/ptmn65.scs" 
+include "/~/Sanitizer/posh/bin/uscposh/ptmp65.scs"
+subckt divby2_cml_tail Vtail gnd idiv_ctrl\<0\> idiv_ctrl\<1\> idiv_ctrl\<2\> vdd vdiv 
+	M15 ( Vtail vdiv net18 gnd )  ptmn65  l=240.0n w=3u m=2  
+	M14 ( Vtail vdiv net19 gnd )  ptmn65  l=240.0n w=3u m=4  
+	M5 ( net18 idiv_ctrl\<0\> gnd gnd )  ptmn65  l=240.0n w=3u m=2  
+	M0 ( Vtail vdiv net20 gnd )  ptmn65  l=240.0n w=3u m=8  
+	M4 ( net19 idiv_ctrl\<1\> gnd gnd )  ptmn65  l=240.0n w=3u m=4  
+	M11 ( Vtail gnd gnd gnd )  ptmn65  l=240.0n w=3u m=2  
+	M8 ( vdiv vdiv net013 gnd )  ptmn65  l=240.0n w=3u m=2  
+	M6 ( net20 idiv_ctrl\<2\> gnd gnd )  ptmn65  l=240.0n w=3u m=8  
+	M9 ( vdiv gnd gnd gnd )  ptmn65  l=240.0n w=3u m=2  
+	M12 ( gnd gnd gnd gnd )  ptmn65  l=240.0n w=3u m=8  
+	M7 ( net013 vdd gnd gnd )  ptmn65  l=240.0n w=3u m=2  
+ends divby2_cml_tail 
+subckt divby2_cml_latch CLK CLKb D Db P Pb Vtail gnd rst rstb vdd 
+	M43 ( gnd gnd gnd gnd )  ptmn65  l=60n w=2.5u m=28  
+	M42 ( gnd gnd gnd gnd )  ptmn65  l=60n w=2.125u m=4  
+	M39 ( gnd gnd gnd gnd )  ptmn65  l=60n w=2.125u m=2  
+	M38 ( gnd gnd gnd gnd )  ptmn65  l=60n w=2.5u m=2  
+	M37 ( net022 gnd gnd gnd )  ptmn65  l=60n w=2.5u m=2  
+	M36 ( Vtail gnd gnd gnd )  ptmn65  l=60n w=2.125u m=2  
+	M32 ( P gnd Vtail gnd )  ptmn65  l=60n w=2.125u m=2  
+	M35 ( net1 gnd gnd gnd )  ptmn65  l=60n w=2.125u m=2  
+	M24 ( Pb rst Vtail gnd )  ptmn65  l=60n w=2.125u m=2  
+	M25 ( net022 rstb Vtail gnd )  ptmn65  l=60n w=w_tail*1 m=4  
+	M34 ( net04 gnd gnd gnd )  ptmn65  l=60n w=2.125u m=4  
+	M17 ( Pb Db net04 gnd )  ptmn65  l=60n w=w_ip*1 m=17  
+	M5 ( net04 D P gnd )  ptmn65  l=60n w=w_ip*1 m=17  
+	M41 ( net1 P Pb gnd )  ptmn65  l=60n w=w_ip*1 m=17  
+	M3 ( P Pb net1 gnd )  ptmn65  l=60n w=w_ip*1 m=17  
+	M0 ( net04 CLK net022 gnd )  ptmn65  l=60n w=w_int*1 m=5  
+	M33 ( Vtail gnd gnd gnd )  ptmn65  l=60n w=2.125u m=2  
+	M30 ( net1 CLKb net022 gnd )  ptmn65  l=60n w=w_int*1 m=5  
+	R3 ( gnd gnd gnd )  resistor  r = res  
+	R0_1__dmy0 ( vdd R0_1__dmy0 gnd )  resistor  r = res  
+	R0_2__dmy0 ( R0_1__dmy0 R0_2__dmy0 gnd )  resistor  r = res  
+	R0_3__dmy0 ( R0_2__dmy0 R0_3__dmy0 gnd )  resistor  r = res  
+	R0_4__dmy0 ( R0_3__dmy0 R0_4__dmy0 gnd )  resistor  r = res  
+	R0_5__dmy0 ( R0_4__dmy0 R0_5__dmy0 gnd )  resistor  r = res  
+	R0_6__dmy0 ( R0_5__dmy0 R0_6__dmy0 gnd )  resistor  r = res  
+	R0_7__dmy0 ( R0_6__dmy0 R0_7__dmy0 gnd )  resistor  r = res  
+	R0_8__dmy0 ( R0_7__dmy0 Pb gnd )  resistor  r = res  
+	R2_1__dmy0 ( vdd R2_1__dmy0 gnd )  resistor  r = res  
+	R2_2__dmy0 ( R2_1__dmy0 R2_2__dmy0 gnd )  resistor  r = res  
+	R2_3__dmy0 ( R2_2__dmy0 R2_3__dmy0 gnd )  resistor  r = res  
+	R2_4__dmy0 ( R2_3__dmy0 R2_4__dmy0 gnd )  resistor  r = res  
+	R2_5__dmy0 ( R2_4__dmy0 R2_5__dmy0 gnd )  resistor  r = res  
+	R2_6__dmy0 ( R2_5__dmy0 R2_6__dmy0 gnd )  resistor  r = res  
+	R2_7__dmy0 ( R2_6__dmy0 R2_7__dmy0 gnd )  resistor  r = res  
+	R2_8__dmy0 ( R2_7__dmy0 P gnd )  resistor  r = res  
+ends divby2_cml_latch 
+subckt divby2_cml_DFF CLK CLKb D Db P Pb Vtail\<1\> Vtail\<0\> gnd rst rstb vdd 
+	I1 ( CLK CLKb P Pb Db D Vtail\<0\> gnd rst rstb vdd ) divby2_cml_latch  
+	I0 ( CLKb CLK D Db P Pb Vtail\<1\> gnd rst rstb vdd ) divby2_cml_latch  
+ends divby2_cml_DFF 
+subckt divby2_cml CLK CLKb D Db P Pb gnd idiv_ctrl\<0\> idiv_ctrl\<1\> idiv_ctrl\<2\> rst rstb vdd vdiv 
+	I3 ( Vtail\<0\> gnd idiv_ctrl\<0\> idiv_ctrl\<1\> idiv_ctrl\<2\> vdd vdiv ) divby2_cml_tail  
+	I2 ( Vtail\<1\> gnd idiv_ctrl\<0\> idiv_ctrl\<1\> idiv_ctrl\<2\> vdd vdiv ) divby2_cml_tail  
+	M3 ( gnd vdiv gnd gnd )  ptmn65  l=800n w=4u m=15  
+	M2 ( gnd vdiv gnd gnd )  ptmn65  l=800n w=6u m=25  
+	M1 ( gnd vdiv gnd gnd )  ptmn65  l=60n w=4u m=40  
+	M0 ( gnd vdiv gnd gnd )  ptmn65  l=60n w=4u m=40  
+	I4 ( CLK CLKb D Db P Pb Vtail\<1\> Vtail\<0\> gnd rst rstb vdd ) divby2_cml_DFF  
+ends divby2_cml 
+	I1 ( CLK CLKb D Db P Pb gnd idiv_ctrl\<0\> idiv_ctrl\<1\> idiv_ctrl\<2\> gnd vdd vdd vdiv ) divby2_cml  
+	V8 ( net1 0 ) vsource dc=vbias type=dc  
+	V5 ( vdiv 0 ) vsource dc=1 type=dc  
+	V4 ( idiv_ctrl\<0\> 0 ) vsource dc=vctrl type=dc  
+	V3 ( idiv_ctrl\<1\> 0 ) vsource dc=1 type=dc  
+	V2 ( idiv_ctrl\<2\> 0 ) vsource dc=1 type=dc  
+	V1 ( gnd 0 ) vsource dc=0 type=dc  
+	V0 ( vdd 0 ) vsource dc=1 type=dc  
+	V7 ( CLKb net1 ) vsource dc=0 type=sine ampl=-ain freq=fin  
+	V6 ( CLK net1 ) vsource dc=0 type=sine ampl=ain freq=fin  
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 maxnotes=5 maxwarns=5 \
+    digits=5 cols=80 pivrel=1e-3 sensfile="../psf/sens.output" \
+    checklimitdest=psf 
+tran tran stop=10n errpreset=conservative write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+dcOp dc write="spectre.dc" maxiters=150 maxsteps=10000 annotate=status
+dcOpInfo info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+save V0:p 
+saveOptions options save=allpub
+
