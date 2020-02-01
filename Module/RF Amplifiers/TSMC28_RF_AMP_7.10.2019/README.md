@@ -11,3 +11,12 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+## Xyce-compatible netlists will be located under Netlists/xyce/
+## Hspice netlists will be located under Netlists/hspice/
+
+# README
+<img src="Documents/images/RF_Amplifier_Page_1.png">
+<img src="Documents/images/RF_Amplifier_Page_2.png">
+<img src="Documents/images/RF_Amplifier_Page_3.png">
+<img src="Documents/images/RF_Amplifier_Page_4.png">

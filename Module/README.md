@@ -11,3 +11,16 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+# Functions
+1. CLK BUF
+2. CS Amplifier
+3. Comparator
+4. Computation DAC
+5. Delay Block
+6. Folded Cascode Amplifier
+7. RF Amplifier
+8. SHBS
+9. SHTG
+10. Telescopic Amplifier
+11. VCO

@@ -11,3 +11,12 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+## Xyce-compatible netlists will be located under Netlist/xyce/
+## Hspice netlists will be located under Netlist/hspice/
+
+# README
+<img src="Documents/images/Delay_element_parameterized_Page_1.png">
+<img src="Documents/images/Delay_element_parameterized_Page_2.png">
+<img src="Documents/images/Delay_element_parameterized_Page_3.png">
+<img src="Documents/images/Delay_element_parameterized_Page_4.png">
