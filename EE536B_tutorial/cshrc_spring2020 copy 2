@@ -1,0 +1,122 @@
+# Terminal Options
+set filec
+set autolist
+###################
+
+
+#
+# $Header: /src/common/usc/skel/RCS/dot.cshrc,v 1.5 1994/06/20 20:48:05 ucs Exp $
+#
+
+#
+# If this is not an interactive shell, then we exit here.
+#
+if (! $?prompt) then
+	exit 0
+endif
+
+#
+# RC Revision Date
+#
+set rcRevDate=930824
+
+#
+# Set User Level of expertise.
+#
+set UserLevel=novice
+
+###############################################################################
+#
+# Source a global .cshrc file.  
+#
+# DO NOT DELETE THIS SECTION!
+#
+# If you wish to customize your own environment, then add things AFTER
+# this section.  In this way, you may override certain default settings,
+# but still receive the system defaults.
+#
+if (-r /usr/lsd/conf/master.cshrc) then
+	source /usr/lsd/conf/master.cshrc
+else if (-r /usr/local/lib/master.cshrc) then
+	source /usr/local/lib/master.cshrc
+endif
+###############################################################################
+
+#
+# Put your changes/additions, here.
+#
+
+
+
+###########################################################################
+
+
+############################################################################
+
+#This sets LM_LICENSE_FILE to add 1800@license.usc.edu:
+if (  ${?LM_LICENSE_FILE} ) then
+        echo ${LM_LICENSE_FILE} | grep 1800@license.usc.edu >& /dev/null
+        if ( $status != 0  ) then
+                setenv LM_LICENSE_FILE 1800@license.usc.edu:$LM_LICENSE_FILE
+        endif
+else
+        setenv LM_LICENSE_FILE 1800@license.usc.edu
+endif
+
+############################################################################
+
+##################################################
+#### Cadence
+##################################################
+
+set CDS_INST_DIR = /usr/local/cadence/IC617
+
+
+set ICINSTDIR = $CDS_INST_DIR
+set IC_TOOLSDIR = $ICINSTDIR/tools
+
+set MMSIM_DIR = /usr/local/cadence/MMSIM151
+
+#setenv LANG C
+unsetenv LANG
+setenv LANG en_US
+
+setenv MMSIMHOME $MMSIM_DIR/tools/bin
+setenv CDSHOME $ICINSTDIR
+setenv IC_SKILLPATH $IC_TOOLSDIR/dfII/bin
+setenv SPECTRE_DEFAULTS -E
+setenv CDS_Netlisting_Mode Analog
+
+setenv ASSURAHOME /usr/local/cadence/ASSURA41
+setenv SUBSTRATESTORMHOME $ASSURAHOME
+setenv QRC_HOME /usr/local/cadence/EXT91
+setenv QRC_ENABLE_EXTRACTION t
+
+setenv CDS_LOG_PATH ~/
+
+setenv CDS_AUTO_64BIT ALL
+
+setenv CDK_DIR /home/scf-22/ee577/design_pdk/ncsu-cdk-1.6.0.beta
+
+
+
+# set the line below for the location of the cadence hierarchy
+#set cdsPath=($CDS_INST_DIR/bin \
+#             $CDS_INST_DIR/tools/bin \
+#             $CDS_INST_DIR/tools/dfII/bin \
+#             $CDS_INST_DIR/tools/dfII/pvt/bin)
+
+
+############################################################################
+
+
+set path = ($IC_SKILLPATH $MMSIM_DIR/bin $QRC_HOME/tools/bin  $IC_TOOLSDIR/bin $ASSURAHOME/tools/assura/bin ./bin /usr/lib /usr/bin /usr/sbin /etc /sbin /lib /bin /usr/local/netscape $path )
+
+
+
+
+
+
+
+
+
