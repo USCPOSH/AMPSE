@@ -1,0 +1,13 @@
+Exported variables from results directory:  ./test.raw/
+
+date               :  5:04:36 PM, Thur Feb 6, 2020
+design             :  // Generated for: spectre
+simulator          :  spectre
+version            :  17.1.0.599.isr14
+
+
+Measurement Name   :  tran
+Analysis Type      :  tran
+delay           = 1.79406e-12 
+
+

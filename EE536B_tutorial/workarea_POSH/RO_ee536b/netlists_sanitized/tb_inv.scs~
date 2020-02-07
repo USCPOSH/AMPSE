@@ -1,0 +1,42 @@
+// Generated for: spectre
+// Generated on: Feb  3 23:16:51 2020
+// Design library name: AMPSE_tutorial
+// Design cell name: tb_inv
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters wn=100n wp=100n
+include "/home/qiaochuz/workarea_ee536a/Techfile_45nm.scs"
+
+// Library name: AMPSE_tutorial
+// Cell name: inv
+// View name: schematic
+subckt inv gnd in out vdd
+    M0 (out in vdd vdd) pmos w=wp l=45n
+    M1 (out in gnd gnd) nmos w=wn l=45n
+ends inv
+// End of subcircuit definition.
+
+// Library name: AMPSE_tutorial
+// Cell name: tb_inv
+// View name: schematic
+I4 (gnd _net0 net04 vdd) inv
+I1 (gnd _net1 _net0 vdd) inv
+I0 (gnd net2 _net1 vdd) inv
+V0 (net2 0) vsource type=pulse val0=1 val1=0 delay=1n rise=50p fall=50p
+V2 (gnd 0) vsource dc=0 type=dc
+V1 (vdd 0) vsource dc=1 type=dc
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 maxnotes=5 maxwarns=5 \
+    digits=5 cols=80 pivrel=1e-3 sensfile="../psf/sens.output" \
+    checklimitdest=psf 
+tran tran stop=2n errpreset=conservative write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub
