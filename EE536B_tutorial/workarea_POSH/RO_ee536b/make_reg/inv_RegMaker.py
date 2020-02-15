@@ -18,7 +18,7 @@ import os
 # Importing the data set
 
 cf = os.getcwd()
-cfs = cf.split('/') # for windows users, change the command to cfs = cf.split('\\')
+cfs = cf.split('/') # for windows users, change this line to cfs = cf.split('\\')
 sss = '/'
 homefolder=sss.join(cfs[:-1])
 
