@@ -146,7 +146,7 @@ reg.load_weights(homefolder+'/Reg_files/your_design_name/your_design_name.h5')
 param = np.array([1,2,3]) # for example, your input parameters are [1,2,3]
 sX_test = sc_X.transform(param) # transform parameters with standard scaler
 sy_pred = reg.predict(sX_test) # inference using neural network
-metric = sy_pred.inverse_transform(sy_pred) # inverse transform of metrics
+metric = sc_y.inverse_transform(sy_pred) # inverse transform of metrics
 #from sklearn.metrics import mean_squared_error
 #scores = [mean_squared_error(sy_pred[:,i],sy_test[:,i]) for i in range(len(y_test[0,:]))]
 #==================================================================
