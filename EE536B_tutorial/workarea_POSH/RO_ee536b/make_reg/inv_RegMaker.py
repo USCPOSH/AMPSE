@@ -129,7 +129,7 @@ pickle.dump( reg.get_weights(), open( addr+'w8_'+name+'.p', "wb" ) )
 #==================================================================
 '''
 from sklearn.externals import joblib
-from keras.models import model_from_json 
+from tensorflow.keras.models import model_from_json 
 json_file = open(homefolder+'/Reg_files/your_design_name/your_design_name.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
