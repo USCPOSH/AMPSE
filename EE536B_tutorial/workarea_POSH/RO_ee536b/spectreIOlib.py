@@ -427,6 +427,26 @@ def rowread(filename,linenum,colrange):
 	results=x[colrange]
 	return results
 
+def search_oceanEval_result_row_number(filename):
+	import re
+	f = open(filename,'r')
+	lines = f.readlines()
+	f.close()
+	head_template='Export:'
+	tail_template='Successfully evaluated'
+	i_h=0
+	i_t=0
+	for i in range(len(lines)):
+		z_h=re.match(head_template,lines[i])
+		z_t=re.match(tail_template,lines[i])
+		if z_h:
+			i_h=i
+		if z_t:
+			i_t=i
+	z=[]
+	for i in range(i_h+1,i_t):
+		z.append(i)
+	return z
 
 def randominput_int(minparam,maxparam,even,odd,same):
 #Generates a random number between minparam to maxparam

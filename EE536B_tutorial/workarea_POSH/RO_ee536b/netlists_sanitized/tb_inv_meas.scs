@@ -41,4 +41,5 @@ primitives info what=primitives where=rawfile
 subckts info what=subckts where=rawfile
 saveOptions options save=allpub
 
-export delay=oceanEval("cross(v(\"_net0\" ?result \"tran\" ?resultsDir \"/home/qiaochuz/workarea_POSH/RO_ee536b/temp/tb_inv/test.raw\") 0.5 1 \"falling\" nil nil)-cross(v(\"_net1\" ?result \"tran\" ?resultsDir \"/home/qiaochuz/workarea_POSH/RO_ee536b/temp/tb_inv/test.raw\") 0.5 1 \"rising\" nil nil)")
+simulator lang=spice
+.MEAS TRAN delay TRIG V(_net1) VAL=0.5 RISE=1 TARG V(_net0) VAL=0.5 FALL=1
