@@ -52,7 +52,7 @@ class inv(Netlists):# change the name of the class to the circuit that you are e
 
         self.dict_parameters = {'line_number':self.par_line_number,'name_params':self.parname,'value_params':param}
         x = self.runspectre1.runspectre(dict_parameters=self.dict_parameters,alter_list=lst_alter)
-        z = search_oceanEval_result_row_number(self.testfolder + '/aps.log') # the line number of your mesurement result in test.measure file. You can find it in /temp/tb_inv/test.measure
+        z = search_oceanEval_result_row_number(self.testfolder + '/aps.log') # the line number of your mesurement result in log file. Make sure that you put the correct log file name here.
         self.lst_metrics=[{'read':'c','filename':self.testfolder + '/aps.log','number':2,'measurerange':z}]
         if x:
             out1=[]
