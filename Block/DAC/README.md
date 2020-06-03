@@ -14,5 +14,4 @@ limitations under the License.
 
 # Architectures
 
-1. SAR ADC
-2. VCO ADC
+1. CS DAC
