@@ -42,6 +42,12 @@ tedad = 5                 # number of parameter candidates
 #****************  Loading the Regressors  ************************
 #==================================================================
 
+    # laoding the reg models
+    load_address =  "regs/DTC"
+    DTC_model = reg_database.TF_DTC()
+    DTC_gen   = TF_Model(name = 'DTC_sigmoid_v1', model = DTC_model,load_address = load_address, err_save=False)
+    DTC_model.trainable = False
+    
 
 # DTC 1st stage
 class DTC1(TF_DEFAULT):
@@ -59,14 +65,9 @@ class DTC1(TF_DEFAULT):
             w_f         = drive + '/w8_tb_DTC_PNinj.p'
             self.w_json = drive + '/model_tb_DTC_PNinj.json'
             self.w_h5   = drive + '/reg_tb_DTC_PNinj.h5'
-
-            #self.parname =          [ 'lbias','lbp','lbn','lin1','lin2','ltn','ltp','vcmo','mamp','fbias','fbp','fbn','fin1','fin2','ftn1','ftn2','ftp1','ftp2']				
-            #self.metricname = ['cin', 'cout', 'gain', 'gm', 'pole1', 'pole2', 'rout', 'cmo', 'pwr', 'swing14', 'swing7', 'swingn', 'swingn1', 'swingn4', 'swingp', 'irn'] 
-          
             self.minx  = np.array([10 ,10 ,2000 ,10 ])
             self.maxx  = np.array([21 ,21 ,4000 ,21 ])
             self.step  = np.array([1  ,1  ,10 ,1])
-        
         self.loading(sx_f,sy_f,w_f)
         
 
