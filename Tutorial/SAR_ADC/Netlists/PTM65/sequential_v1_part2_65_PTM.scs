@@ -1,0 +1,83 @@
+// Generated for: spectre
+// Generated on: Sep 26 09:23:10 2019
+// Design library name: CAD_modules
+// Design cell name: test_SAR_Sequential_part2_v1
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters  nor3=2 fck1=10
+
+
+include "/shares/techfile/PTM/65nm/ptm65_nmos.sp"
+include "/shares/techfile/PTM/65nm/ptm65_pmos.sp"
+
+// Library name: CAD_modules
+// Cell name: NOR_PTM_3_v1
+// View name: schematic
+subckt NOR_PTM_3_v1 A B C VDD VSS Z
+parameters fnnn fppp
+    M11 (Z C VSS VSS) nmos w=400n l=65n m=fnnn
+    M0 (Z A VSS VSS) nmos w=400n l=65n m=fnnn
+    M7 (Z B VSS VSS) nmos w=400n l=65n m=fnnn
+    M10 (Z C net018 VDD) pmos w=800n l=65n m=fppp
+    M9 (net018 B net019 VDD) pmos w=800n l=65n m=fppp
+    M6 (net019 A VDD VDD) pmos w=800n l=65n m=fppp
+    M5 (net015 B VDD VDD) pmos w=800n l=65n m=fppp
+    M4 (net011 C net015 VDD) pmos w=800n l=65n m=fppp
+    M3 (Z A net011 VDD) pmos w=800n l=65n m=fppp
+    M2 (Z B net012 VDD) pmos w=800n l=65n m=fppp
+    M1 (net012 A net016 VDD) pmos w=800n l=65n m=fppp
+    M8 (net016 C VDD VDD) pmos w=800n l=65n m=fppp
+ends NOR_PTM_3_v1
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: INVsmall_PTM_v2
+// View name: schematic
+subckt INVsmall_PTM_v2 A VDD VSS Z
+parameters fnnn fppp
+    M0 (Z A VSS VSS) nmos w=400n l=65n m=fnnn
+    M1 (Z A VDD VDD) pmos w=800n l=65n m=fppp
+ends INVsmall_PTM_v2
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: test_SAR_Sequential_part2_PTM_v1
+// View name: schematic
+I6 (VSS clk VSS VDD3 VSS net051) NOR_PTM_3_v1 fnnn=nor3 fppp=3*nor3
+C4 (net051 VSS) capacitor c=1f
+C3 (d1 VSS) capacitor c=1f
+C0 (d2 VSS) capacitor c=1f
+C7 (d3 VSS) capacitor c=1f
+C2 (net054 VSS) capacitor c=1f
+C1 (net049 VSS) capacitor c=1f
+v4 (VDD4 0) vsource dc=1 type=dc
+v3 (VDD3 0) vsource dc=1 type=dc
+V0 (VSS 0) vsource dc=0 type=dc
+v7 (VDD5 0) vsource dc=1 type=dc
+V5 (clk 0) vsource type=pulse val0=0 val1=1 period=1n
+I27 (d2 VDD5 VSS net049) INVsmall_PTM_v2 fnnn=nor3 fppp=nor3
+I26 (net054 VDD4 VSS d2) INVsmall_PTM_v2 fnnn=nor3 fppp=nor3
+I25 (d1 VDD4 VSS net054) INVsmall_PTM_v2 fnnn=nor3 fppp=nor3
+I29 (d3 VSS VSS net013) INVsmall_PTM_v2 fnnn=fck1 fppp=fck1
+I28 (net049 VDD5 VSS d3) INVsmall_PTM_v2 fnnn=nor3 fppp=nor3
+I10 (net051 VDD3 VSS d1) INVsmall_PTM_v2 fnnn=nor3 fppp=nor3
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=5n errpreset=conservative write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+save V3:p V4:p V7:p 
+saveOptions options save=allpub
+
+
+simulator lang=spice
+.MEAS TRAN  pwrnor AVG I(v3)
+.MEAS TRAN  pwrbuf AVG I(v4)
+.MEAS TRAN  pwrcmp AVG I(v7)
+.MEAS TRAN  dlynor TRIG V(clk) VAL=.5 RISE=2 TARG V(d1) VAL=.5 RISE=2
+.MEAS TRAN  dlybuf TRIG V(d1) VAL=.5 RISE=2 TARG V(d2) VAL=.5 RISE=2
+.MEAS TRAN  dlycmp TRIG V(d2) VAL=.5 RISE=2 TARG V(d3) VAL=.5 RISE=2
+
+

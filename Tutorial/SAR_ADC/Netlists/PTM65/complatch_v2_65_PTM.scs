@@ -1,0 +1,197 @@
+// Generated for: spectre
+// Generated on: Oct 11 11:43:41 2019
+// Design library name: CAD_modules
+// Design cell name: test_SAR_complatch_v2
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters fnor3=2 frdy=10 mrdy=10 fload=2 mload=10 vos=100u fck1=2 fck2=2 fcompinv=2 fcompnand=2 finnn=8 fninv=1 fpinv=20 fpr1=1 fpr2=1 frdyinv=2 frdynand=2 fttt=4 VCM=0.5 VDD=1
+
+include "/shares/techfile/PTM/65nm/ptm65_nmos.sp"
+include "/shares/techfile/PTM/65nm/ptm65_pmos.sp"
+
+// Library name: CAD_modules
+// Cell name: NOR_PTM_3_v1
+// View name: schematic
+subckt NOR_PTM_3_v1 A B C VDD VSS Z
+parameters fnnn fppp
+    M11 (Z C VSS VSS) nmos w=400n l=65n m=fnnn
+    M0 (Z A VSS VSS) nmos w=400n l=65n m=fnnn
+    M7 (Z B VSS VSS) nmos w=400n l=65n m=fnnn
+    M10 (Z C net018 VDD) pmos w=800n l=65n m=fppp
+    M9 (net018 B net019 VDD) pmos w=800n l=65n m=fppp
+    M6 (net019 A VDD VDD) pmos w=800n l=65n m=fppp
+    M5 (net015 B VDD VDD) pmos w=800n l=65n m=fppp
+    M4 (net011 C net015 VDD) pmos w=800n l=65n m=fppp
+    M3 (Z A net011 VDD) pmos w=800n l=65n m=fppp
+    M2 (Z B net012 VDD) pmos w=800n l=65n m=fppp
+    M1 (net012 A net016 VDD) pmos w=800n l=65n m=fppp
+    M8 (net016 C VDD VDD) pmos w=800n l=65n m=fppp
+ends NOR_PTM_3_v1
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: INVsmall_PTM_v2
+// View name: schematic
+subckt INVsmall_PTM_v2 A VDD VSS Z
+parameters fnnn fppp
+    M0 (Z A VSS VSS) nmos w=400n l=65n m=fnnn
+    M1 (Z A VDD VDD) pmos w=800n l=65n m=fppp
+ends INVsmall_PTM_v2
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: NAND65_PTM_v1
+// View name: schematic
+subckt NAND65_PTM_v1 A B VDD VSS Z
+parameters fppp fnnn
+    M8 (Z A VDD VDD) pmos w=800n l=65n m=fppp
+    M6 (Z B VDD VDD) pmos w=800n l=65n m=fppp
+    M11 (net11 A VSS VSS) nmos w=400n l=65n m=fnnn
+    M10 (Z B net11 VSS) nmos w=400n l=65n m=fnnn
+    M9 (net12 B VSS VSS) nmos w=400n l=65n m=fnnn
+    M7 (Z A net12 VSS) nmos w=400n l=65n m=fnnn
+ends NAND65_PTM_v1
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: SAR_comparator_latch_PTM_v2
+// View name: schematic
+subckt SAR_comparator_latch_PTM_v2 DN DP RDY VDD VSS compn compp
+parameters fcompinvn fcompinvp frdynanadp frdynanadn
+    I7 (compn VDD VSS DN) INVsmall_PTM_v2 fnnn=fcompinvn fppp=fcompinvp
+    I5 (compp VDD VSS DP) INVsmall_PTM_v2 fnnn=fcompinvn fppp=fcompinvp
+    I2 (DP DN VDD VSS RDY) NAND65_PTM_v1 fppp=frdynanadp fnnn=frdynanadn
+ends SAR_comparator_latch_PTM_v2
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: SAR_comparator_PTM_v2
+// View name: schematic
+subckt SAR_comparator_PTM_v2 AN AP BN BP CKi CKo VDD VSS on op
+parameters _par0 _par1 _par2 _par3 _par4 _par5 _par6 _par7
+    M17 (net038 CKo VDD VDD) pmos w=800n l=65n m=_par0
+    M16 (net059 CKo VDD VDD) pmos w=800n l=65n m=_par0
+    M15 (net037 BN net059 VDD) pmos w=800n l=65n m=_par1
+    M14 (net53 BP net059 VDD) pmos w=800n l=65n m=_par1
+    M13 (net53 AP net038 VDD) pmos w=800n l=65n m=_par1
+    M12 (net037 AN net038 VDD) pmos w=800n l=65n m=_par1
+    M11 (op on net53 net53) pmos w=800n l=65n m=_par2
+    M10 (on op net037 net037) pmos w=800n l=65n m=_par2
+    M0 (CKo net052 VDD VDD) pmos w=800n l=65n m=_par3
+    M2 (net052 CKi VDD VDD) pmos w=800n l=65n m=_par4
+    M9 (op on VSS VSS) nmos w=400n l=65n m=_par5
+    M8 (on op VSS VSS) nmos w=400n l=65n m=_par5
+    M7 (net037 CKo VSS VSS) nmos w=400n l=65n m=_par6
+    M6 (on CKo VSS VSS) nmos w=400n l=65n m=_par7
+    M5 (net53 CKo VSS VSS) nmos w=400n l=65n m=_par6
+    M4 (op CKo VSS VSS) nmos w=400n l=65n m=_par7
+    M1 (CKo net052 VSS VSS) nmos w=400n l=65n m=_par3
+    M3 (net052 CKi VSS VSS) nmos w=400n l=65n m=_par4
+ends SAR_comparator_PTM_v2
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: SAR_complatch_PTM_v2
+// View name: schematic
+subckt SAR_complatch_PTM_v2 AN AP CLKc DN DP RDY VDD VSS
+parameters _par0 _par1 _par2 _par3 _par4 _par5 _par6 _par7 _par8 _par9
+    I1 (DN DP RDY VDD VSS on1 op1) SAR_comparator_latch_PTM_v2 \
+        fcompinvn=_par0 fcompinvp=_par0 frdynanadp=_par1 frdynanadn=_par1
+    I2 (AN AP AN AP CLKc net6 VDD VSS on1 op1) SAR_comparator_PTM_v2 \
+        _par0=_par2 _par1=_par3 _par2=_par4 _par3=_par5 _par4=_par6 \
+        _par5=_par7 _par6=_par8 _par7=_par9
+ends SAR_complatch_PTM_v2
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: test_SAR_complatch_PTM_v2
+// View name: schematic
+I6 (RDY1 VDD VDD VDD VSS net040) NOR_PTM_3_v1 fnnn=fnor3 fppp=3*fnor3
+V10 (VDD2 0) vsource dc=VDD type=dc
+V9 (net052 net055) vsource dc=0 mag=1 type=dc
+V8 (net055 VSS) vsource dc=VCM type=dc
+V6 (net020 0) vsource dc=VCM mag=1 type=dc
+V4 (VCM 0) vsource dc=VCM type=dc
+V11 (DV VCM) vsource dc=vos type=dc
+V1 (VSS 0) vsource dc=0 type=dc
+v101 (VDD 0) vsource dc=VDD type=dc
+V5 (ck 0) vsource type=pulse val0=0 val1=VDD period=5n
+I7 (net029 net028 VSS net047 net046 net049 VDD VSS) SAR_complatch_PTM_v2 \
+        _par0=fcompinv _par1=frdynand _par2=fttt _par3=finnn _par4=fpinv \
+        _par5=fck2 _par6=fck1 _par7=fninv _par8=fpr2 _par9=fpr1
+I4 (AA AA net037 net034 net035 net036 VDD VSS) SAR_complatch_PTM_v2 \
+        _par0=fcompinv _par1=frdynand _par2=fttt _par3=finnn _par4=fpinv \
+        _par5=fck2 _par6=fck1 _par7=fninv _par8=fpr2 _par9=fpr1
+I3 (IN IP ck net030 net031 net032 VDD VSS) SAR_complatch_PTM_v2 \
+        _par0=fcompinv _par1=frdynand _par2=fttt _par3=finnn _par4=fpinv \
+        _par5=fck2 _par6=fck1 _par7=fninv _par8=fpr2 _par9=fpr1
+I0 (DV VCM ck ON1 OP1 RDY1 VDD2 VSS) SAR_complatch_PTM_v2 _par0=fcompinv \
+        _par1=frdynand _par2=fttt _par3=finnn _par4=fpinv _par5=fck2 \
+        _par6=fck1 _par7=fninv _par8=fpr2 _par9=fpr1
+C0 (IN 0) capacitor c=50.00f
+C1 (IP 0) capacitor c=50.00f
+R0 (AA net020) resistor r=1K
+E1 (net028 net055 net052 net055) vcvs gain=1.0
+E0 (net029 net055 net055 net052) vcvs gain=1.0
+E2 (INDD VSS IN IP) vcvs gain=1.0
+M9 (net019 ON1 VDD VDD) pmos w=800n l=65n m=fload*mload
+M8 (net062 OP1 VDD VDD) pmos w=800n l=65n m=fload*mload
+M6 (net023 RDY1 VDD VDD) pmos w=800n l=65n m=frdy*mrdy
+M3 (net019 ON1 VSS VSS) nmos w=400n l=65n m=fload*mload
+M2 (net062 OP1 VSS VSS) nmos w=400n l=65n m=fload*mload
+M7 (net023 RDY1 VSS VSS) nmos w=400n l=65n m=frdy*mrdy
+ic I7.op1=0 I7.on1=0 IP=0 IN=0.4 
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+
+
+save I0:7 
+
+
+saveOptions options save=allpub
+
+cmsweep sweep param=VCM start=0.0 stop=0.6 step=0.2 {
+	tran tran stop=7.0n errpreset=conservative annotate=status maxiters=5 
+	ac ac start=1k stop=1T annotate=status
+}
+ 
+noise ( I7.on1 I7.op1 ) noise start=1k stop=1T iprobe=V9 annotate=status 
+
+saveOptions options save=allpub
+//.NOISE V(DRN 0) VAC DEC 5 1 10K
+//noise_ana (DRN 0) noise start=1 stop=10k dec=5 iprobe=VAC 
+simulator lang = spice
+
+.MEAS TRAN  power AVG I(v101)
+.MEAS TRAN  ready0 TRIG V(ck) VAL=.5 FALL=1 TARG V(rdy1) VAL=.5 RISE=1
+.MEAS TRAN  readyr TRIG V(ck) VAL=.5 RISE=1 TARG V(rdy1) VAL=.5 FALL=1
+.MEAS TRAN  delayf TRIG V(ck) VAL=.5 FALL=1 TARG V(on1)  VAL=.5 FALL=1
+
+.MEAS TRAN  zv1    FIND  V(indd) at 1000pS
+.MEAS TRAN  zv2    FIND  V(indd) at 4000pS
+.MEAS TRAN  kickn  PARAM=PAR('zv1 - zv2')
+
+.MEAS AC    zinbw  When vdb(AA) = -3
+.MEAS AC    Cin    PARAM=PAR('1/(6280*zinbw)')
+.MEAS AC    zavd   MAX VDB(I7.on1)
+.MEAS AC    zobw   WHEN PAR('VDB(I7.on1)-zavd') = -3
+
+//.PRINT  onoise inoise
+.MEAS AC ononon RMS inoise() FROM = 1k TO = par('zobw')
+.MEAS AC    irn  PARAM=PAR('SQRT(zobw)*ononon')
+
+
+
+
+
+
+
+
+
+
+
+
+

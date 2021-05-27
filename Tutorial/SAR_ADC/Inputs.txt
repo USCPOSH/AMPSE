@@ -1,0 +1,41 @@
+# SAR ADC design with AMPSE:
+
+
+#GLOBAL LIBRARY LOCATION:
+
+globallibrary = 'D:\PYTHON_PHD\GlobalLibrary'
+
+#==============================
+#===========PRIMARY OBJECTIVES:
+#==============================
+# SAMPLING FREQUENCY:
+fs=20            
+          
+# NUMBER OF BITS:
+nbit=11 
+
+# NUMBER OF OUTPUT CANDIDATES
+len_mc=10                 
+
+
+#==============================
+# =========SECONDARY OBJECTIVES:
+# =============================
+
+# WEIGHTS FOR EACH SPECIFICATION:
+weights = [10.0,2.0,1.0,0.0,1.0,1.0,1.0,1.0,100.0,1.0/5]
+
+# GRADIENT DESCENT STOPPING CRITERIA
+epsilon=1e-5                
+
+# MAXIMUM ITERATION
+maxiter=10000               
+
+# MAXIMUM NUMBER OF BUFFERS PER DELAY LINES:
+n_stairs=10                 
+
+# GRADIENT DESCENT LEARNING RATE FOR HARD CONSTRAINTS
+lr_hard = 0.2
+
+# GRADIENT DESCENT LEARNING RATE FOR SOFT CONSTRAINTS
+lr_soft = 0.02

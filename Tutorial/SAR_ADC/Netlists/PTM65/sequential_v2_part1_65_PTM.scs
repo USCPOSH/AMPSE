@@ -1,0 +1,151 @@
+// Generated for: spectre
+// Generated on: Oct  8 10:59:24 2019
+// Design library name: CAD_modules
+// Design cell name: test_SAR_Sequential_part1_v1
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters drvbuf11=2 drvbuf21=2  drvbuf31=10 drvdffck1=2 drvinv1=2 drvnand1=2  fdffck=2 finv=2 fnand=2 frefnn=2 frefpp=2 mdacbig=2048
+
+
+include "/shares/techfile/PTM/65nm/ptm65_nmos.sp"
+include "/shares/techfile/PTM/65nm/ptm65_pmos.sp"
+
+// Library name: CAD_modules
+// Cell name: INVsmall_PTM_v2
+// View name: schematic
+subckt INVsmall_PTM_v2 A VDD VSS Z
+parameters fnnn fppp
+    M0 (Z A VSS VSS) nmos w=400n l=65n m=fnnn
+    M1 (Z A VDD VDD) pmos w=800n l=65n m=fppp
+ends INVsmall_PTM_v2
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: TRILVL_PTM_v1
+// View name: schematic
+subckt TRILVL_PTM_v1 CK CKB IN OUT VDD VSS
+parameters fppp fnnn
+    M2 (OUT CKB IN VDD) pmos w=800n l=65n m=fppp
+    M3 (IN CK OUT VSS) nmos w=400n l=65n m=fnnn
+ends TRILVL_PTM_v1
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: DFD_SARnoreset_PTM_v1
+// View name: schematic
+subckt DFD_SARnoreset_PTM_v1 CP D Q QN VDD VSS
+parameters finvn finvp fdffckn fdffckp ftrilvlp ftrilvln
+    I8 (QN VDD VSS net06) INVsmall_PTM_v2 fnnn=finvn fppp=finvp
+    I15 (net3 VDD VSS net07) INVsmall_PTM_v2 fnnn=finvn fppp=finvp
+    I10 (QN VDD VSS Q) INVsmall_PTM_v2 fnnn=finvn fppp=finvp
+    I14 (net03 VDD VSS QN) INVsmall_PTM_v2 fnnn=finvn fppp=finvp
+    I0 (net4 VDD VSS net3) INVsmall_PTM_v2 fnnn=finvn fppp=finvp
+    I9 (D VDD VSS net022) INVsmall_PTM_v2 fnnn=finvn fppp=finvp
+    I11 (CP VDD VSS CPB) INVsmall_PTM_v2 fnnn=fdffckn fppp=fdffckp
+    I7 (CPB CP net06 net03 VDD VSS) TRILVL_PTM_v1 fppp=ftrilvlp \
+        fnnn=ftrilvln
+    I4 (CP CPB net07 net4 VDD VSS) TRILVL_PTM_v1 fppp=ftrilvlp \
+        fnnn=ftrilvln
+    I6 (CP CPB net3 net03 VDD VSS) TRILVL_PTM_v1 fppp=ftrilvlp \
+        fnnn=ftrilvln
+    I2 (CPB CP net022 net4 VDD VSS) TRILVL_PTM_v1 fppp=ftrilvlp \
+        fnnn=ftrilvln
+ends DFD_SARnoreset_PTM_v1
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: NAND_PTM_v1
+// View name: schematic
+subckt NAND_PTM_v1 A B VDD VSS Z
+parameters fppp fnnn
+    M8 (Z A VDD VDD) pmos w=800n l=65n m=fppp
+    M6 (Z B VDD VDD) pmos w=800n l=65n m=fppp
+    M11 (net12 B VSS VSS) nmos w=400n l=65n m=fnnn
+    M10 (Z A net12 VSS) nmos w=400n l=65n m=fnnn
+    M9 (Z B net11 VSS) nmos w=400n l=65n m=fnnn
+    M7 (net11 A VSS VSS) nmos w=400n l=65n m=fnnn
+ends NAND_PTM_v1
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: SAR_dacdriver_PTM_v1
+// View name: schematic
+subckt SAR_dacdriver_PTM_v1 B D VDD VSS clki out
+parameters dffinvn dffinvp dffckn dffckp dfftrip dfftrin fnandp fnandn \
+        finv1n finv1p
+    I2 (clki D B net06 VDD VSS) DFD_SARnoreset_PTM_v1 finvn=dffinvn \
+        finvp=dffinvp fdffckn=dffckn fdffckp=dffckp ftrilvlp=dfftrip \
+        ftrilvln=dfftrin
+    I0 (B net5 VDD VSS net010) NAND_PTM_v1 fppp=fnandp fnnn=fnandn
+    I3 (clki VDD VSS net08) INVsmall_PTM_v2 fnnn=finv1n fppp=finv1p
+    I8 (net010 VDD VSS out) INVsmall_PTM_v2 fnnn=finv1n fppp=finv1p
+    I7 (net08 VDD VSS net5) INVsmall_PTM_v2 fnnn=finv1n fppp=finv1p
+ends SAR_dacdriver_PTM_v1
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: DFD_SAR_PTM_v1
+// View name: schematic
+subckt DFD_SAR_PTM_v1 CP D Q QN Rb VDD VSS
+parameters finvn finvp fdffckn fdffckp ftrilvlp ftrilvln fnandp fnandn
+    I10 (QN VDD VSS Q) INVsmall_PTM_v2 fnnn=finvn fppp=finvp
+    I8 (QN VDD VSS net06) INVsmall_PTM_v2 fnnn=finvn fppp=finvp
+    I0 (net4 VDD VSS net3) INVsmall_PTM_v2 fnnn=finvn fppp=finvp
+    I9 (D VDD VSS net022) INVsmall_PTM_v2 fnnn=finvn fppp=finvp
+    I11 (CP VDD VSS CPB) INVsmall_PTM_v2 fnnn=fdffckn fppp=fdffckp
+    I7 (CPB CP net06 net03 VDD VSS) TRILVL_PTM_v1 fppp=ftrilvlp \
+        fnnn=ftrilvln
+    I6 (CP CPB net3 net03 VDD VSS) TRILVL_PTM_v1 fppp=ftrilvlp \
+        fnnn=ftrilvln
+    I4 (CP CPB net07 net4 VDD VSS) TRILVL_PTM_v1 fppp=ftrilvlp \
+        fnnn=ftrilvln
+    I2 (CPB CP net022 net4 VDD VSS) TRILVL_PTM_v1 fppp=ftrilvlp \
+        fnnn=ftrilvln
+    I12 (Rb net03 VDD VSS QN) NAND_PTM_v1 fppp=fnandp fnnn=fnandn
+    I13 (net3 Rb VDD VSS net07) NAND_PTM_v1 fppp=fnandp fnnn=fnandn
+ends DFD_SAR_PTM_v1
+// End of subcircuit definition.
+
+// Library name: CAD_modules
+// Cell name: test_SAR_Sequential_part1_PTM_v1
+// View name: schematic
+I2 (net020 data VDD1 VSS clk DACbig) SAR_dacdriver_PTM_v1 dffinvn=drvinv1 \
+        dffinvp=drvinv1 dffckn=drvdffck1 dffckp=drvdffck1 dfftrip=drvinv1 \
+        dfftrin=drvinv1 fnandp=drvnand1 fnandn=drvnand1 finv1n=drvbuf11 \
+        finv1p=drvbuf11
+C6 (VSS DACbig) capacitor c=1f
+C5 (d3 VSS) capacitor c=1f
+v2 (VDD2 0) vsource dc=1 type=dc
+v1 (VDD1 0) vsource dc=1 type=dc
+V0 (VSS 0) vsource dc=0 type=dc
+V7 (VDD5 0) vsource dc=1 type=dc
+V6 (data 0) vsource type=pulse val0=0 val1=1 period=8n delay=4n
+V5 (clk 0) vsource type=pulse val0=0 val1=1 period=8n
+M3 (net012 DACbig VSS VSS) nmos w=400n l=65n m=frefnn*mdacbig
+I3 (d3 VDD5 VSS net059) INVsmall_PTM_v2 fnnn=drvbuf11 fppp=drvbuf11
+I5 (d3 VSS net044 net043 VDD5 VSS) DFD_SARnoreset_PTM_v1 finvn=drvinv1 \
+        finvp=drvinv1 fdffckn=drvdffck1 fdffckp=drvdffck1 ftrilvlp=drvinv1 \
+        ftrilvln=drvinv1
+I8 (clk VDD2 d3 net033 data VDD2 VSS) DFD_SAR_PTM_v1 finvn=finv finvp=finv \
+        fdffckn=fdffck fdffckp=fdffck ftrilvlp=finv ftrilvln=finv \
+        fnandp=fnand fnandn=fnand
+I11 (clk d3 net041 net030 data VDD5 VSS) DFD_SAR_PTM_v1 finvn=finv \
+        finvp=finv fdffckn=fdffck fdffckp=fdffck ftrilvlp=finv \
+        ftrilvln=finv fnandp=fnand fnandn=fnand
+M2 (VDD1 DACbig net012 VDD1) pmos w=800n l=65n m=frefpp*mdacbig
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 multithread=on nthreads=4 scalem=1.0 scale=1.0 gmin=1e-12 \
+    rforce=1 maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+tran tran stop=40n errpreset=conservative write="spectre.ic" \
+    writefinal="spectre.fc" annotate=status maxiters=5 
+save V1:p V2:p 
+saveOptions options save=allpub
+
+simulator lang=spice
+.MEAS TRAN  pwrdac AVG I(v1)
+.MEAS TRAN  pwrdff AVG I(v2)
+.MEAS TRAN  dlydac TRIG V(clk) VAL=.5 RISE=2 TARG V(DACbig) VAL=.9 RISE=1
+.MEAS TRAN  dlydff TRIG V(clk) VAL=.5 RISE=2 TARG V(d3) VAL=.5 RISE=1
+
